@@ -1,83 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog — Asaf Ahmad Shayaan</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-<nav class="navbar">
-  <div class="container">
-    <a href="index.html" class="nav-logo">Asaf<span>.</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="portfolio.html">Design Portfolio</a></li>
-      <li><a href="contact.html" class="nav-cta">Contact</a></li>
-    </ul>
-    <div class="nav-toggle"><span></span><span></span><span></span></div>
-  </div>
-</nav>
-
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Blog &mdash; Asaf Ahmad Shayaan</title><link rel="stylesheet" href="css/style.css"/></head>
+<body class="minimal-mode">
+<div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursor-ring"></div>
+<nav class="navbar"><div class="container"><a href="index.html" class="nav-logo">Asaf<span>.</span></a><ul class="nav-links" id="nav-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="experience.html">Experience</a></li><li><a href="blog.html">Blog</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="creative.html">Creative</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html" class="nav-cta">Contact</a></li></ul><div style="display:flex;align-items:center"><div class="theme-toggle" onclick="toggleTheme()" title="Switch view mode"><span class="toggle-option active" id="toggle-minimal">Minimal</span><span class="toggle-option" id="toggle-creative">Creative</span></div></div><div class="nav-toggle"><span></span><span></span><span></span></div></div></nav>
 <main class="page-body">
-  <div class="page-header">
-    <div class="container">
-      <h1>Blog</h1>
-      <p>Product thinking, fintech domain insights, and lessons from building credit products.</p>
-    </div>
+  <div class="page-header" data-title="BLOG">
+    <div class="container"><h1>Blog</h1><p>Product thinking, fintech domain insights, and lessons from building credit products.</p></div>
   </div>
-
   <section class="section">
     <div class="container">
-      <div class="blog-grid" id="blog-list">
-        <div class="empty-state">
-          <h3>No posts yet</h3>
-          <p>Posts you write in the admin panel will appear here.</p>
-          <a href="admin.html" style="color:var(--accent); font-weight:600;">Go to Admin →</a>
+      <div id="filter-bar" style="display:flex;gap:24px;margin-bottom:36px;flex-wrap:wrap;align-items:center">
+        <div style="display:flex;gap:8px;flex-wrap:wrap" id="rl-filters">
+          <button onclick="filterPosts('rl','all',this)" class="filter-btn active">All</button>
+          <button onclick="filterPosts('rl','rapid',this)" class="filter-btn">Rapid Read</button>
+          <button onclick="filterPosts('rl','medium',this)" class="filter-btn">Medium Read</button>
+          <button onclick="filterPosts('rl','long',this)" class="filter-btn">Long Read</button>
         </div>
+        <select id="cat-filter" onchange="filterPosts('cat',this.value,null)" style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;padding:8px 14px;border:1.5px solid var(--border);border-radius:2px;background:var(--cream);color:var(--text)">
+          <option value="all">All Categories</option>
+        </select>
+      </div>
+      <div class="blog-grid" id="blog-list">
+        <div class="empty-state"><h3>No posts yet</h3><p>Posts will appear here once published.</p></div>
       </div>
     </div>
   </section>
 </main>
-
-<footer class="footer">
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-brand">Asaf<span>.</span></div>
-      <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="experience.html">Experience</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-copy">© 2026 Asaf Ahmad Shayaan · Product Manager · Fintech & Lending</div>
-  </div>
-</footer>
-
+<footer class="footer"><div class="container"><div class="footer-inner"><div><div class="footer-brand">Asaf<span>.</span></div><div class="footer-tagline">Product Manager &middot; Fintech &middot; Lending</div></div><div class="footer-nav"><h4>Work</h4><a href="experience.html">Experience</a><a href="portfolio.html">Portfolio</a><a href="blog.html">Blog</a><a href="services.html">Services</a></div><div class="footer-nav"><h4>Personal</h4><a href="about.html">About</a><a href="creative.html">Creative</a><a href="contact.html">Contact</a><a href="resume-download.html">Resume</a></div><div class="footer-nav"><h4>Connect</h4><a href="mailto:asaf.ahmad.shayaan@gmail.com">Email</a><a href="https://www.linkedin.com/in/asaf-ahmad/" target="_blank">LinkedIn</a></div></div><div class="footer-copy">&copy; 2026 Asaf Ahmad Shayaan &middot; All rights reserved</div></div></footer>
+<div id="toast" class="toast"></div>
 <script src="js/data.js"></script>
 <script>
-  const posts = DB.getPosts();
-  const container = document.getElementById('blog-list');
-  if (posts.length) {
-    container.innerHTML = posts.map(p => {
-      const coverObj = COVER_IMAGES.find(c => c.id === p.cover);
-      const coverStyle = coverObj
-        ? `background:url('${coverObj.url}') center/cover no-repeat;`
-        : `background:linear-gradient(135deg,#111,#333);`;
-      return `
-        <div class="card blog-card" onclick="window.location='post.html?id=${p.id}'">
-          <div class="blog-card-img" style="${coverStyle}"></div>
-          <div class="blog-date">${formatDate(p.date)}</div>
-          <h3 class="blog-title">${p.title}</h3>
-          <p class="blog-excerpt">${stripHtml(p.content).substring(0, 160)}...</p>
-          <span class="blog-read-more">Read more →</span>
-        </div>`;
-    }).join('');
+// Populate category filter dropdown
+var catSelect = document.getElementById('cat-filter');
+if (catSelect) {
+  CATEGORIES.forEach(function(c) {
+    var opt = document.createElement('option');
+    opt.value = c.id; opt.textContent = c.label;
+    catSelect.appendChild(opt);
+  });
+}
+
+// Render initial posts
+var posts = DB.getPosts();
+var container = document.getElementById('blog-list');
+if (posts.length) {
+  container.innerHTML = posts.map(function(p) { return buildBlogCard(p, 160); }).join('');
+}
+
+// Filter state
+var activeRL = 'all', activeCat = 'all';
+function filterPosts(type, val, btn) {
+  if (type === 'rl') {
+    activeRL = val;
+    document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+  } else {
+    activeCat = val;
   }
+  var allPosts = DB.getPosts();
+  var filtered = allPosts.filter(function(p) {
+    var rlOk  = activeRL === 'all' || p.readlength === activeRL;
+    var catOk = activeCat === 'all' || p.cover === activeCat;
+    return rlOk && catOk;
+  });
+  var c = document.getElementById('blog-list');
+  if (filtered.length) {
+    c.innerHTML = filtered.map(function(p) { return buildBlogCard(p, 160); }).join('');
+  } else {
+    c.innerHTML = '<div class="empty-state"><h3>No posts found</h3><p>Try a different filter.</p></div>';
+  }
+}
 </script>
 </body>
 </html>

@@ -1,115 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Design Portfolio — Asaf Ahmad Shayaan</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-<nav class="navbar">
-  <div class="container">
-    <a href="index.html" class="nav-logo">Asaf<span>.</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="portfolio.html">Design Portfolio</a></li>
-      <li><a href="contact.html" class="nav-cta">Contact</a></li>
-    </ul>
-    <div class="nav-toggle"><span></span><span></span><span></span></div>
-  </div>
-</nav>
-
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Design Portfolio &mdash; Asaf Ahmad Shayaan</title><link rel="stylesheet" href="css/style.css"/></head>
+<body class="minimal-mode">
+<div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursor-ring"></div>
+<nav class="navbar"><div class="container"><a href="index.html" class="nav-logo">Asaf<span>.</span></a><ul class="nav-links" id="nav-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="experience.html">Experience</a></li><li><a href="blog.html">Blog</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="creative.html">Creative</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html" class="nav-cta">Contact</a></li></ul><div style="display:flex;align-items:center"><div class="theme-toggle" onclick="toggleTheme()" title="Switch view mode"><span class="toggle-option active" id="toggle-minimal">Minimal</span><span class="toggle-option" id="toggle-creative">Creative</span></div></div><div class="nav-toggle"><span></span><span></span><span></span></div></div></nav>
 <main class="page-body">
-  <div class="page-header">
-    <div class="container">
-      <h1>Design Portfolio</h1>
-      <p>UI concepts, product designs, and wireframes from my product work in fintech and lending.</p>
-    </div>
+  <div class="page-header" data-title="PORTFOLIO">
+    <div class="container"><h1>Design Portfolio</h1><p>UI concepts, product designs, and wireframes from my fintech and lending product work.</p></div>
   </div>
-
   <section class="section">
     <div class="container">
       <div class="portfolio-grid" id="portfolio-list">
-        <div class="empty-state">
-          <h3>No designs yet</h3>
-          <p>Upload your HTML design concepts from the admin panel and they'll render live here.</p>
-          <a href="admin.html" style="color:var(--accent); font-weight:600;">Go to Admin →</a>
-        </div>
+        <div class="empty-state"><h3>No designs yet</h3><p>Upload your HTML design concepts from the admin panel.</p></div>
       </div>
     </div>
   </section>
 </main>
-
-<!-- Modal -->
-<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+<div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal">
-    <div class="modal-header">
-      <h3 id="modal-title">Design Preview</h3>
-      <button class="modal-close" onclick="document.getElementById('modal-overlay').classList.remove('open')">✕</button>
-    </div>
-    <div class="modal-body">
-      <iframe id="modal-frame" sandbox="allow-scripts allow-same-origin"></iframe>
-    </div>
+    <div class="modal-header"><h3 id="modal-title">Design Preview</h3><button class="modal-close" onclick="document.getElementById('modal-overlay').classList.remove('open')">&#x2715;</button></div>
+    <div class="modal-body"><iframe id="modal-frame" sandbox="allow-scripts allow-same-origin"></iframe></div>
   </div>
 </div>
-
-<footer class="footer">
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-brand">Asaf<span>.</span></div>
-      <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="experience.html">Experience</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-copy">© 2026 Asaf Ahmad Shayaan · Product Manager · Fintech & Lending</div>
-  </div>
-</footer>
-
+<footer class="footer"><div class="container"><div class="footer-inner"><div><div class="footer-brand">Asaf<span>.</span></div><div class="footer-tagline">Product Manager &middot; Fintech &middot; Lending</div></div><div class="footer-nav"><h4>Work</h4><a href="experience.html">Experience</a><a href="portfolio.html">Portfolio</a><a href="blog.html">Blog</a><a href="services.html">Services</a></div><div class="footer-nav"><h4>Personal</h4><a href="about.html">About</a><a href="creative.html">Creative</a><a href="contact.html">Contact</a><a href="resume-download.html">Resume</a></div><div class="footer-nav"><h4>Connect</h4><a href="mailto:asaf.ahmad.shayaan@gmail.com">Email</a><a href="https://www.linkedin.com/in/asaf-ahmad/" target="_blank">LinkedIn</a></div></div><div class="footer-copy">&copy; 2026 Asaf Ahmad Shayaan &middot; All rights reserved</div></div></footer>
+<div id="toast" class="toast"></div>
 <script src="js/data.js"></script>
 <script>
-  const items = DB.getPortfolios();
-  const container = document.getElementById('portfolio-list');
-
-  if (items.length) {
-    container.innerHTML = items.map(item => {
-      const coverObj = COVER_IMAGES.find(c => c.id === item.cover);
-      const coverStyle = coverObj
-        ? `background:url('${coverObj.url}') center/cover no-repeat;`
-        : `background:linear-gradient(135deg,#111,#333);`;
-      return `
-        <div class="card portfolio-card" onclick="openModal('${item.id}')">
-          <div class="portfolio-preview" style="${coverStyle}; height:200px; margin:-28px -28px 20px -28px; border-radius:10px 10px 0 0;">
-            <div class="preview-overlay">Click to view full design</div>
-          </div>
-          <div class="card-tag">${item.category || 'UI Design'}</div>
-          <h3>${item.title}</h3>
-          <p>${item.description || ''}</p>
-          <div class="card-meta"><span>${formatDate(item.date)}</span></div>
-          <div class="card-arrow">→</div>
-        </div>`;
-    }).join('');
-  }
-
-  function openModal(id) {
-    const item = DB.getPortfolioItem(id);
-    if (!item) return;
-    document.getElementById('modal-title').textContent = item.title;
-    const frame = document.getElementById('modal-frame');
-    frame.srcdoc = item.html;
-    document.getElementById('modal-overlay').classList.add('open');
-  }
-
-  function closeModal(e) {
-    if (e.target === document.getElementById('modal-overlay')) {
-      document.getElementById('modal-overlay').classList.remove('open');
-    }
-  }
+var items = DB.getPortfolios();
+var container = document.getElementById('portfolio-list');
+if (items.length) {
+  container.innerHTML = items.map(function(item) {
+    var co = COVER_IMAGES.find(function(c){ return c.id === item.cover; });
+    var bg = co ? "background-image:url('" + co.url + "');background-size:cover;background-position:center" : 'background:var(--ink)';
+    return '<div class="card portfolio-card" onclick="openModal(\'' + item.id + '\')">' +
+      '<div class="portfolio-preview" style="' + bg + '"><div class="preview-overlay">Click to view design</div></div>' +
+      '<span class="card-tag">' + (item.category || 'UI Design') + '</span>' +
+      '<h3>' + item.title + '</h3><p>' + (item.description || '') + '</p></div>';
+  }).join('');
+}
+function openModal(id) {
+  var item = DB.getPortfolioItem(id);
+  if (!item) return;
+  document.getElementById('modal-title').textContent = item.title;
+  document.getElementById('modal-frame').srcdoc = item.html;
+  document.getElementById('modal-overlay').classList.add('open');
+}
 </script>
 </body>
 </html>

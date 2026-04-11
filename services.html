@@ -1,277 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services — Asaf Ahmad Shayaan</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <style>
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 28px; margin-bottom: 64px; }
-    .service-card { cursor: pointer; border: 2px solid transparent; transition: all 0.25s ease; }
-    .service-card:hover { border-color: var(--accent); }
-    .service-card.selected { border-color: var(--accent); background: var(--navy-faint); }
-    .service-icon { font-size: 2rem; margin-bottom: 16px; }
-    .service-price { display: inline-block; font-size: 0.8rem; font-weight: 700; color: var(--accent); background: var(--navy-faint); padding: 4px 12px; border-radius: 100px; margin-top: 12px; }
-    .booking-form { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 40px; max-width: 640px; margin: 0 auto; box-shadow: var(--shadow); }
-    .booking-form h3 { margin-bottom: 8px; }
-    .booking-form .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 32px; }
-    .selected-service-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--navy-faint); color: var(--accent); padding: 6px 14px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; margin-bottom: 24px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .success-msg { display: none; text-align: center; padding: 40px 20px; }
-    .success-msg .check { font-size: 3rem; margin-bottom: 16px; }
-    .success-msg h3 { margin-bottom: 8px; color: #059669; }
-    @media(max-width:600px){ .form-row { grid-template-columns: 1fr; } .booking-form { padding: 24px; } }
-  </style>
-</head>
-<body>
-<nav class="navbar">
-  <div class="container">
-    <a href="index.html" class="nav-logo">Asaf<span>.</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="portfolio.html">Design Portfolio</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="contact.html" class="nav-cta">Contact</a></li>
-    </ul>
-    <div class="nav-toggle"><span></span><span></span><span></span></div>
-  </div>
-</nav>
-
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Services &mdash; Asaf Ahmad Shayaan</title><link rel="stylesheet" href="css/style.css"/></head>
+<body class="minimal-mode">
+<div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursor-ring"></div>
+<nav class="navbar"><div class="container"><a href="index.html" class="nav-logo">Asaf<span>.</span></a><ul class="nav-links" id="nav-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="experience.html">Experience</a></li><li><a href="blog.html">Blog</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="creative.html">Creative</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html" class="nav-cta">Contact</a></li></ul><div style="display:flex;align-items:center"><div class="theme-toggle" onclick="toggleTheme()" title="Switch view mode"><span class="toggle-option active" id="toggle-minimal">Minimal</span><span class="toggle-option" id="toggle-creative">Creative</span></div></div><div class="nav-toggle"><span></span><span></span><span></span></div></div></nav>
 <main class="page-body">
-  <div class="page-header">
-    <div class="container">
-      <h1>Consultation Services</h1>
-      <p>Leverage 4 years of fintech product experience — for your lending system, product strategy, or career.</p>
-    </div>
+  <div class="page-header" data-title="SERVICES">
+    <div class="container"><h1>Services</h1><p>Consultation offerings across lending systems, product strategy, and career advisory.</p></div>
   </div>
-
   <section class="section">
     <div class="container">
-      <span class="section-label">What I Offer</span>
-      <h2 class="section-title" style="margin-bottom:12px;">Choose a Service</h2>
-      <p class="section-desc">Click a service below to book a consultation.</p>
-
-      <div class="services-grid" id="services-grid">
-
-        <div class="card service-card" onclick="selectService(this, 'Lending System Consultation')">
+      <div class="reveal"><span class="section-label">What I Offer</span><h2 class="section-title">Consultation Services</h2><p class="section-desc">Select a service below to book a consultation. I'll get back to you within 24 hours.</p></div>
+      <div class="services-grid reveal">
+        <div class="card service-card" onclick="selectService('Lending System Consultation',this)">
           <div class="service-icon">🏦</div>
-          <div class="card-tag">Fintech</div>
+          <span class="card-tag">Core Domain</span>
           <h3>Lending System Consultation</h3>
-          <p>Strategy, architecture, and product advice for Loan Origination Systems, LMS, Collections, and MSME credit underwriting workflows. Ideal for NBFCs, banks, and fintech startups.</p>
-          <ul style="margin-top:12px; padding-left:16px; list-style:disc; font-size:0.88rem; color:var(--muted);">
-            <li>LOS / LMS product review and gap analysis</li>
-            <li>Underwriting automation strategy</li>
-            <li>AI integration in lending workflows</li>
-            <li>TAT reduction and process optimisation</li>
-            <li>Vendor evaluation — FinnOne, Newgen, Lentra</li>
-          </ul>
-          <span class="service-price">Book a Session →</span>
+          <p>LOS architecture, vendor evaluation, implementation roadmap, FinnOne Neo expertise, digital lending strategy.</p>
+          <span class="service-price">Strategy &middot; Architecture &middot; Roadmap</span>
         </div>
-
-        <div class="card service-card" onclick="selectService(this, 'Career Consultation')">
+        <div class="card service-card" onclick="selectService('Career Consultation',this)">
           <div class="service-icon">🚀</div>
-          <div class="card-tag">Career</div>
+          <span class="card-tag">Career</span>
           <h3>Career Consultation</h3>
-          <p>Honest, direct advice for fintech professionals looking to break into product management, transition roles, or accelerate their PM career in the lending and credit domain.</p>
-          <ul style="margin-top:12px; padding-left:16px; list-style:disc; font-size:0.88rem; color:var(--muted);">
-            <li>Resume and LinkedIn profile review</li>
-            <li>Fintech PM interview preparation</li>
-            <li>Career path planning — BA to PM transition</li>
-            <li>Salary negotiation strategy</li>
-            <li>Job search strategy in fintech</li>
-          </ul>
-          <span class="service-price">Book a Session →</span>
+          <p>PM career transitions, resume strategy, interview prep, fintech domain positioning, compensation negotiation.</p>
+          <span class="service-price">Resume &middot; Interviews &middot; Strategy</span>
         </div>
-
-        <div class="card service-card" onclick="selectService(this, 'Product Strategy Review')">
+        <div class="card service-card" onclick="selectService('Product Strategy Review',this)">
           <div class="service-icon">🗺️</div>
-          <div class="card-tag">Strategy</div>
+          <span class="card-tag">Product</span>
           <h3>Product Strategy Review</h3>
-          <p>One-on-one review of your product roadmap, PRD, or feature specification. Get structured feedback from a PM who has shipped real lending products for global banking clients.</p>
-          <ul style="margin-top:12px; padding-left:16px; list-style:disc; font-size:0.88rem; color:var(--muted);">
-            <li>Product roadmap critique and prioritisation</li>
-            <li>BRD / FSD review and feedback</li>
-            <li>Feature scoping and MVP definition</li>
-            <li>Stakeholder alignment strategy</li>
-          </ul>
-          <span class="service-price">Book a Session →</span>
+          <p>Roadmap review, feature prioritisation, PRD/BRD feedback, competitive positioning for fintech products.</p>
+          <span class="service-price">Roadmap &middot; PRD &middot; Prioritisation</span>
         </div>
-
-        <div class="card service-card" onclick="selectService(this, 'Fintech Due Diligence')">
+        <div class="card service-card" onclick="selectService('Fintech Due Diligence',this)">
           <div class="service-icon">🔍</div>
-          <div class="card-tag">Advisory</div>
+          <span class="card-tag">Advisory</span>
           <h3>Fintech Due Diligence</h3>
-          <p>Independent product and technical evaluation of a fintech platform or vendor — for investors, banks, or NBFCs evaluating a lending technology solution.</p>
-          <ul style="margin-top:12px; padding-left:16px; list-style:disc; font-size:0.88rem; color:var(--muted);">
-            <li>LOS / LMS vendor evaluation</li>
-            <li>Product maturity assessment</li>
-            <li>Integration complexity review</li>
-            <li>Risk and gap identification</li>
-          </ul>
-          <span class="service-price">Book a Session →</span>
+          <p>Technology assessment for lending platforms, NBFC tech stack evaluation, build vs buy analysis.</p>
+          <span class="service-price">Assessment &middot; Evaluation &middot; Analysis</span>
         </div>
-
-        <div class="card service-card" onclick="selectService(this, 'AI in Lending — Advisory')">
+        <div class="card service-card" onclick="selectService('AI in Lending Advisory',this)">
           <div class="service-icon">🤖</div>
-          <div class="card-tag">AI</div>
-          <h3>AI in Lending — Advisory</h3>
-          <p>Practical guidance on integrating AI into your lending platform — from CAM automation and AI BSA to chatbots and automated decision engines. No hype, only what actually works.</p>
-          <ul style="margin-top:12px; padding-left:16px; list-style:disc; font-size:0.88rem; color:var(--muted);">
-            <li>AI use case identification in credit workflows</li>
-            <li>CAM automation design</li>
-            <li>AI BSA integration strategy</li>
-            <li>Build vs buy decision support</li>
-          </ul>
-          <span class="service-price">Book a Session →</span>
+          <span class="card-tag">AI & Automation</span>
+          <h3>AI in Lending Advisory</h3>
+          <p>AI BSA integration, CAM automation, chatbot strategy, underwriting automation, OCR/document intelligence.</p>
+          <span class="service-price">AI BSA &middot; CAM &middot; Chatbot</span>
         </div>
-
-        <div class="card service-card" onclick="selectService(this, 'Pre-Sales & Proposal Support')">
+        <div class="card service-card" onclick="selectService('Pre-Sales & Proposal Support',this)">
           <div class="service-icon">🤝</div>
-          <div class="card-tag">Pre-Sales</div>
+          <span class="card-tag">Pre-Sales</span>
           <h3>Pre-Sales & Proposal Support</h3>
-          <p>Help structuring proposals, pitch decks, and product demonstrations for fintech companies trying to win bank and NBFC clients. Based on experience closing large deals independently.</p>
-          <ul style="margin-top:12px; padding-left:16px; list-style:disc; font-size:0.88rem; color:var(--muted);">
-            <li>Proposal structure and narrative</li>
-            <li>Demo script and flow design</li>
-            <li>CXO stakeholder communication</li>
-            <li>Discovery workshop facilitation</li>
-          </ul>
-          <span class="service-price">Book a Session →</span>
+          <p>Discovery workshop design, proposal writing, demo strategy, RFP responses for lending technology companies.</p>
+          <span class="service-price">Proposals &middot; Demos &middot; RFPs</span>
         </div>
-
       </div>
 
       <!-- Booking Form -->
-      <div class="booking-form" id="booking-form">
-        <div id="form-view">
-          <h3>Book a Consultation</h3>
-          <p class="subtitle">Fill in your details and I will get back to you within 24 hours.</p>
-          <div id="selected-service-tag" class="selected-service-tag" style="display:none;">
-            <span>📌</span><span id="selected-service-name">—</span>
-          </div>
-          <div class="form-group">
-            <label>Select Service *</label>
-            <select id="b-service">
-              <option value="">— Choose a service —</option>
-              <option>Lending System Consultation</option>
-              <option>Career Consultation</option>
-              <option>Product Strategy Review</option>
-              <option>Fintech Due Diligence</option>
-              <option>AI in Lending — Advisory</option>
-              <option>Pre-Sales & Proposal Support</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Full Name *</label>
-              <input type="text" id="b-name" placeholder="Your name" />
-            </div>
-            <div class="form-group">
-              <label>WhatsApp Number *</label>
-              <input type="tel" id="b-whatsapp" placeholder="+91 98765 43210" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Email Address *</label>
-            <input type="email" id="b-email" placeholder="your@email.com" />
-          </div>
-          <div class="form-group">
-            <label>Company / Organisation</label>
-            <input type="text" id="b-company" placeholder="Where are you from?" />
-          </div>
-          <div class="form-group">
-            <label>Brief Description of Your Request *</label>
-            <textarea id="b-desc" rows="5" placeholder="Tell me what you are looking to discuss or achieve from this consultation..."></textarea>
-          </div>
-          <button class="btn btn-primary" style="width:100%; justify-content:center; padding:14px;" onclick="submitBooking()">Submit Request →</button>
-        </div>
-
-        <div class="success-msg" id="success-view">
-          <div class="check">✅</div>
-          <h3>Request Submitted!</h3>
-          <p style="color:var(--muted); margin-top:8px;">Thank you. I will review your request and reach out within 24 hours via WhatsApp or email.</p>
-          <button class="btn btn-navy" style="margin-top:24px;" onclick="resetForm()">Submit Another Request</button>
+      <div class="reveal" id="booking-section">
+        <div class="card" style="max-width:640px;margin:0 auto;padding:48px">
+          <h3 style="margin-bottom:8px">Book a Consultation</h3>
+          <p style="margin-bottom:24px;font-size:0.88rem" id="selected-service-label">Select a service above to get started.</p>
+          <input type="hidden" id="svc-type" value=""/>
+          <div class="form-group"><label>Your Name *</label><input type="text" id="svc-name" placeholder="Full name"/></div>
+          <div class="form-group"><label>WhatsApp Number *</label><input type="tel" id="svc-whatsapp" placeholder="+91 XXXXX XXXXX"/></div>
+          <div class="form-group"><label>Email *</label><input type="email" id="svc-email" placeholder="your@email.com"/></div>
+          <div class="form-group"><label>Company / Organisation</label><input type="text" id="svc-company" placeholder="Where are you from?"/></div>
+          <div class="form-group"><label>Brief Description *</label><textarea id="svc-desc" rows="5" placeholder="Describe what you need help with..."></textarea></div>
+          <button class="btn btn-ink" style="width:100%;justify-content:center" onclick="submitRequest()">Submit Request &rarr;</button>
         </div>
       </div>
-
     </div>
   </section>
 </main>
-
+<footer class="footer"><div class="container"><div class="footer-inner"><div><div class="footer-brand">Asaf<span>.</span></div><div class="footer-tagline">Product Manager &middot; Fintech &middot; Lending</div></div><div class="footer-nav"><h4>Work</h4><a href="experience.html">Experience</a><a href="portfolio.html">Portfolio</a><a href="blog.html">Blog</a><a href="services.html">Services</a></div><div class="footer-nav"><h4>Personal</h4><a href="about.html">About</a><a href="creative.html">Creative</a><a href="contact.html">Contact</a><a href="resume-download.html">Resume</a></div><div class="footer-nav"><h4>Connect</h4><a href="mailto:asaf.ahmad.shayaan@gmail.com">Email</a><a href="https://www.linkedin.com/in/asaf-ahmad/" target="_blank">LinkedIn</a></div></div><div class="footer-copy">&copy; 2026 Asaf Ahmad Shayaan &middot; All rights reserved</div></div></footer>
 <div id="toast" class="toast"></div>
-
-<footer class="footer">
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-brand">Asaf<span>.</span></div>
-      <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="experience.html">Experience</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-copy">© 2026 Asaf Ahmad Shayaan · Product Manager · Fintech & Lending</div>
-  </div>
-</footer>
-
 <script src="js/data.js"></script>
 <script>
-  function selectService(card, name) {
-    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
-    card.classList.add('selected');
-    document.getElementById('b-service').value = name;
-    document.getElementById('selected-service-name').textContent = name;
-    document.getElementById('selected-service-tag').style.display = 'inline-flex';
-    document.getElementById('booking-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+function selectService(name, el) {
+  document.querySelectorAll('.service-card').forEach(function(c){ c.classList.remove('selected'); });
+  el.classList.add('selected');
+  document.getElementById('svc-type').value = name;
+  document.getElementById('selected-service-label').innerHTML = 'Selected: <strong style="color:var(--gold)">' + name + '</strong>';
+  document.getElementById('booking-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
 
-  function submitBooking() {
-    const service  = document.getElementById('b-service').value.trim();
-    const name     = document.getElementById('b-name').value.trim();
-    const whatsapp = document.getElementById('b-whatsapp').value.trim();
-    const email    = document.getElementById('b-email').value.trim();
-    const company  = document.getElementById('b-company').value.trim();
-    const desc     = document.getElementById('b-desc').value.trim();
+function submitRequest() {
+  var service = document.getElementById('svc-type').value;
+  var name = document.getElementById('svc-name').value.trim();
+  var whatsapp = document.getElementById('svc-whatsapp').value.trim();
+  var email = document.getElementById('svc-email').value.trim();
+  var company = document.getElementById('svc-company').value.trim();
+  var desc = document.getElementById('svc-desc').value.trim();
 
-    if (!service || !name || !whatsapp || !email || !desc) {
-      toast('Please fill in all required fields', 'error');
-      return;
-    }
+  if (!service) { toast('Please select a service first', 'error'); return; }
+  if (!name || !whatsapp || !email || !desc) { toast('Please fill in all required fields', 'error'); return; }
 
-    const request = {
-      id: 'req_' + Date.now(),
-      service, name, whatsapp, email, company, desc,
-      date: new Date().toISOString(),
-      status: 'New'
-    };
+  var requests = JSON.parse(localStorage.getItem('asaf_requests') || '[]');
+  requests.unshift({
+    id: 'req_' + Date.now(),
+    service: service,
+    name: name,
+    whatsapp: whatsapp,
+    email: email,
+    company: company,
+    description: desc,
+    date: new Date().toISOString(),
+    status: 'new'
+  });
+  localStorage.setItem('asaf_requests', JSON.stringify(requests));
 
-    // Save to localStorage
-    const requests = JSON.parse(localStorage.getItem('asaf_requests') || '[]');
-    requests.unshift(request);
-    localStorage.setItem('asaf_requests', JSON.stringify(requests));
+  toast('Request submitted! I will get back to you within 24 hours.', 'success');
 
-    // Show success
-    document.getElementById('form-view').style.display = 'none';
-    document.getElementById('success-view').style.display = 'block';
-  }
-
-  function resetForm() {
-    document.getElementById('b-service').value = '';
-    document.getElementById('b-name').value = '';
-    document.getElementById('b-whatsapp').value = '';
-    document.getElementById('b-email').value = '';
-    document.getElementById('b-company').value = '';
-    document.getElementById('b-desc').value = '';
-    document.getElementById('selected-service-tag').style.display = 'none';
-    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
-    document.getElementById('form-view').style.display = 'block';
-    document.getElementById('success-view').style.display = 'none';
-  }
+  // Clear form
+  document.getElementById('svc-type').value = '';
+  document.getElementById('svc-name').value = '';
+  document.getElementById('svc-whatsapp').value = '';
+  document.getElementById('svc-email').value = '';
+  document.getElementById('svc-company').value = '';
+  document.getElementById('svc-desc').value = '';
+  document.querySelectorAll('.service-card').forEach(function(c){ c.classList.remove('selected'); });
+  document.getElementById('selected-service-label').textContent = 'Request submitted successfully!';
+}
 </script>
 </body>
 </html>

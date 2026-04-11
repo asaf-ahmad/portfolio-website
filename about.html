@@ -1,145 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — Asaf Ahmad Shayaan</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>About — Asaf Ahmad Shayaan</title><link rel="stylesheet" href="css/style.css"/></head>
+<body class="minimal-mode">
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
 <nav class="navbar">
   <div class="container">
     <a href="index.html" class="nav-logo">Asaf<span>.</span></a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="experience.html">Experience</a></li>
       <li><a href="blog.html">Blog</a></li>
-      <li><a href="portfolio.html">Design Portfolio</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="creative.html">Creative</a></li>
+      <li><a href="services.html">Services</a></li>
       <li><a href="contact.html" class="nav-cta">Contact</a></li>
     </ul>
-    <div class="nav-toggle"><span></span><span></span><span></span></div>
+    <div style="display:flex;align-items:center"><div class="theme-toggle" onclick="toggleTheme()" title="Switch view mode">
+      <span class="toggle-option active" id="toggle-minimal">Minimal</span>
+      <span class="toggle-option" id="toggle-creative">Creative</span>
+    </div></div>
+    <div class="nav-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')"><span></span><span></span><span></span></div>
   </div>
 </nav>
-
 <main class="page-body">
-  <div class="page-header">
-    <div class="container">
-      <h1>About Me</h1>
-      <p>Product Manager. Fintech Builder. Lending Domain Expert.</p>
-    </div>
+  <div class="page-header" data-title="ABOUT">
+    <div class="container"><h1>About Me</h1><p>Product Manager. Fintech Builder. Lending Domain Expert.</p></div>
   </div>
-
   <section class="section">
     <div class="container">
-      <div class="grid-2" style="gap:64px; align-items:start;">
-        <div>
+      <div class="grid-2" style="gap:72px;align-items:start">
+        <div class="reveal">
           <span class="section-label">Who I Am</span>
-          <h2 class="section-title" style="margin-bottom:20px;">I build fintech products that move money, reduce risk, and make credit accessible.</h2>
-          <p style="margin-bottom:16px;">Four years of end-to-end product ownership across Loan Origination Systems, Digital Lending, MSME Credit Underwriting, Loan Collections, and AI-powered lending automation — for banks, NBFCs, and financial institutions across India, the Middle East, and South Asia.</p>
-          <p style="margin-bottom:16px;">My domain is the full lending lifecycle. From the moment a borrower applies to the moment a loan is disbursed, repaid, or recovered — I have built, standardised, and shipped products at every stage of that journey.</p>
-          <p style="margin-bottom:16px;">Before moving into product, I was a developer — which means I understand what I am asking engineers to build, and why that matters.</p>
-          <p>Consistent top performer across both companies. Three consecutive appraisals averaging thirty percent. Two consecutive Star of Quarter awards. Never had an average year.</p>
-          <div style="margin-top:32px; display:flex; gap:16px; flex-wrap:wrap;">
-            <a href="contact.html" class="btn btn-primary">Get in Touch →</a>
-            <a href="experience.html" class="btn btn-navy">View Experience →</a>
-            <a href="resume-download.html" class="btn btn-outline" style="color:var(--navy);border-color:var(--border);">⬇ Download Resume</a>
+          <h2 style="margin-bottom:24px">I build fintech products that move money, reduce risk, and make credit accessible.</h2>
+          <p style="margin-bottom:18px">Four years of end-to-end product ownership across Loan Origination Systems, Digital Lending, MSME Credit Underwriting, Loan Collections, and AI-powered lending automation.</p>
+          <p style="margin-bottom:18px">Before moving into product, I was a developer — which means I understand what I am asking engineers to build, and why that matters.</p>
+          <p style="margin-bottom:36px">Consistent top performer. Three consecutive appraisals averaging 30% at Nucleus Software. Two consecutive Star of Quarter awards at Care Analytics. Never had an average year.</p>
+          <div style="display:flex;gap:16px;flex-wrap:wrap">
+            <a href="contact.html" class="btn btn-ink">Get in Touch →</a>
+            <a href="resume-download.html" class="btn btn-outline-ink">⬇ Resume</a>
           </div>
         </div>
-        <div>
-          <div style="background: linear-gradient(135deg, #0A0A0A, #2A2A2A); border-radius:16px; padding:40px; color:#fff; margin-bottom:24px;">
-            <h3 style="color:#fff; margin-bottom:24px; font-size:1.1rem;">Quick Profile</h3>
-            <div style="display:flex; flex-direction:column; gap:16px;">
-              <div style="display:flex; gap:16px;">
-                <span style="color:rgba(255,255,255,0.4); font-size:0.8rem; width:100px; flex-shrink:0; padding-top:2px;">ROLE</span>
-                <span style="font-size:0.95rem;">Senior Product Manager · Fintech & Lending</span>
-              </div>
-              <div style="display:flex; gap:16px;">
-                <span style="color:rgba(255,255,255,0.4); font-size:0.8rem; width:100px; flex-shrink:0; padding-top:2px;">DOMAIN</span>
-                <span style="font-size:0.95rem;">LOS · LMS · MSME Credit · Collections · AI Lending</span>
-              </div>
-              <div style="display:flex; gap:16px;">
-                <span style="color:rgba(255,255,255,0.4); font-size:0.8rem; width:100px; flex-shrink:0; padding-top:2px;">LOCATION</span>
-                <span style="font-size:0.95rem;">Mumbai, India</span>
-              </div>
-              <div style="display:flex; gap:16px;">
-                <span style="color:rgba(255,255,255,0.4); font-size:0.8rem; width:100px; flex-shrink:0; padding-top:2px;">EDUCATION</span>
-                <span style="font-size:0.95rem;">B.E. EEE, BITS Pilani · PGPM, SPJIMR Mumbai</span>
-              </div>
-              <div style="display:flex; gap:16px;">
-                <span style="color:rgba(255,255,255,0.4); font-size:0.8rem; width:100px; flex-shrink:0; padding-top:2px;">STATUS</span>
-                <span style="font-size:0.95rem; color:#86EFAC;">● Immediately Available</span>
-              </div>
+        <div class="reveal">
+          <div style="background:var(--ink);border-radius:4px;padding:40px;margin-bottom:24px">
+            <h3 style="color:var(--paper);font-size:1rem;margin-bottom:24px;font-family:'DM Mono',monospace;letter-spacing:0.08em;font-weight:400;text-transform:uppercase">Quick Profile</h3>
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div style="display:flex;gap:16px"><span style="color:rgba(247,244,238,0.3);font-size:0.72rem;width:90px;flex-shrink:0;font-family:'DM Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;padding-top:2px">Role</span><span style="font-size:0.92rem;color:var(--paper)">Senior Product Manager · Fintech & Lending</span></div>
+              <div style="display:flex;gap:16px"><span style="color:rgba(247,244,238,0.3);font-size:0.72rem;width:90px;flex-shrink:0;font-family:'DM Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;padding-top:2px">Domain</span><span style="font-size:0.92rem;color:var(--paper)">LOS · LMS · MSME Credit · Collections · AI Lending</span></div>
+              <div style="display:flex;gap:16px"><span style="color:rgba(247,244,238,0.3);font-size:0.72rem;width:90px;flex-shrink:0;font-family:'DM Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;padding-top:2px">Location</span><span style="font-size:0.92rem;color:var(--paper)">Mumbai, India</span></div>
+              <div style="display:flex;gap:16px"><span style="color:rgba(247,244,238,0.3);font-size:0.72rem;width:90px;flex-shrink:0;font-family:'DM Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;padding-top:2px">Education</span><span style="font-size:0.92rem;color:var(--paper)">B.E. EEE, BITS Pilani · PGPM, SPJIMR Mumbai</span></div>
+              
             </div>
           </div>
-
           <div class="card">
-            <h3 style="margin-bottom:20px;">Core Skills</h3>
+            <span class="card-tag">Skills</span>
             <div class="timeline-tags">
-              <span class="tag">Loan Origination System</span>
-              <span class="tag">Digital Lending</span>
-              <span class="tag">MSME Underwriting</span>
-              <span class="tag">Collections</span>
-              <span class="tag">CAM Automation</span>
-              <span class="tag">AI BSA</span>
-              <span class="tag">AI Chatbot</span>
-              <span class="tag">Pre-Sales</span>
-              <span class="tag">BRD / FSD</span>
-              <span class="tag">Agile / Scrum</span>
-              <span class="tag">Stakeholder Management</span>
-              <span class="tag">API Integration</span>
-              <span class="tag">Figma</span>
-              <span class="tag">SQL</span>
-              <span class="tag">JIRA</span>
-              <span class="tag">FinnOne Neo</span>
+              <span class="tag">LOS</span><span class="tag">LMS</span><span class="tag">Digital Lending</span><span class="tag">MSME Underwriting</span><span class="tag">Collections</span><span class="tag">CAM Automation</span><span class="tag">AI BSA</span><span class="tag">AI Chatbot</span><span class="tag">Pre-Sales</span><span class="tag">BRD / FSD</span><span class="tag">Agile</span><span class="tag">API Integration</span><span class="tag">Figma</span><span class="tag">SQL</span><span class="tag">FinnOne Neo</span>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Awards -->
-  <section class="section" style="background:var(--cream);">
+  <section class="section" style="background:var(--paper-dark)">
     <div class="container">
-      <span class="section-label">Recognition</span>
-      <h2 class="section-title">Awards & Honours</h2>
-      <div class="grid-3">
-        <div class="card">
-          <div class="card-tag">Care Analytics</div>
-          <h3>Star of Quarter</h3>
-          <p>Awarded for two consecutive quarters — recognising exceptional ideation, client delivery, and user research.</p>
-        </div>
-        <div class="card">
-          <div class="card-tag">Nucleus Software</div>
-          <h3>30% Average Appraisal</h3>
-          <p>Three consecutive above-average appraisals reflecting sustained high performance in delivery, engineering, and process transformation.</p>
-        </div>
-        <div class="card">
-          <div class="card-tag">Nucleus Software</div>
-          <h3>SPOT Award & PPO</h3>
-          <p>SPOT Award for transforming the code-review process impacting 1,000+ employees. Pre-Placement Offer for outstanding internship performance.</p>
-        </div>
+      <div class="reveal"><span class="section-label">Recognition</span><h2 class="section-title">Awards & Honours</h2></div>
+      <div class="grid-3 reveal">
+        <div class="card"><span class="card-tag">Care Analytics</span><h3>Star of Quarter (×2)</h3><p>Two consecutive quarters — recognising exceptional ideation, client delivery, and user research.</p></div>
+        <div class="card"><span class="card-tag">Nucleus Software</span><h3>30% Avg Appraisal (×3)</h3><p>Three consecutive above-average appraisals reflecting sustained high performance across engineering and delivery.</p></div>
+        <div class="card"><span class="card-tag">Nucleus Software</span><h3>SPOT Award & PPO</h3><p>SPOT Award for transforming the code-review process impacting 1,000+ employees. Pre-Placement Offer for internship performance.</p></div>
       </div>
     </div>
   </section>
-
 </main>
-
 <footer class="footer">
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-brand">Asaf<span>.</span></div>
-      <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="experience.html">Experience</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+      <div><div class="footer-brand">Asaf<span>.</span></div><div class="footer-tagline">Product Manager · Fintech · Lending</div></div>
+      <div class="footer-nav"><h4>Work</h4><a href="experience.html">Experience</a><a href="portfolio.html">Portfolio</a><a href="blog.html">Blog</a><a href="services.html">Services</a></div>
+      <div class="footer-nav"><h4>Personal</h4><a href="about.html">About</a><a href="creative.html">Creative</a><a href="contact.html">Contact</a><a href="resume-download.html">Resume</a></div>
+      <div class="footer-nav"><h4>Connect</h4><a href="mailto:asaf.ahmad.shayaan@gmail.com">Email</a><a href="https://www.linkedin.com/in/asaf-ahmad/" target="_blank">LinkedIn</a></div>
     </div>
-    <div class="footer-copy">© 2026 Asaf Ahmad Shayaan · Product Manager · Fintech & Lending</div>
+    <div class="footer-copy">© 2026 Asaf Ahmad Shayaan · All rights reserved</div>
   </div>
 </footer>
+<div id="toast" class="toast"></div>
 <script src="js/data.js"></script>
-</body>
-</html>
+
+</body></html>

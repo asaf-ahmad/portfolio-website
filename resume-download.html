@@ -1,90 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Resume — Asaf Ahmad Shayaan</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-<nav class="navbar">
-  <div class="container">
-    <a href="index.html" class="nav-logo">Asaf<span>.</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="portfolio.html">Design Portfolio</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="contact.html" class="nav-cta">Contact</a></li>
-    </ul>
-    <div class="nav-toggle"><span></span><span></span><span></span></div>
-  </div>
-</nav>
-
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Resume — Asaf Ahmad Shayaan</title><link rel="stylesheet" href="css/style.css"/></head>
+<body class="minimal-mode">
+<div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursor-ring"></div>
+<nav class="navbar"><div class="container"><a href="index.html" class="nav-logo">Asaf<span>.</span></a><ul class="nav-links" id="nav-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="experience.html">Experience</a></li><li><a href="blog.html">Blog</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="creative.html">Creative</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html" class="nav-cta">Contact</a></li></ul><div style="display:flex;align-items:center"><div class="theme-toggle" onclick="toggleTheme()" title="Switch view mode"><span class="toggle-option active" id="toggle-minimal">Minimal</span><span class="toggle-option" id="toggle-creative">Creative</span></div></div><div class="nav-toggle"><span></span><span></span><span></span></div></div></nav>
 <main class="page-body">
-  <section class="section" style="min-height:70vh; display:flex; align-items:center;">
-    <div class="container" style="text-align:center;">
-
-      <!-- Resume found -->
-      <div id="resume-found" style="display:none;">
-        <div style="font-size:3.5rem; margin-bottom:20px;">📄</div>
-        <h2 style="margin-bottom:8px;">Asaf Ahmad Shayaan</h2>
-        <p style="color:var(--muted); margin-bottom:8px;" id="resume-label-display">Product Manager · Fintech & Lending</p>
-        <p style="font-size:0.8rem; color:var(--muted); margin-bottom:36px;" id="resume-meta"></p>
-        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-          <a id="download-btn" class="btn btn-primary" style="padding:14px 32px; font-size:1rem;">⬇ Download Resume</a>
-          <a href="contact.html" class="btn btn-navy" style="padding:14px 32px; font-size:1rem;">Get in Touch →</a>
+  <section class="section" style="min-height:70vh;display:flex;align-items:center">
+    <div class="container" style="text-align:center">
+      <div id="resume-found" style="display:none">
+        <div style="font-size:3.5rem;margin-bottom:20px">📄</div>
+        <h2 style="margin-bottom:8px">Asaf Ahmad Shayaan</h2>
+        <p style="color:var(--text-muted);margin-bottom:8px" id="resume-label-display">Product Manager · Fintech & Lending</p>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:36px" id="resume-meta"></p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+          <a id="download-btn" class="btn btn-ink" style="padding:14px 32px;font-size:1rem">⬇ Download Resume</a>
+          <a href="contact.html" class="btn btn-outline-ink" style="padding:14px 32px;font-size:1rem">Get in Touch →</a>
         </div>
-        <p style="font-size:0.78rem; color:var(--muted); margin-top:24px;">PDF · Immediately available · Mumbai based</p>
+        <p style="font-size:0.78rem;color:var(--text-muted);margin-top:24px">PDF · Mumbai based</p>
       </div>
-
-      <!-- No resume -->
-      <div id="resume-not-found" style="display:none;">
-        <div style="font-size:3rem; margin-bottom:20px;">📭</div>
-        <h3 style="margin-bottom:8px;">Resume not available right now</h3>
-        <p style="color:var(--muted); margin-bottom:32px;">Please reach out directly and I'll send it across.</p>
-        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-          <a href="mailto:asaf.ahmad.shayaan@gmail.com" class="btn btn-primary">✉ Email Me</a>
-          <a href="contact.html" class="btn btn-navy">Contact Page →</a>
+      <div id="resume-not-found" style="display:none">
+        <div style="font-size:3rem;margin-bottom:20px">📭</div>
+        <h3 style="margin-bottom:8px">Resume not available right now</h3>
+        <p style="color:var(--text-muted);margin-bottom:32px">Please reach out directly and I'll send it across.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+          <a href="mailto:asaf.ahmad.shayaan@gmail.com" class="btn btn-ink">✉ Email Me</a>
+          <a href="contact.html" class="btn btn-outline-ink">Contact Page →</a>
         </div>
       </div>
-
     </div>
   </section>
 </main>
-
-<footer class="footer">
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-brand">Asaf<span>.</span></div>
-      <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="experience.html">Experience</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-copy">© 2026 Asaf Ahmad Shayaan · Product Manager · Fintech & Lending</div>
-  </div>
-</footer>
-
+<footer class="footer"><div class="container"><div class="footer-inner"><div><div class="footer-brand">Asaf<span>.</span></div><div class="footer-tagline">Product Manager &middot; Fintech &middot; Lending</div></div><div class="footer-nav"><h4>Work</h4><a href="experience.html">Experience</a><a href="portfolio.html">Portfolio</a><a href="blog.html">Blog</a><a href="services.html">Services</a></div><div class="footer-nav"><h4>Personal</h4><a href="about.html">About</a><a href="creative.html">Creative</a><a href="contact.html">Contact</a><a href="resume-download.html">Resume</a></div><div class="footer-nav"><h4>Connect</h4><a href="mailto:asaf.ahmad.shayaan@gmail.com">Email</a><a href="https://www.linkedin.com/in/asaf-ahmad/" target="_blank">LinkedIn</a></div></div><div class="footer-copy">&copy; 2026 Asaf Ahmad Shayaan &middot; All rights reserved</div></div></footer>
+<div id="toast" class="toast"></div>
 <script src="js/data.js"></script>
 <script>
-  const resume = JSON.parse(localStorage.getItem('asaf_resume') || 'null');
-  if (resume) {
-    document.getElementById('resume-found').style.display = 'block';
-    document.getElementById('resume-not-found').style.display = 'none';
-    const btn = document.getElementById('download-btn');
-    btn.href = resume.data;
-    btn.download = resume.filename || 'Asaf_Ahmad_Shayaan_Resume.pdf';
-    if (resume.label) document.getElementById('resume-label-display').textContent = resume.label;
-    document.getElementById('resume-meta').textContent = 'Last updated ' + formatDate(resume.date) + ' · ' + resume.size;
-  } else {
-    document.getElementById('resume-found').style.display = 'none';
-    document.getElementById('resume-not-found').style.display = 'block';
-  }
+var resume = JSON.parse(localStorage.getItem('asaf_resume') || 'null');
+if (resume) {
+  document.getElementById('resume-found').style.display = 'block';
+  var btn = document.getElementById('download-btn');
+  btn.href = resume.data;
+  btn.download = resume.filename || 'Asaf_Ahmad_Shayaan_Resume.pdf';
+  if (resume.label) document.getElementById('resume-label-display').textContent = resume.label;
+  document.getElementById('resume-meta').textContent = 'Last updated ' + formatDate(resume.date) + ' · ' + resume.size;
+} else {
+  document.getElementById('resume-not-found').style.display = 'block';
+}
 </script>
 </body>
 </html>
