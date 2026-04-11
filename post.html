@@ -69,8 +69,14 @@
       document.getElementById('post-title').textContent = post.title;
       document.getElementById('post-date').textContent = formatDate(post.date);
       document.getElementById('post-content').innerHTML = post.content;
-      if (post.tags) {
-        document.getElementById('post-tags').textContent = post.tags;
+      if (post.tags) document.getElementById('post-tags').textContent = post.tags;
+      if (post.cover) {
+        const coverObj = COVER_IMAGES.find(c => c.id === post.cover);
+        if (coverObj) {
+          document.getElementById('post-hero').style.backgroundImage = `url('${coverObj.url}')`;
+          document.getElementById('post-hero').style.backgroundSize = 'cover';
+          document.getElementById('post-hero').style.backgroundPosition = 'center';
+        }
       }
     } else {
       document.getElementById('post-title').textContent = 'Post not found';

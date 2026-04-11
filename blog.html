@@ -63,15 +63,20 @@
   const posts = DB.getPosts();
   const container = document.getElementById('blog-list');
   if (posts.length) {
-    container.innerHTML = posts.map(p => `
-      <div class="card blog-card" onclick="window.location='post.html?id=${p.id}'">
-        <div class="blog-card-img">✍</div>
-        <div class="blog-date">${formatDate(p.date)}</div>
-        <h3 class="blog-title">${p.title}</h3>
-        <p class="blog-excerpt">${stripHtml(p.content).substring(0, 160)}...</p>
-        <span class="blog-read-more">Read more →</span>
-      </div>
-    `).join('');
+    container.innerHTML = posts.map(p => {
+      const coverObj = COVER_IMAGES.find(c => c.id === p.cover);
+      const coverStyle = coverObj
+        ? `background:url('${coverObj.url}') center/cover no-repeat;`
+        : `background:linear-gradient(135deg,#111,#333);`;
+      return `
+        <div class="card blog-card" onclick="window.location='post.html?id=${p.id}'">
+          <div class="blog-card-img" style="${coverStyle}"></div>
+          <div class="blog-date">${formatDate(p.date)}</div>
+          <h3 class="blog-title">${p.title}</h3>
+          <p class="blog-excerpt">${stripHtml(p.content).substring(0, 160)}...</p>
+          <span class="blog-read-more">Read more →</span>
+        </div>`;
+    }).join('');
   }
 </script>
 </body>

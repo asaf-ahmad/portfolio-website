@@ -77,20 +77,23 @@
   const container = document.getElementById('portfolio-list');
 
   if (items.length) {
-    container.innerHTML = items.map(item => `
-      <div class="card portfolio-card" onclick="openModal('${item.id}')">
-        <div class="portfolio-preview">
-          <div class="preview-overlay">Click to view full design</div>
-        </div>
-        <div class="card-tag">${item.category || 'UI Design'}</div>
-        <h3>${item.title}</h3>
-        <p>${item.description || ''}</p>
-        <div class="card-meta">
-          <span>${formatDate(item.date)}</span>
-        </div>
-        <div class="card-arrow">→</div>
-      </div>
-    `).join('');
+    container.innerHTML = items.map(item => {
+      const coverObj = COVER_IMAGES.find(c => c.id === item.cover);
+      const coverStyle = coverObj
+        ? `background:url('${coverObj.url}') center/cover no-repeat;`
+        : `background:linear-gradient(135deg,#111,#333);`;
+      return `
+        <div class="card portfolio-card" onclick="openModal('${item.id}')">
+          <div class="portfolio-preview" style="${coverStyle}; height:200px; margin:-28px -28px 20px -28px; border-radius:10px 10px 0 0;">
+            <div class="preview-overlay">Click to view full design</div>
+          </div>
+          <div class="card-tag">${item.category || 'UI Design'}</div>
+          <h3>${item.title}</h3>
+          <p>${item.description || ''}</p>
+          <div class="card-meta"><span>${formatDate(item.date)}</span></div>
+          <div class="card-arrow">→</div>
+        </div>`;
+    }).join('');
   }
 
   function openModal(id) {

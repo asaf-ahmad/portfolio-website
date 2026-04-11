@@ -4,6 +4,19 @@
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin — Asaf Ahmad Shayaan</title>
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .cover-picker { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:8px; }
+    .cover-option { border:2px solid transparent; border-radius:8px; overflow:hidden; cursor:pointer; aspect-ratio:16/9; transition:all 0.2s; position:relative; }
+    .cover-option img { width:100%; height:100%; object-fit:cover; display:block; }
+    .cover-option:hover { border-color:#555; }
+    .cover-option.selected { border-color:#111; box-shadow:0 0 0 2px #111; }
+    .cover-option .cover-label { position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,0.6); color:#fff; font-size:0.6rem; padding:3px 5px; text-align:center; opacity:0; transition:opacity 0.2s; }
+    .cover-option:hover .cover-label { opacity:1; }
+    .cover-option.selected .cover-label { opacity:1; background:rgba(0,0,0,0.8); }
+    .selected-cover-preview { margin-top:10px; border-radius:8px; overflow:hidden; height:140px; display:none; }
+    .selected-cover-preview img { width:100%; height:100%; object-fit:cover; }
+    @media(max-width:600px){ .cover-picker { grid-template-columns:repeat(3,1fr); } }
+  </style>
 </head>
 <body>
 <nav class="navbar">
@@ -103,6 +116,14 @@
             <input type="date" id="post-date" />
           </div>
           <div class="form-group">
+            <label>Cover Image (choose one of 15)</label>
+            <input type="hidden" id="post-cover" value="" />
+            <div class="cover-picker" id="post-cover-picker"></div>
+            <div class="selected-cover-preview" id="post-cover-preview">
+              <img id="post-cover-preview-img" src="" alt="Selected cover" />
+            </div>
+          </div>
+          <div class="form-group">
             <label>Content *</label>
             <div class="editor-toolbar">
               <button onclick="fmt('bold')"><b>B</b></button>
@@ -149,6 +170,14 @@
           <div class="form-group">
             <label>Description</label>
             <input type="text" id="design-desc" placeholder="Brief description of the design" />
+          </div>
+          <div class="form-group">
+            <label>Cover Image (choose one of 15)</label>
+            <input type="hidden" id="design-cover" value="" />
+            <div class="cover-picker" id="design-cover-picker"></div>
+            <div class="selected-cover-preview" id="design-cover-preview">
+              <img id="design-cover-preview-img" src="" alt="Selected cover" />
+            </div>
           </div>
           <div class="form-group">
             <label>HTML Code *</label>
@@ -293,6 +322,7 @@
 
   function showAdmin() {
     document.getElementById('admin-screen').style.display = 'block';
+    initCoverPickers();
     document.getElementById('stat-posts').textContent = DB.getPosts().length;
     document.getElementById('stat-designs').textContent = DB.getPortfolios().length;
     document.getElementById('stat-requests').textContent = JSON.parse(localStorage.getItem('asaf_requests') || '[]').length;
@@ -324,13 +354,17 @@
     const date    = document.getElementById('post-date').value;
     const id      = document.getElementById('edit-post-id').value;
     if (!title || !content) { toast('Title and content are required', 'error'); return; }
-    DB.savePost({ id: id || null, title, content, tags, date: date ? new Date(date).toISOString() : new Date().toISOString() });
+    const cover = document.getElementById('post-cover').value;
+    DB.savePost({ id: id || null, title, content, tags, cover, date: date ? new Date(date).toISOString() : new Date().toISOString() });
     toast('Post published successfully!', 'success');
     clearPostForm();
     document.getElementById('stat-posts').textContent = DB.getPosts().length;
   }
 
   function clearPostForm() {
+    document.getElementById('post-cover').value = '';
+    document.getElementById('post-cover-preview').style.display = 'none';
+    document.querySelectorAll('#post-cover-picker .cover-option').forEach(el => el.classList.remove('selected'));
     document.getElementById('post-title').value = '';
     document.getElementById('post-tags').value = '';
     document.getElementById('blog-editor').innerHTML = '';
@@ -368,6 +402,7 @@
     document.getElementById('blog-editor').innerHTML = post.content;
     document.getElementById('post-date').value = post.date ? post.date.split('T')[0] : '';
     document.getElementById('post-form-title').textContent = 'Edit Post';
+    if (post.cover) selectCover('post', post.cover);
     showPanel('new-post', document.querySelector('.admin-nav a:nth-child(2)'));
   }
 
@@ -387,7 +422,8 @@
     const description = document.getElementById('design-desc').value.trim();
     const id       = document.getElementById('edit-design-id').value;
     if (!title || !html) { toast('Title and HTML are required', 'error'); return; }
-    DB.savePortfolio({ id: id || null, title, html, category, description });
+    const dcover = document.getElementById('design-cover').value;
+    DB.savePortfolio({ id: id || null, title, html, category, description, cover: dcover });
     toast('Design saved successfully!', 'success');
     clearDesignForm();
     document.getElementById('stat-designs').textContent = DB.getPortfolios().length;
@@ -395,6 +431,9 @@
   }
 
   function clearDesignForm() {
+    document.getElementById('design-cover').value = '';
+    document.getElementById('design-cover-preview').style.display = 'none';
+    document.querySelectorAll('#design-cover-picker .cover-option').forEach(el => el.classList.remove('selected'));
     document.getElementById('design-title').value = '';
     document.getElementById('design-html').value = '';
     document.getElementById('design-category').value = '';
