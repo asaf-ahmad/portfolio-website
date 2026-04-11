@@ -1,3 +1,7 @@
+/* ═══════════════════════════════════════════════════
+   Asaf Ahmad Shayaan — Portfolio Data Layer
+   ═══════════════════════════════════════════════════ */
+
 const CATEGORIES = [
   { id: "los",         label: "Loan Origination Systems",   url: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",  color: "#1A3A5C" },
   { id: "lending",     label: "Digital Lending",            url: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80",  color: "#2C4A3E" },
@@ -22,18 +26,17 @@ const READ_LENGTHS = [
   { id: "long",   label: "Long Read",   mins: "10+ min",  color: "#8B3A2A" }
 ];
 
-// Keep backward compat
-const COVER_IMAGES = CATEGORIES.map(c => ({ id: c.id, label: c.label, url: c.url }));
+// Backward compat
+const COVER_IMAGES = CATEGORIES.map(function(c) { return { id: c.id, label: c.label, url: c.url }; });
 
+/* ── Database ──────────────────────────────────────── */
 const DB = {
-  // ── Blog ──────────────────────────────────────
-  getPosts() {
-    return JSON.parse(localStorage.getItem('asaf_posts') || '[]');
-  },
-  savePost(post) {
-    const posts = this.getPosts();
+  // Blog
+  getPosts: function() { return JSON.parse(localStorage.getItem('asaf_posts') || '[]'); },
+  savePost: function(post) {
+    var posts = this.getPosts();
     if (post.id) {
-      const i = posts.findIndex(p => p.id === post.id);
+      var i = posts.findIndex(function(p) { return p.id === post.id; });
       if (i > -1) posts[i] = post; else posts.unshift(post);
     } else {
       post.id = 'post_' + Date.now();
@@ -43,22 +46,18 @@ const DB = {
     localStorage.setItem('asaf_posts', JSON.stringify(posts));
     return post;
   },
-  deletePost(id) {
-    const posts = this.getPosts().filter(p => p.id !== id);
+  deletePost: function(id) {
+    var posts = this.getPosts().filter(function(p) { return p.id !== id; });
     localStorage.setItem('asaf_posts', JSON.stringify(posts));
   },
-  getPost(id) {
-    return this.getPosts().find(p => p.id === id);
-  },
+  getPost: function(id) { return this.getPosts().find(function(p) { return p.id === id; }); },
 
-  // ── Portfolio ─────────────────────────────────
-  getPortfolios() {
-    return JSON.parse(localStorage.getItem('asaf_portfolio') || '[]');
-  },
-  savePortfolio(item) {
-    const items = this.getPortfolios();
+  // Portfolio
+  getPortfolios: function() { return JSON.parse(localStorage.getItem('asaf_portfolio') || '[]'); },
+  savePortfolio: function(item) {
+    var items = this.getPortfolios();
     if (item.id) {
-      const i = items.findIndex(p => p.id === item.id);
+      var i = items.findIndex(function(p) { return p.id === item.id; });
       if (i > -1) items[i] = item; else items.unshift(item);
     } else {
       item.id = 'pf_' + Date.now();
@@ -68,40 +67,28 @@ const DB = {
     localStorage.setItem('asaf_portfolio', JSON.stringify(items));
     return item;
   },
-  deletePortfolio(id) {
-    const items = this.getPortfolios().filter(p => p.id !== id);
+  deletePortfolio: function(id) {
+    var items = this.getPortfolios().filter(function(p) { return p.id !== id; });
     localStorage.setItem('asaf_portfolio', JSON.stringify(items));
   },
-  getPortfolioItem(id) {
-    return this.getPortfolios().find(p => p.id === id);
-  },
+  getPortfolioItem: function(id) { return this.getPortfolios().find(function(p) { return p.id === id; }); },
 
-  // ── Auth ──────────────────────────────────────
+  // Auth
   ADMIN_KEY: 'asaf_admin_pass',
-  getPassword() {
-    return localStorage.getItem(this.ADMIN_KEY) || 'Asaf@2026';
-  },
-  setPassword(p) {
-    localStorage.setItem(this.ADMIN_KEY, p);
-  },
-  isLoggedIn() {
-    return sessionStorage.getItem('asaf_auth') === 'true';
-  },
-  login(pass) {
-    if (pass === this.getPassword()) {
-      sessionStorage.setItem('asaf_auth', 'true');
-      return true;
-    }
+  getPassword: function() { return localStorage.getItem(this.ADMIN_KEY) || 'Asaf@2026'; },
+  setPassword: function(p) { localStorage.setItem(this.ADMIN_KEY, p); },
+  isLoggedIn: function() { return sessionStorage.getItem('asaf_auth') === 'true'; },
+  login: function(pass) {
+    if (pass === this.getPassword()) { sessionStorage.setItem('asaf_auth', 'true'); return true; }
     return false;
   },
-  logout() {
-    sessionStorage.removeItem('asaf_auth');
-  }
+  logout: function() { sessionStorage.removeItem('asaf_auth'); }
 };
 
-// ── Helpers ────────────────────────────────────────
-function toast(msg, type = 'success') {
-  let el = document.getElementById('toast');
+/* ── Helpers ────────────────────────────────────────── */
+function toast(msg, type) {
+  type = type || 'success';
+  var el = document.getElementById('toast');
   if (!el) {
     el = document.createElement('div');
     el.id = 'toast';
@@ -110,8 +97,8 @@ function toast(msg, type = 'success') {
   }
   el.textContent = msg;
   el.className = 'toast ' + type;
-  setTimeout(() => el.classList.add('show'), 10);
-  setTimeout(() => el.classList.remove('show'), 3000);
+  setTimeout(function() { el.classList.add('show'); }, 10);
+  setTimeout(function() { el.classList.remove('show'); }, 3000);
 }
 
 function formatDate(iso) {
@@ -120,31 +107,100 @@ function formatDate(iso) {
 }
 
 function stripHtml(html) {
-  const d = document.createElement('div');
+  var d = document.createElement('div');
   d.innerHTML = html;
   return d.textContent || d.innerText || '';
 }
 
 function requireAuth() {
-  if (!DB.isLoggedIn()) {
-    window.location.href = 'admin.html';
+  if (!DB.isLoggedIn()) window.location.href = 'admin.html';
+}
+
+/* ── Blog Card Builder ─────────────────────────────── */
+function buildBlogCard(p, excerptLen) {
+  var cat = p.cover ? CATEGORIES.find(function(c) { return c.id === p.cover; }) : null;
+  var rl  = p.readlength ? READ_LENGTHS.find(function(r) { return r.id === p.readlength; }) : null;
+  var bg  = cat ? "background-image:url('" + cat.url + "');background-size:cover;background-position:center" : 'background:linear-gradient(135deg,#111,#2a2a2a)';
+  var badges = '';
+  if (rl)  badges += '<span style="font-family:\'DM Mono\',monospace;font-size:0.6rem;text-transform:uppercase;background:' + rl.color + ';color:#fff;padding:3px 8px;border-radius:2px">' + rl.label + '</span>';
+  if (cat) badges += '<span style="font-family:\'DM Mono\',monospace;font-size:0.6rem;text-transform:uppercase;background:rgba(0,0,0,0.6);color:#fff;padding:3px 8px;border-radius:2px;backdrop-filter:blur(4px)">' + cat.label + '</span>';
+  return '<div class="card blog-card" onclick="window.location=\'post.html?id=' + p.id + '\'">' +
+    '<div class="blog-card-img" style="' + bg + ';position:relative">' +
+    (badges ? '<div style="position:absolute;bottom:12px;left:12px;display:flex;gap:6px;flex-wrap:wrap">' + badges + '</div>' : '') +
+    '</div>' +
+    '<div class="blog-date">' + formatDate(p.date) + '</div>' +
+    '<h3 class="blog-title">' + p.title + '</h3>' +
+    '<p class="blog-excerpt">' + stripHtml(p.content).substring(0, excerptLen) + '...</p>' +
+    '<span class="blog-read-more">Read more &rarr;</span></div>';
+}
+
+/* ── Theme Toggle ──────────────────────────────────── */
+function toggleTheme() {
+  var isCreative = !document.body.classList.contains('minimal-mode');
+  if (isCreative) {
+    document.body.classList.add('minimal-mode');
+    var tm = document.getElementById('toggle-minimal');
+    var tc = document.getElementById('toggle-creative');
+    if (tm) tm.classList.add('active');
+    if (tc) tc.classList.remove('active');
+    localStorage.setItem('asaf_theme', 'minimal');
+  } else {
+    document.body.classList.remove('minimal-mode');
+    var tm2 = document.getElementById('toggle-minimal');
+    var tc2 = document.getElementById('toggle-creative');
+    if (tm2) tm2.classList.remove('active');
+    if (tc2) tc2.classList.add('active');
+    localStorage.setItem('asaf_theme', 'creative');
   }
 }
 
-// ── Nav Active State ───────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  const page = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    const href = a.getAttribute('href');
-    if (href === page || (page === '' && href === 'index.html')) {
-      a.classList.add('active');
-    }
+function restoreTheme() {
+  var saved = localStorage.getItem('asaf_theme');
+  if (saved === 'creative') {
+    document.body.classList.remove('minimal-mode');
+    var tm = document.getElementById('toggle-minimal');
+    var tc = document.getElementById('toggle-creative');
+    if (tm) tm.classList.remove('active');
+    if (tc) tc.classList.add('active');
+  }
+}
+
+/* ── Shared Init ───────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', function() {
+  // Nav active state
+  var page = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a').forEach(function(a) {
+    var href = a.getAttribute('href');
+    if (href === page || (page === '' && href === 'index.html')) a.classList.add('active');
   });
 
-  // Mobile nav toggle
-  const toggle = document.querySelector('.nav-toggle');
-  const links  = document.querySelector('.nav-links');
+  // Mobile nav
+  var toggle = document.querySelector('.nav-toggle');
+  var links  = document.querySelector('.nav-links');
   if (toggle && links) {
-    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    toggle.addEventListener('click', function() { links.classList.toggle('open'); });
   }
+
+  // Restore theme
+  restoreTheme();
+
+  // Cursor (only in creative mode, only on non-touch devices)
+  var cur = document.getElementById('cursor');
+  var ring = document.getElementById('cursor-ring');
+  if (cur && ring && window.matchMedia('(hover: hover)').matches) {
+    document.addEventListener('mousemove', function(e) {
+      cur.style.left = e.clientX + 'px';
+      cur.style.top = e.clientY + 'px';
+      setTimeout(function() {
+        ring.style.left = e.clientX + 'px';
+        ring.style.top = e.clientY + 'px';
+      }, 60);
+    });
+  }
+
+  // Scroll reveal
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
 });
