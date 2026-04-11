@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Portfolio — Asaf Ahmad Shayaan</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo">Asaf<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="portfolio.html">Design Portfolio</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <div class="nav-toggle"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<main class="page-body">
+  <div class="page-header">
+    <div class="container">
+      <h1>Design Portfolio</h1>
+      <p>UI concepts, product designs, and wireframes from my product work in fintech and lending.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="portfolio-grid" id="portfolio-list">
+        <div class="empty-state">
+          <h3>No designs yet</h3>
+          <p>Upload your HTML design concepts from the admin panel and they'll render live here.</p>
+          <a href="admin.html" style="color:var(--accent); font-weight:600;">Go to Admin →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modal-title">Design Preview</h3>
+      <button class="modal-close" onclick="document.getElementById('modal-overlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body">
+      <iframe id="modal-frame" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">Asaf<span>.</span></div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-copy">© 2026 Asaf Ahmad Shayaan · Product Manager · Fintech & Lending</div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script>
+  const items = DB.getPortfolios();
+  const container = document.getElementById('portfolio-list');
+
+  if (items.length) {
+    container.innerHTML = items.map(item => `
+      <div class="card portfolio-card" onclick="openModal('${item.id}')">
+        <div class="portfolio-preview">
+          <div class="preview-overlay">Click to view full design</div>
+        </div>
+        <div class="card-tag">${item.category || 'UI Design'}</div>
+        <h3>${item.title}</h3>
+        <p>${item.description || ''}</p>
+        <div class="card-meta">
+          <span>${formatDate(item.date)}</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    `).join('');
+  }
+
+  function openModal(id) {
+    const item = DB.getPortfolioItem(id);
+    if (!item) return;
+    document.getElementById('modal-title').textContent = item.title;
+    const frame = document.getElementById('modal-frame');
+    frame.srcdoc = item.html;
+    document.getElementById('modal-overlay').classList.add('open');
+  }
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('modal-overlay')) {
+      document.getElementById('modal-overlay').classList.remove('open');
+    }
+  }
+</script>
+</body>
+</html>

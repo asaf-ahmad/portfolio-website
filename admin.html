@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Asaf Ahmad Shayaan</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo">Asaf<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">← Back to Site</a></li>
+      <li><a href="#" onclick="DB.logout(); location.reload();" style="color:var(--muted);">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="page-body">
+
+  <!-- ── Login Screen ── -->
+  <div id="login-screen" class="login-wrap" style="display:none;">
+    <div class="login-box">
+      <h2>Admin Login</h2>
+      <p>Enter your password to manage your portfolio</p>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="login-pass" placeholder="Enter password" onkeydown="if(event.key==='Enter') doLogin()" />
+      </div>
+      <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="doLogin()">Login →</button>
+      <div class="login-error" id="login-error">Incorrect password. Try again.</div>
+      <p style="font-size:0.75rem; color:var(--muted); margin-top:20px;">Default: Asaf@2026 — change in Settings</p>
+    </div>
+  </div>
+
+  <!-- ── Admin Panel ── -->
+  <div id="admin-screen" style="display:none;">
+    <div class="admin-layout">
+
+      <!-- Sidebar -->
+      <div class="admin-sidebar">
+        <h3>Admin Panel</h3>
+        <nav class="admin-nav">
+          <a href="#" class="active" onclick="showPanel('dashboard', this)">📊 Dashboard</a>
+          <a href="#" onclick="showPanel('new-post', this)">✍ New Post</a>
+          <a href="#" onclick="showPanel('manage-posts', this); loadPostsTable()">📝 Manage Posts</a>
+          <a href="#" onclick="showPanel('new-design', this)">🎨 New Design</a>
+          <a href="#" onclick="showPanel('manage-designs', this); loadDesignsTable()">🖼 Manage Designs</a>
+          <a href="#" onclick="showPanel('settings', this)">⚙ Settings</a>
+        </nav>
+      </div>
+
+      <!-- Main Content -->
+      <div class="admin-main">
+
+        <!-- Dashboard -->
+        <div class="admin-panel active" id="panel-dashboard">
+          <h2>Dashboard</h2>
+          <div class="grid-3" style="margin-bottom:32px;">
+            <div class="card" style="text-align:center;">
+              <div style="font-size:2.5rem; font-family:'Playfair Display',serif; color:var(--navy);" id="stat-posts">0</div>
+              <div style="color:var(--muted); font-size:0.85rem; margin-top:4px;">Blog Posts</div>
+            </div>
+            <div class="card" style="text-align:center;">
+              <div style="font-size:2.5rem; font-family:'Playfair Display',serif; color:var(--navy);" id="stat-designs">0</div>
+              <div style="color:var(--muted); font-size:0.85rem; margin-top:4px;">Design Uploads</div>
+            </div>
+            <div class="card" style="text-align:center;">
+              <div style="font-size:2.5rem; font-family:'Playfair Display',serif; color:var(--navy);">●</div>
+              <div style="color:#059669; font-size:0.85rem; margin-top:4px;">Site Live</div>
+            </div>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom:16px;">Quick Actions</h3>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <button class="btn btn-primary" onclick="showPanel('new-post', document.querySelector('.admin-nav a:nth-child(2)'))">+ New Blog Post</button>
+              <button class="btn btn-navy" onclick="showPanel('new-design', document.querySelector('.admin-nav a:nth-child(4)'))">+ Upload Design</button>
+              <a href="index.html" target="_blank" class="btn btn-outline" style="color:var(--navy); border-color:var(--border);">View Site ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Post -->
+        <div class="admin-panel" id="panel-new-post">
+          <h2 id="post-form-title">New Blog Post</h2>
+          <input type="hidden" id="edit-post-id" />
+          <div class="form-group">
+            <label>Post Title *</label>
+            <input type="text" id="post-title" placeholder="e.g. Why LOS TAT Still Matters in 2026" />
+          </div>
+          <div class="form-group">
+            <label>Tags / Category</label>
+            <input type="text" id="post-tags" placeholder="e.g. LOS, Product Strategy, Fintech" />
+          </div>
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" id="post-date" />
+          </div>
+          <div class="form-group">
+            <label>Content *</label>
+            <div class="editor-toolbar">
+              <button onclick="fmt('bold')"><b>B</b></button>
+              <button onclick="fmt('italic')"><i>I</i></button>
+              <button onclick="fmt('underline')"><u>U</u></button>
+              <button onclick="fmtBlock('h2')">H2</button>
+              <button onclick="fmtBlock('h3')">H3</button>
+              <button onclick="fmt('insertUnorderedList')">• List</button>
+              <button onclick="fmt('insertOrderedList')">1. List</button>
+              <button onclick="fmtBlock('blockquote')">❝ Quote</button>
+              <button onclick="insertLink()">🔗 Link</button>
+            </div>
+            <div id="blog-editor" contenteditable="true" placeholder="Start writing your post here..."></div>
+          </div>
+          <div style="display:flex; gap:12px;">
+            <button class="btn btn-primary" onclick="savePost()">Publish Post →</button>
+            <button class="btn btn-navy" onclick="clearPostForm()">Clear</button>
+          </div>
+        </div>
+
+        <!-- Manage Posts -->
+        <div class="admin-panel" id="panel-manage-posts">
+          <h2>Manage Posts</h2>
+          <div style="overflow-x:auto; margin-top:20px;">
+            <table class="admin-table" id="posts-table">
+              <thead><tr><th>Title</th><th>Date</th><th>Actions</th></tr></thead>
+              <tbody id="posts-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- New Design -->
+        <div class="admin-panel" id="panel-new-design">
+          <h2 id="design-form-title">Upload Design Concept</h2>
+          <input type="hidden" id="edit-design-id" />
+          <div class="form-group">
+            <label>Title *</label>
+            <input type="text" id="design-title" placeholder="e.g. Collections Dashboard Redesign" />
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <input type="text" id="design-category" placeholder="e.g. UI Design, Wireframe, Prototype" />
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" id="design-desc" placeholder="Brief description of the design" />
+          </div>
+          <div class="form-group">
+            <label>HTML Code *</label>
+            <textarea id="design-html" rows="16" placeholder="Paste your full HTML design here — it will render live on the portfolio page..."></textarea>
+          </div>
+          <div style="display:flex; gap:12px;">
+            <button class="btn btn-primary" onclick="saveDesign()">Save Design →</button>
+            <button class="btn btn-navy" onclick="previewDesign()">Preview</button>
+            <button class="btn btn-outline" style="color:var(--navy); border-color:var(--border);" onclick="clearDesignForm()">Clear</button>
+          </div>
+        </div>
+
+        <!-- Manage Designs -->
+        <div class="admin-panel" id="panel-manage-designs">
+          <h2>Manage Designs</h2>
+          <div style="overflow-x:auto; margin-top:20px;">
+            <table class="admin-table" id="designs-table">
+              <thead><tr><th>Title</th><th>Category</th><th>Date</th><th>Actions</th></tr></thead>
+              <tbody id="designs-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Settings -->
+        <div class="admin-panel" id="panel-settings">
+          <h2>Settings</h2>
+          <div class="card" style="max-width:480px;">
+            <h3 style="margin-bottom:20px;">Change Admin Password</h3>
+            <div class="form-group">
+              <label>Current Password</label>
+              <input type="password" id="cur-pass" />
+            </div>
+            <div class="form-group">
+              <label>New Password</label>
+              <input type="password" id="new-pass" />
+            </div>
+            <div class="form-group">
+              <label>Confirm New Password</label>
+              <input type="password" id="confirm-pass" />
+            </div>
+            <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Preview Modal -->
+<div class="modal-overlay" id="preview-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Design Preview</h3>
+      <button class="modal-close" onclick="document.getElementById('preview-overlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body">
+      <iframe id="preview-frame" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="js/data.js"></script>
+<script>
+  // ── Init ──────────────────────────────────────────
+  window.addEventListener('DOMContentLoaded', () => {
+    if (DB.isLoggedIn()) {
+      showAdmin();
+    } else {
+      document.getElementById('login-screen').style.display = 'flex';
+    }
+  });
+
+  function doLogin() {
+    const pass = document.getElementById('login-pass').value;
+    if (DB.login(pass)) {
+      document.getElementById('login-screen').style.display = 'none';
+      showAdmin();
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+    }
+  }
+
+  function showAdmin() {
+    document.getElementById('admin-screen').style.display = 'block';
+    document.getElementById('stat-posts').textContent = DB.getPosts().length;
+    document.getElementById('stat-designs').textContent = DB.getPortfolios().length;
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('post-date').value = today;
+  }
+
+  // ── Panel Navigation ──────────────────────────────
+  function showPanel(id, el) {
+    document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.admin-nav a').forEach(a => a.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    if (el) el.classList.add('active');
+    return false;
+  }
+
+  // ── Blog Editor ───────────────────────────────────
+  function fmt(cmd) { document.execCommand(cmd, false, null); document.getElementById('blog-editor').focus(); }
+  function fmtBlock(tag) { document.execCommand('formatBlock', false, tag); document.getElementById('blog-editor').focus(); }
+  function insertLink() {
+    const url = prompt('Enter URL:');
+    if (url) document.execCommand('createLink', false, url);
+  }
+
+  function savePost() {
+    const title   = document.getElementById('post-title').value.trim();
+    const content = document.getElementById('blog-editor').innerHTML.trim();
+    const tags    = document.getElementById('post-tags').value.trim();
+    const date    = document.getElementById('post-date').value;
+    const id      = document.getElementById('edit-post-id').value;
+    if (!title || !content) { toast('Title and content are required', 'error'); return; }
+    DB.savePost({ id: id || null, title, content, tags, date: date ? new Date(date).toISOString() : new Date().toISOString() });
+    toast('Post published successfully!', 'success');
+    clearPostForm();
+    document.getElementById('stat-posts').textContent = DB.getPosts().length;
+  }
+
+  function clearPostForm() {
+    document.getElementById('post-title').value = '';
+    document.getElementById('post-tags').value = '';
+    document.getElementById('blog-editor').innerHTML = '';
+    document.getElementById('edit-post-id').value = '';
+    document.getElementById('post-form-title').textContent = 'New Blog Post';
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('post-date').value = today;
+  }
+
+  function loadPostsTable() {
+    const posts = DB.getPosts();
+    const tbody = document.getElementById('posts-tbody');
+    if (!posts.length) {
+      tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:var(--muted); padding:32px;">No posts yet</td></tr>';
+      return;
+    }
+    tbody.innerHTML = posts.map(p => `
+      <tr>
+        <td><strong>${p.title}</strong></td>
+        <td>${formatDate(p.date)}</td>
+        <td style="display:flex; gap:8px;">
+          <button class="action-btn edit" onclick="editPost('${p.id}')">Edit</button>
+          <button class="action-btn delete" onclick="deletePost('${p.id}')">Delete</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function editPost(id) {
+    const post = DB.getPost(id);
+    if (!post) return;
+    document.getElementById('edit-post-id').value = post.id;
+    document.getElementById('post-title').value = post.title;
+    document.getElementById('post-tags').value = post.tags || '';
+    document.getElementById('blog-editor').innerHTML = post.content;
+    document.getElementById('post-date').value = post.date ? post.date.split('T')[0] : '';
+    document.getElementById('post-form-title').textContent = 'Edit Post';
+    showPanel('new-post', document.querySelector('.admin-nav a:nth-child(2)'));
+  }
+
+  function deletePost(id) {
+    if (!confirm('Delete this post?')) return;
+    DB.deletePost(id);
+    loadPostsTable();
+    document.getElementById('stat-posts').textContent = DB.getPosts().length;
+    toast('Post deleted', 'success');
+  }
+
+  // ── Design Manager ────────────────────────────────
+  function saveDesign() {
+    const title    = document.getElementById('design-title').value.trim();
+    const html     = document.getElementById('design-html').value.trim();
+    const category = document.getElementById('design-category').value.trim();
+    const description = document.getElementById('design-desc').value.trim();
+    const id       = document.getElementById('edit-design-id').value;
+    if (!title || !html) { toast('Title and HTML are required', 'error'); return; }
+    DB.savePortfolio({ id: id || null, title, html, category, description });
+    toast('Design saved successfully!', 'success');
+    clearDesignForm();
+    document.getElementById('stat-designs').textContent = DB.getPortfolios().length;
+  }
+
+  function clearDesignForm() {
+    document.getElementById('design-title').value = '';
+    document.getElementById('design-html').value = '';
+    document.getElementById('design-category').value = '';
+    document.getElementById('design-desc').value = '';
+    document.getElementById('edit-design-id').value = '';
+    document.getElementById('design-form-title').textContent = 'Upload Design Concept';
+  }
+
+  function previewDesign() {
+    const html = document.getElementById('design-html').value.trim();
+    if (!html) { toast('Paste some HTML first', 'error'); return; }
+    document.getElementById('preview-frame').srcdoc = html;
+    document.getElementById('preview-overlay').classList.add('open');
+  }
+
+  function loadDesignsTable() {
+    const items = DB.getPortfolios();
+    const tbody = document.getElementById('designs-tbody');
+    if (!items.length) {
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--muted); padding:32px;">No designs yet</td></tr>';
+      return;
+    }
+    tbody.innerHTML = items.map(item => `
+      <tr>
+        <td><strong>${item.title}</strong></td>
+        <td>${item.category || '—'}</td>
+        <td>${formatDate(item.date)}</td>
+        <td style="display:flex; gap:8px;">
+          <button class="action-btn edit" onclick="editDesign('${item.id}')">Edit</button>
+          <button class="action-btn delete" onclick="deleteDesign('${item.id}')">Delete</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function editDesign(id) {
+    const item = DB.getPortfolioItem(id);
+    if (!item) return;
+    document.getElementById('edit-design-id').value = item.id;
+    document.getElementById('design-title').value = item.title;
+    document.getElementById('design-html').value = item.html;
+    document.getElementById('design-category').value = item.category || '';
+    document.getElementById('design-desc').value = item.description || '';
+    document.getElementById('design-form-title').textContent = 'Edit Design';
+    showPanel('new-design', document.querySelector('.admin-nav a:nth-child(4)'));
+  }
+
+  function deleteDesign(id) {
+    if (!confirm('Delete this design?')) return;
+    DB.deletePortfolio(id);
+    loadDesignsTable();
+    document.getElementById('stat-designs').textContent = DB.getPortfolios().length;
+    toast('Design deleted', 'success');
+  }
+
+  // ── Settings ──────────────────────────────────────
+  function changePassword() {
+    const cur     = document.getElementById('cur-pass').value;
+    const newP    = document.getElementById('new-pass').value;
+    const confirm = document.getElementById('confirm-pass').value;
+    if (cur !== DB.getPassword()) { toast('Current password is incorrect', 'error'); return; }
+    if (newP.length < 6) { toast('New password must be at least 6 characters', 'error'); return; }
+    if (newP !== confirm) { toast('Passwords do not match', 'error'); return; }
+    DB.setPassword(newP);
+    document.getElementById('cur-pass').value = '';
+    document.getElementById('new-pass').value = '';
+    document.getElementById('confirm-pass').value = '';
+    toast('Password updated successfully!', 'success');
+  }
+</script>
+</body>
+</html>
