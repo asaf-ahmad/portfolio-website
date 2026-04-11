@@ -47,6 +47,7 @@
           <a href="#" onclick="showPanel('new-design', this)">🎨 New Design</a>
           <a href="#" onclick="showPanel('manage-designs', this); loadDesignsTable()">🖼 Manage Designs</a>
           <a href="#" onclick="showPanel('requests', this); loadRequestsTable()">📬 Consultations</a>
+          <a href="#" onclick="showPanel('resume', this); initResume()">📄 Resume</a>
           <a href="#" onclick="showPanel('settings', this)">⚙ Settings</a>
         </nav>
       </div>
@@ -185,6 +186,45 @@
             <h3 style="margin-bottom:16px;" id="detail-title">Request Details</h3>
             <div id="detail-body"></div>
             <button class="btn btn-navy" style="margin-top:20px;" onclick="document.getElementById('request-detail').style.display='none'">Close</button>
+          </div>
+        </div>
+
+        <!-- Resume -->
+        <div class="admin-panel" id="panel-resume">
+          <h2>Resume Manager</h2>
+          <p style="color:var(--muted); margin-bottom:28px; font-size:0.9rem;">Upload your resume PDF. It will be available for download on your website via a public link.</p>
+
+          <!-- Current Status -->
+          <div class="card" style="max-width:560px; margin-bottom:28px;" id="resume-status-card">
+            <h3 style="margin-bottom:12px;">Current Resume</h3>
+            <div id="resume-status">
+              <p style="color:var(--muted); font-size:0.9rem;">No resume uploaded yet.</p>
+            </div>
+          </div>
+
+          <!-- Upload -->
+          <div class="card" style="max-width:560px;">
+            <h3 style="margin-bottom:20px;">Upload New Resume</h3>
+            <div class="form-group">
+              <label>Select PDF File</label>
+              <input type="file" id="resume-file" accept=".pdf" style="padding:10px 0;" />
+            </div>
+            <div class="form-group">
+              <label>Display Label (optional)</label>
+              <input type="text" id="resume-label" placeholder="e.g. Asaf Ahmad Shayaan — Product Manager — 2026" />
+            </div>
+            <div style="display:flex; gap:12px;">
+              <button class="btn btn-primary" onclick="uploadResume()">Upload Resume →</button>
+              <button class="btn btn-outline" style="color:var(--navy); border-color:var(--border);" onclick="removeResume()">Remove Resume</button>
+            </div>
+            <p style="font-size:0.78rem; color:var(--muted); margin-top:16px;">⚠ Resume is stored as base64 in your browser. Max recommended size: 2MB. To make it available across devices, re-upload after clearing browser data.</p>
+          </div>
+
+          <!-- Download Link Preview -->
+          <div class="card" style="max-width:560px; margin-top:28px;" id="resume-link-card" style="display:none;">
+            <h3 style="margin-bottom:12px;">Public Download Link</h3>
+            <p style="font-size:0.9rem; color:var(--muted); margin-bottom:12px;">Share this page link — visitors can download your resume directly from your site.</p>
+            <code style="background:var(--cream); padding:10px 14px; border-radius:6px; font-size:0.85rem; display:block; word-break:break-all;" id="resume-link-display"></code>
           </div>
         </div>
 
