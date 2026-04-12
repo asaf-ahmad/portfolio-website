@@ -74,7 +74,7 @@ function switchTab(name, btn) {
 }
 
 function loadSketches() {
-  var sketches = JSON.parse(localStorage.getItem('asaf_sketches') || '[]');
+  var sketches = DB.sketches.getAll();
   var container = document.getElementById('sketches-list');
   if (sketches.length) {
     container.innerHTML = sketches.map(function(s) {
@@ -89,8 +89,7 @@ function loadSketches() {
 }
 
 function openSketch(id) {
-  var sketches = JSON.parse(localStorage.getItem('asaf_sketches') || '[]');
-  var s = sketches.find(function(x){return x.id===id});
+  var s = DB.sketches.getById(id);
   if (!s) return;
   document.getElementById('sketch-modal-title').textContent = s.title;
   document.getElementById('sketch-modal-img').src = s.image;
@@ -98,7 +97,7 @@ function openSketch(id) {
 }
 
 function loadPoetry() {
-  var poems = JSON.parse(localStorage.getItem('asaf_poems') || '[]');
+  var poems = DB.poems.getAll();
   var container = document.getElementById('poetry-list');
   if (poems.length) {
     container.innerHTML = poems.map(function(p) {
@@ -112,8 +111,7 @@ function loadPoetry() {
 }
 
 function openPoem(id) {
-  var poems = JSON.parse(localStorage.getItem('asaf_poems') || '[]');
-  var p = poems.find(function(x){return x.id===id});
+  var p = DB.poems.getById(id);
   if (!p) return;
   document.getElementById('poem-modal-title').textContent = p.title;
   document.getElementById('poem-modal-body').textContent = p.body;

@@ -97,19 +97,16 @@ function submitRequest() {
   if (!service) { toast('Please select a service first', 'error'); return; }
   if (!name || !whatsapp || !email || !desc) { toast('Please fill in all required fields', 'error'); return; }
 
-  var requests = JSON.parse(localStorage.getItem('asaf_requests') || '[]');
-  requests.unshift({
-    id: 'req_' + Date.now(),
+  var result = DB.requests.save({
     service: service,
     name: name,
     whatsapp: whatsapp,
     email: email,
     company: company,
     description: desc,
-    date: new Date().toISOString(),
     status: 'new'
   });
-  localStorage.setItem('asaf_requests', JSON.stringify(requests));
+  if (result.error) { toast(result.error, 'error'); return; }
 
   toast('Request submitted! I will get back to you within 24 hours.', 'success');
 

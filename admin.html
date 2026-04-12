@@ -257,12 +257,23 @@
         <!-- Settings -->
         <div class="admin-panel" id="panel-settings">
           <h2>Settings</h2>
-          <div class="card" style="max-width:480px">
+          <div class="card" style="max-width:480px;margin-bottom:28px">
             <h3 style="margin-bottom:20px">Change Admin Password</h3>
             <div class="form-group"><label>Current Password</label><input type="password" id="cur-pass"/></div>
             <div class="form-group"><label>New Password</label><input type="password" id="new-pass"/></div>
             <div class="form-group"><label>Confirm New Password</label><input type="password" id="confirm-pass"/></div>
             <button class="btn btn-ink" onclick="changePassword()">Update Password</button>
+          </div>
+          <div class="card" style="max-width:480px;margin-bottom:28px">
+            <h3 style="margin-bottom:20px">Export Data (Backup)</h3>
+            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:16px">Download all your posts, designs, sketches, poems, requests, and resume as a single JSON file. Use this to restore data if you clear your browser.</p>
+            <button class="btn btn-ink" onclick="exportData()">Download Backup →</button>
+          </div>
+          <div class="card" style="max-width:480px">
+            <h3 style="margin-bottom:20px">Import Data (Restore)</h3>
+            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:16px">Upload a previously exported backup file to restore all data. This will overwrite existing data.</p>
+            <div class="form-group"><label>Select Backup File</label><input type="file" id="import-file" accept=".json" style="padding:10px 0"/></div>
+            <button class="btn btn-outline-ink" onclick="importData()">Import Backup</button>
           </div>
         </div>
 
@@ -314,9 +325,10 @@
   }
 
   function updateStats() {
-    document.getElementById('stat-posts').textContent = DB.getPosts().length;
-    document.getElementById('stat-designs').textContent = DB.getPortfolios().length;
-    document.getElementById('stat-requests').textContent = JSON.parse(localStorage.getItem('asaf_requests') || '[]').length;
+    var s = DB.stats();
+    document.getElementById('stat-posts').textContent = s.posts;
+    document.getElementById('stat-designs').textContent = s.portfolios;
+    document.getElementById('stat-requests').textContent = s.requests;
   }
 
   // ── Panel Navigation ──
@@ -540,7 +552,7 @@
   // CONSULTATION REQUESTS (was missing)
   // ═══════════════════════════════════════════════
   function loadRequestsTable() {
-    var requests = JSON.parse(localStorage.getItem('asaf_requests') || '[]');
+    var requests = DB.requests.getAll();
     var tbody = document.getElementById('requests-tbody');
     if (!requests.length) { tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--text-muted);padding:32px">No requests yet</td></tr>'; return; }
     tbody.innerHTML = requests.map(function(r) {
@@ -560,8 +572,7 @@
   }
 
   function viewRequest(id) {
-    var requests = JSON.parse(localStorage.getItem('asaf_requests') || '[]');
-    var r = requests.find(function(x){ return x.id === id; });
+    var r = DB.requests.getById(id);
     if (!r) return;
     document.getElementById('detail-title').textContent = r.service + ' — ' + r.name;
     document.getElementById('detail-body').innerHTML =
@@ -576,17 +587,14 @@
   }
 
   function markRequestDone(id) {
-    var requests = JSON.parse(localStorage.getItem('asaf_requests') || '[]');
-    var r = requests.find(function(x){ return x.id === id; });
-    if (r) { r.status = 'done'; localStorage.setItem('asaf_requests', JSON.stringify(requests)); }
+    DB.requests.patch(id, 'status', 'done');
     loadRequestsTable();
     toast('Marked as done', 'success');
   }
 
   function deleteRequest(id) {
     if (!confirm('Delete this request?')) return;
-    var requests = JSON.parse(localStorage.getItem('asaf_requests') || '[]').filter(function(x){ return x.id !== id; });
-    localStorage.setItem('asaf_requests', JSON.stringify(requests));
+    DB.requests.delete(id);
     loadRequestsTable();
     updateStats();
     toast('Request deleted', 'success');
@@ -616,18 +624,15 @@
     if (!title) { toast('Title is required', 'error'); return; }
     if (!image && !id) { toast('Please upload an image', 'error'); return; }
 
-    var sketches = JSON.parse(localStorage.getItem('asaf_sketches') || '[]');
-    if (id) {
-      var idx = sketches.findIndex(function(s){ return s.id === id; });
-      if (idx > -1) {
-        sketches[idx].title = title;
-        sketches[idx].note = note;
-        if (image) sketches[idx].image = image;
-      }
-    } else {
-      sketches.unshift({ id: 'sk_' + Date.now(), title: title, note: note, image: image, date: new Date().toISOString() });
+    var record = { title: title, note: note };
+    if (id) { record.id = id; }
+    if (image) { record.image = image; }
+    else if (id) {
+      var existing = DB.sketches.getById(id);
+      if (existing) record.image = existing.image;
     }
-    localStorage.setItem('asaf_sketches', JSON.stringify(sketches));
+    var result = DB.sketches.save(record);
+    if (result.error) { toast(result.error, 'error'); return; }
     toast('Sketch saved!', 'success');
     clearSketchForm();
     loadSketchesTable();
@@ -643,7 +648,7 @@
   }
 
   function loadSketchesTable() {
-    var sketches = JSON.parse(localStorage.getItem('asaf_sketches') || '[]');
+    var sketches = DB.sketches.getAll();
     var tbody = document.getElementById('sketches-tbody');
     if (!sketches.length) { tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:var(--text-muted);padding:32px">No sketches yet</td></tr>'; return; }
     tbody.innerHTML = sketches.map(function(s) {
@@ -654,8 +659,7 @@
   }
 
   function editSketch(id) {
-    var sketches = JSON.parse(localStorage.getItem('asaf_sketches') || '[]');
-    var s = sketches.find(function(x){ return x.id === id; });
+    var s = DB.sketches.getById(id);
     if (!s) return;
     document.getElementById('edit-sketch-id').value = s.id;
     document.getElementById('sketch-title').value = s.title;
@@ -669,8 +673,7 @@
 
   function deleteSketch(id) {
     if (!confirm('Delete this sketch?')) return;
-    var sketches = JSON.parse(localStorage.getItem('asaf_sketches') || '[]').filter(function(x){ return x.id !== id; });
-    localStorage.setItem('asaf_sketches', JSON.stringify(sketches));
+    DB.sketches.delete(id);
     loadSketchesTable();
     toast('Sketch deleted', 'success');
   }
@@ -684,14 +687,10 @@
     var id    = document.getElementById('edit-poem-id').value;
     if (!title || !body) { toast('Title and poem text are required', 'error'); return; }
 
-    var poems = JSON.parse(localStorage.getItem('asaf_poems') || '[]');
-    if (id) {
-      var idx = poems.findIndex(function(p){ return p.id === id; });
-      if (idx > -1) { poems[idx].title = title; poems[idx].body = body; }
-    } else {
-      poems.unshift({ id: 'pm_' + Date.now(), title: title, body: body, date: new Date().toISOString() });
-    }
-    localStorage.setItem('asaf_poems', JSON.stringify(poems));
+    var record = { title: title, body: body };
+    if (id) { record.id = id; }
+    var result = DB.poems.save(record);
+    if (result.error) { toast(result.error, 'error'); return; }
     toast('Poem published!', 'success');
     clearPoemForm();
     loadPoetryTable();
@@ -705,7 +704,7 @@
   }
 
   function loadPoetryTable() {
-    var poems = JSON.parse(localStorage.getItem('asaf_poems') || '[]');
+    var poems = DB.poems.getAll();
     var tbody = document.getElementById('poetry-tbody');
     if (!poems.length) { tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:var(--text-muted);padding:32px">No poems yet</td></tr>'; return; }
     tbody.innerHTML = poems.map(function(p) {
@@ -716,8 +715,7 @@
   }
 
   function editPoem(id) {
-    var poems = JSON.parse(localStorage.getItem('asaf_poems') || '[]');
-    var p = poems.find(function(x){ return x.id === id; });
+    var p = DB.poems.getById(id);
     if (!p) return;
     document.getElementById('edit-poem-id').value = p.id;
     document.getElementById('poem-title').value = p.title;
@@ -727,8 +725,7 @@
 
   function deletePoem(id) {
     if (!confirm('Delete this poem?')) return;
-    var poems = JSON.parse(localStorage.getItem('asaf_poems') || '[]').filter(function(x){ return x.id !== id; });
-    localStorage.setItem('asaf_poems', JSON.stringify(poems));
+    DB.poems.delete(id);
     loadPoetryTable();
     toast('Poem deleted', 'success');
   }
@@ -737,7 +734,7 @@
   // RESUME MANAGER (was missing)
   // ═══════════════════════════════════════════════
   function initResume() {
-    var resume = JSON.parse(localStorage.getItem('asaf_resume') || 'null');
+    var resume = DB.getResume();
     var statusDiv = document.getElementById('resume-status');
     if (resume) {
       statusDiv.innerHTML = '<p style="font-size:0.9rem"><strong>' + (resume.label || resume.filename) + '</strong></p>' +
@@ -768,7 +765,7 @@
         size: sizeStr,
         date: new Date().toISOString()
       };
-      localStorage.setItem('asaf_resume', JSON.stringify(resume));
+      DB.saveResume(resume);
       toast('Resume uploaded!', 'success');
       initResume();
       fileInput.value = '';
@@ -779,7 +776,7 @@
 
   function removeResume() {
     if (!confirm('Remove the uploaded resume?')) return;
-    localStorage.removeItem('asaf_resume');
+    DB.removeResume();
     toast('Resume removed', 'success');
     initResume();
   }
@@ -799,6 +796,31 @@
     document.getElementById('new-pass').value = '';
     document.getElementById('confirm-pass').value = '';
     toast('Password updated!', 'success');
+  }
+
+  function exportData() {
+    var json = DB.exportAll();
+    var blob = new Blob([json], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'portfolio_backup_' + new Date().toISOString().split('T')[0] + '.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    toast('Backup downloaded!', 'success');
+  }
+
+  function importData() {
+    var fileInput = document.getElementById('import-file');
+    if (!fileInput.files.length) { toast('Select a backup file first', 'error'); return; }
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var result = DB.importAll(e.target.result);
+      if (result.error) { toast('Import failed: ' + result.error, 'error'); return; }
+      toast('Data restored! Refreshing...', 'success');
+      setTimeout(function() { location.reload(); }, 1500);
+    };
+    reader.readAsText(fileInput.files[0]);
   }
 </script>
 </body>

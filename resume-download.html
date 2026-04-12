@@ -35,7 +35,7 @@
 <div id="toast" class="toast"></div>
 <script src="js/data.js"></script>
 <script>
-var resume = JSON.parse(localStorage.getItem('asaf_resume') || 'null');
+var resume = DB.getResume();
 if (resume) {
   document.getElementById('resume-found').style.display = 'block';
   var btn = document.getElementById('download-btn');
