@@ -45,6 +45,15 @@ search engines never see it. To publish for real:
 3. **Resume**: save it as `files/Asaf_Ahmad_Shayaan_Resume.pdf`. The download page picks it up automatically.
 4. Commit and push. GitHub Pages redeploys within a minute or two.
 
+Helpers in `tools/`:
+
+- `python tools/publish_article.py --id slug --title "..." --date YYYY-MM-DD --category books --readlength medium --excerpt "..." --html body.html [--url medium-link]`
+  copies the body to `content/articles/`, upserts `data/learnings.json` and regenerates `sitemap.xml`. It refuses semicolons, em dashes and the banned marketing words.
+- `python tools/mindmap.py spec.json img/articles/<slug>-mind-map` draws the RapidBook-style mind map (SVG + 1800x1000 PNG) from a five-branch spec.
+
+In Claude Code, `/write-article {category, topic}` (project skill in `.claude/skills/write-article/`) researches, writes in Asaf's voice,
+draws the mind map and any supporting diagram, publishes through the tools above, pushes, and returns the live URL plus a Medium SEO pack.
+
 ## SEO
 
 Every page carries a unique title and description, canonical URL, Open Graph and Twitter tags,

@@ -373,3 +373,15 @@ body:not(.minimal-mode) .faq summary::after { color: var(--lime); font-family: v
 body:not(.minimal-mode) .faq details p { color: var(--text-soft) }
 body:not(.minimal-mode) .whatsapp-link { color: var(--text-soft) }
 body:not(.minimal-mode) .whatsapp-link a { color: var(--lime); font-weight: 600 }
+
+/* ── Article figures & notes ────────────────────── */
+body:not(.minimal-mode) .post-body figure img, body:not(.minimal-mode) .post-body figure svg { border-color: var(--border-dark); border-radius: var(--radius) }
+body:not(.minimal-mode) .post-body figcaption { font-family: var(--hand); font-size: 1.05rem; letter-spacing: 0; color: var(--text-soft) }
+body:not(.minimal-mode) .post-body .post-note { border-top-color: var(--border) }
+body:not(.minimal-mode) .post-body p:first-child em:only-child { font-family: var(--hand); font-size: 1.5rem; color: var(--text-soft) }
+
+/* ── Sketch notes, disclaimer, footer credit ──────── */
+body:not(.minimal-mode) .sketch-note { color: var(--text-muted) }
+body:not(.minimal-mode) .sketch-disclaimer { font-family: var(--hand); font-size: 1.15rem; letter-spacing: 0; text-transform: none; color: var(--text-soft); transform: rotate(-1.5deg) }
+body:not(.minimal-mode) .sketch-modal-caption { color: var(--text-soft) }
+body:not(.minimal-mode) .footer-credit { color: var(--text-muted) }

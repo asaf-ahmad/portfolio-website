@@ -1,0 +1,35 @@
+{
+  "_readme": "Public sketches and poems for the Creative page. Sketch: id, title (person's name or a description), note, date (ISO), image (path under img/sketches/). Poem: id, title, body (line breaks preserved), date. Files saved from the admin panel stay in that browser only; entries here are visible to everyone.",
+  "disclaimer": "Sketched by self, smoothened by AI.",
+  "sketches": [
+    {
+      "id": "sketch-adele",
+      "title": "Adele",
+      "note": "Graphite portrait study. Winged eyeliner, fingers resting on the cheek, the gaze drifting off to the right.",
+      "date": "2026-10-06",
+      "image": "img/sketches/adele.jpg"
+    },
+    {
+      "id": "sketch-windswept",
+      "title": "Windswept",
+      "note": "Charcoal study of a woman looking back over her shoulder, hair caught in the wind, strong shadow across the face.",
+      "date": "2026-10-06",
+      "image": "img/sketches/windswept.jpg"
+    },
+    {
+      "id": "sketch-madhubala",
+      "title": "Madhubala",
+      "note": "Pencil portrait of the Hindi cinema icon. Bindi, drop earring and the sideways smile from the golden age of Bombay film.",
+      "date": "2026-10-06",
+      "image": "img/sketches/madhubala.jpg"
+    },
+    {
+      "id": "sketch-eyes-closed",
+      "title": "Eyes Closed",
+      "note": "Pencil study of a man with thick wavy hair and an open collar, eyes shut, caught mid-thought.",
+      "date": "2026-10-06",
+      "image": "img/sketches/eyes-closed.jpg"
+    }
+  ],
+  "poems": []
+}

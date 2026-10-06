@@ -68,8 +68,9 @@
       </div>
       <div class="tab-panel active" id="tab-sketches">
         <div class="sketch-grid" id="sketches-list">
-          <div class="empty-state"><h3>No sketches yet</h3><p>Upload your sketches from the admin panel.</p></div>
+          <div class="empty-state"><h3>Loading sketches&hellip;</h3></div>
         </div>
+        <p class="sketch-disclaimer" id="sketch-disclaimer"></p>
       </div>
       <div class="tab-panel" id="tab-poetry">
         <div class="poem-grid" id="poetry-list">
@@ -87,8 +88,9 @@
       <button class="modal-close" onclick="document.getElementById('sketch-modal').classList.remove('open')">&#x2715;</button>
     </div>
     <div class="modal-body" style="background:var(--ink);display:flex;align-items:center;justify-content:center;min-height:400px">
-      <img id="sketch-modal-img" src="" alt="" style="max-width:100%;max-height:80vh;object-fit:contain"/>
+      <img id="sketch-modal-img" src="" alt="" style="max-width:100%;max-height:76vh;object-fit:contain"/>
     </div>
+    <p id="sketch-modal-caption" class="sketch-modal-caption"></p>
   </div>
 </div>
 <!-- Poem Modal -->
@@ -113,7 +115,7 @@
       <div class="footer-nav"><div class="footer-head">Personal</div><a href="about.html">About</a><a href="creative.html">Creative</a><a href="contact.html">Contact</a><a href="resume-download.html">Resume</a></div>
       <div class="footer-nav"><div class="footer-head">Connect</div><a href="mailto:asaf.ahmad.shayaan@gmail.com">Email</a><a href="https://www.linkedin.com/in/asaf-ahmad/" target="_blank" rel="noopener me">LinkedIn</a><a href="https://wa.me/917280999699" target="_blank" rel="noopener">WhatsApp</a></div>
     </div>
-    <div class="footer-copy">&copy; 2026 Asaf Ahmad Shayaan &middot; Senior Product Manager, Lending &amp; AI Consultant, Mumbai, India &middot; All rights reserved</div>
+    <div class="footer-copy">&copy; 2026 Asaf Ahmad Shayaan &middot; Senior Product Manager, Lending &amp; AI Consultant, Mumbai, India &middot; All rights reserved<br><span class="footer-credit">Designed and built by Asaf Ahmad Shayaan. Hand-coded HTML, CSS and JavaScript. No template.</span></div>
   </div>
 </footer>
 <div id="toast" class="toast"></div>
@@ -126,31 +128,44 @@ function switchTab(name, btn) {
   document.getElementById('tab-' + name).classList.add('active');
 }
 
+var STATIC = { sketches: [], poems: [], disclaimer: '' };
+function allSketches() {
+  var ids = {}; STATIC.sketches.forEach(function(x) { ids[x.id] = true; });
+  return STATIC.sketches.concat(DB.sketches.getAll().filter(function(x) { return !ids[x.id]; }));
+}
+function findSketch(id) { return allSketches().filter(function(x) { return x.id === id; })[0]; }
 function loadSketches() {
-  var sketches = DB.sketches.getAll();
+  var sketches = allSketches();
   var container = document.getElementById('sketches-list');
-  if (sketches.length) {
-    container.innerHTML = sketches.map(function(s) {
-      return '<div class="sketch-card" onclick="openSketch(\'' + s.id + '\')">' +
-        '<div class="sketch-img"><img src="' + s.image + '" alt="' + s.title + '" loading="lazy"/></div>' +
-        '<div class="sketch-info"><div class="sketch-title">' + s.title + '</div>' +
-        '<div class="sketch-date">' + formatDate(s.date) + '</div>' +
-        (s.note ? '<p style="font-size:0.82rem;color:var(--text-muted);margin-top:6px">' + s.note + '</p>' : '') +
-        '</div></div>';
-    }).join('');
+  if (!sketches.length) {
+    container.innerHTML = '<div class="empty-state"><h3>No sketches yet</h3><p>New work will appear here.</p></div>';
+    return;
   }
+  container.innerHTML = sketches.map(function(s) {
+    return '<figure class="sketch-card" onclick="openSketch(\'' + s.id + '\')">' +
+      '<div class="sketch-img"><img src="' + s.image + '" alt="' + s.title + (s.note ? '. ' + s.note : '') + '" loading="lazy" onerror="this.closest(\'.sketch-card\').remove()"/></div>' +
+      '<figcaption class="sketch-info"><div class="sketch-title">' + s.title + '</div>' +
+      '<div class="sketch-date">' + formatDate(s.date) + '</div>' +
+      (s.note ? '<p class="sketch-note">' + s.note + '</p>' : '') +
+      '</figcaption></figure>';
+  }).join('');
+  var d = document.getElementById('sketch-disclaimer');
+  if (d) d.textContent = STATIC.disclaimer || '';
 }
 
 function openSketch(id) {
-  var s = DB.sketches.getById(id);
+  var s = findSketch(id);
   if (!s) return;
   document.getElementById('sketch-modal-title').textContent = s.title;
-  document.getElementById('sketch-modal-img').src = s.image;
+  var img = document.getElementById('sketch-modal-img');
+  img.src = s.image; img.alt = s.title;
+  document.getElementById('sketch-modal-caption').textContent = (s.note || '') + (STATIC.disclaimer ? '  ·  ' + STATIC.disclaimer : '');
   document.getElementById('sketch-modal').classList.add('open');
 }
 
 function loadPoetry() {
-  var poems = DB.poems.getAll();
+  var ids = {}; STATIC.poems.forEach(function(x) { ids[x.id] = true; });
+  var poems = STATIC.poems.concat(DB.poems.getAll().filter(function(x) { return !ids[x.id]; }));
   var container = document.getElementById('poetry-list');
   if (poems.length) {
     container.innerHTML = poems.map(function(p) {
@@ -164,7 +179,7 @@ function loadPoetry() {
 }
 
 function openPoem(id) {
-  var p = DB.poems.getById(id);
+  var p = STATIC.poems.concat(DB.poems.getAll()).filter(function(x) { return x.id === id; })[0];
   if (!p) return;
   document.getElementById('poem-modal-title').textContent = p.title;
   document.getElementById('poem-modal-body').textContent = p.body;
@@ -172,8 +187,12 @@ function openPoem(id) {
   document.getElementById('poem-modal').classList.add('open');
 }
 
-loadSketches();
-loadPoetry();
+fetch('data/creative.json', { cache: 'no-cache' })
+  .then(function(r) { return r.ok ? r.json() : {}; }).catch(function() { return {}; })
+  .then(function(d) {
+    STATIC.sketches = d.sketches || []; STATIC.poems = d.poems || []; STATIC.disclaimer = d.disclaimer || '';
+    loadSketches(); loadPoetry();
+  });
 </script>
 </body>
 </html>

@@ -1,5 +1,7 @@
 <p>Over the last eighteen months I have taken five AI capabilities from idea to production inside a live lending platform used by banks and NBFCs. None of them were research projects. Each one had to survive a credit committee, an operations floor and an information-security review before a single borrower benefited. Here is what actually moved the needle, and what did not.</p>
 
+<figure><img src="img/articles/five-ai-capabilities-in-production-lending-mind-map.png" alt="Mind map: start with the write-up nobody wants, measure turnaround not accuracy, design PII handling first, let operations ask questions, advice for product managers" loading="lazy" /><figcaption>Mind map: five AI capabilities in lending, in five ideas.</figcaption></figure>
+
 <h2>Start with the write-up nobody wants to do</h2>
 <p>The first capability we shipped was a CAM Automation Agent. A Credit Appraisal Memo is the document an analyst writes to justify a lending decision. For SME loans it runs to several pages across risk dimensions: promoter background, business model, financials, banking conduct, collateral. Analysts dislike writing it and approvers dislike reading it.</p>
 <p>That made it a good first target. The output was already structured, the inputs already lived in the system, and the pain was shared by both sides of the table. We did not try to make the decision. We generated the commentary, kept the analyst as the author of record, and made every paragraph editable. Adoption followed because the tool removed a chore rather than a judgement.</p>
