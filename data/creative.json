@@ -10,11 +10,11 @@
       "image": "img/sketches/adele.jpg"
     },
     {
-      "id": "sketch-windswept",
-      "title": "Windswept",
-      "note": "Charcoal study of a woman looking back over her shoulder, hair caught in the wind, strong shadow across the face.",
+      "id": "sketch-amber-heard",
+      "title": "Amber Heard",
+      "note": "Charcoal study, looking back over the shoulder with hair caught in the wind and a hard shadow across the face.",
       "date": "2026-10-06",
-      "image": "img/sketches/windswept.jpg"
+      "image": "img/sketches/amber-heard.jpg"
     },
     {
       "id": "sketch-madhubala",
@@ -24,11 +24,11 @@
       "image": "img/sketches/madhubala.jpg"
     },
     {
-      "id": "sketch-eyes-closed",
-      "title": "Eyes Closed",
-      "note": "Pencil study of a man with thick wavy hair and an open collar, eyes shut, caught mid-thought.",
+      "id": "sketch-sherlock",
+      "title": "Sherlock",
+      "note": "Pencil study of Benedict Cumberbatch as Sherlock Holmes. Eyes closed, collar open, mid-deduction.",
       "date": "2026-10-06",
-      "image": "img/sketches/eyes-closed.jpg"
+      "image": "img/sketches/sherlock.jpg"
     }
   ],
   "poems": []
