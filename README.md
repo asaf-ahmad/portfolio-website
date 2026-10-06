@@ -55,8 +55,8 @@ BreadcrumbList, Article). `sitemap.xml` and `robots.txt` are at the root. After 
 ## Features
 
 ### Theme Toggle
-- **Minimal** (default) — Clean black & white professional look
-- **Artsy** — Dark, hand-drawn sticker aesthetic: marker headlines, neon lime/purple/blue accents, paint splashes, doodles, custom cursor
+- **Artsy** (default) — Dark, hand-drawn sticker aesthetic: marker headlines, neon lime/purple/blue accents, paint splashes, doodles, custom cursor
+- **Minimal** — Clean black & white editorial look
 - Append `?theme=artsy` or `?theme=minimal` to any page URL to switch (the choice is remembered)
 - Home hero in Artsy mode shows a placeholder monogram; drop a transparent PNG at `img/avatar.png` to show your own illustration instead
 

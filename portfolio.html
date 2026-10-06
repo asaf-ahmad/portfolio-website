@@ -24,7 +24,8 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://asafahmad.com/"},{"@type":"ListItem","position":2,"name":"Portfolio","item":"https://asafahmad.com/portfolio.html"}]}]}</script>
 
 <link rel="stylesheet" href="css/style.css"/><link rel="stylesheet" href="css/artsy.css"/></head>
-<body class="minimal-mode">
+<body>
+<script>try{if(localStorage.getItem('asaf_theme')==="minimal"||new URLSearchParams(location.search).get("theme")==="minimal")document.body.classList.add("minimal-mode")}catch(e){}</script>
 <div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursor-ring"></div>
 <nav class="navbar" aria-label="Primary">
   <div class="container">
@@ -40,8 +41,8 @@
       <li><a href="contact.html" class="nav-cta">Contact</a></li>
     </ul>
     <div style="display:flex;align-items:center"><div class="theme-toggle" onclick="toggleTheme()" title="Switch view mode" role="button" tabindex="0">
-      <span class="toggle-option active" id="toggle-minimal">Minimal</span>
-      <span class="toggle-option" id="toggle-creative">Artsy</span>
+      <span class="toggle-option" id="toggle-minimal">Minimal</span>
+      <span class="toggle-option active" id="toggle-creative">Artsy</span>
     </div></div>
     <div class="nav-toggle" aria-label="Open menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
   </div>

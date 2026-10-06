@@ -136,7 +136,7 @@ var DB = {
   logout: function() { sessionStorage.removeItem('asaf_auth'); },
 
   /* Theme */
-  getTheme: function() { return localStorage.getItem('asaf_theme') || 'minimal'; },
+  getTheme: function() { return localStorage.getItem('asaf_theme') || 'creative'; },
   setTheme: function(t) { localStorage.setItem('asaf_theme', t); },
 
   /* Stats */
@@ -311,13 +311,12 @@ function restoreTheme() {
   var q = new URLSearchParams(window.location.search).get('theme');
   if (q === 'artsy' || q === 'creative') DB.setTheme('creative');
   else if (q === 'minimal') DB.setTheme('minimal');
-  if (DB.getTheme() === 'creative') {
-    document.body.classList.remove('minimal-mode');
-    var tm = document.getElementById('toggle-minimal');
-    var tc = document.getElementById('toggle-creative');
-    if (tm) tm.classList.remove('active');
-    if (tc) tc.classList.add('active');
-  }
+  var minimal = document.body.hasAttribute('data-force-minimal') || DB.getTheme() === 'minimal';
+  document.body.classList.toggle('minimal-mode', minimal);
+  var tm = document.getElementById('toggle-minimal');
+  var tc = document.getElementById('toggle-creative');
+  if (tm) tm.classList.toggle('active', minimal);
+  if (tc) tc.classList.toggle('active', !minimal);
 }
 
 
