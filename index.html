@@ -335,12 +335,13 @@ try {
         var fly = btn.cloneNode(true); fly.className = 'w-fly ' + btn.className;
         fly.style.cssText = 'position:fixed;left:' + from.left + 'px;top:' + from.top + 'px;width:' + from.width + 'px;height:' + from.height + 'px;margin:0;z-index:2200;transform-origin:top left;will-change:transform,opacity';
         document.body.appendChild(fly); btn.style.visibility = 'hidden';
+        void fly.offsetWidth; /* commit the start position before animating */
         var dx = to.left - from.left, dy = to.top - from.top, sx = to.width / from.width, sy = to.height / from.height;
-        requestAnimationFrame(function () {
+        requestAnimationFrame(function () { requestAnimationFrame(function () {
           fly.style.transition = 'transform .9s cubic-bezier(.22,.9,.24,1), opacity .3s ease .75s';
           fly.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + sx + ',' + sy + ')';
           fly.style.opacity = '0';
-        });
+        }); });
         setTimeout(function () { fly.remove(); if (opt) { opt.classList.add('w-pulse'); setTimeout(function () { opt.classList.remove('w-pulse'); }, 1300); } }, 1100);
       }, 200);
       /* 2. once the overlay has settled into the chosen colour, dissolve it into the page */

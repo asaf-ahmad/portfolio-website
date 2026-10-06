@@ -599,7 +599,7 @@ body:not(.welcome-open) .welcome { display: none }
 .welcome.leaving .w-pane.chosen > *:not(.w-btn) { opacity: 0; transform: translateY(-10px); transition: opacity .4s ease, transform .6s ease }
 .welcome.leaving .w-pane.chosen .w-btn { transition: opacity .2s ease .15s; opacity: 0 }
 .welcome.dissolve { opacity: 0; pointer-events: none }
-.w-fly { pointer-events: none; display: inline-flex; align-items: center; justify-content: center; border-radius: 100px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.9rem; overflow: hidden }
+.w-fly { animation: none !important; pointer-events: none; display: inline-flex; align-items: center; justify-content: center; border-radius: 100px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.9rem; overflow: hidden }
 .w-fly.w-btn-min { background: #156A6A; color: #fff } .w-fly.w-btn-art { background: #BFFF3C; color: #0A0A0E }
 body.theme-anim, body.theme-anim .navbar, body.theme-anim .card, body.theme-anim .footer { transition: background-color .8s ease, color .8s ease, box-shadow .8s ease }
 body.page-enter .hero-text > *, body.page-enter .hero-art, body.page-enter .stats-bar { animation: pageEnter 1s cubic-bezier(.2,.8,.2,1) both }
