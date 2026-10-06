@@ -331,10 +331,15 @@ function postForm(fields, subject) {
   var body = Object.keys(fields).map(function(k) { return k + ': ' + fields[k]; }).join('\n');
   function mailto() { window.location.href = 'mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body); return Promise.resolve({ via: 'mailto' }); }
   if (!ep) return mailto();
-  var payload = Object.assign({}, fields, { _subject: subject, _template: 'table', _captcha: 'false', _honey: '' });
+  var f = window.SITE.forms, payload;
+  if (/web3forms/.test(ep)) {
+    if (!f.access_key) return mailto();
+    payload = Object.assign({}, fields, { access_key: f.access_key, subject: subject, from_name: 'asafahmad.com', botcheck: '' });
+  } else {
+    payload = Object.assign({}, fields, { _subject: subject, _template: 'table', _captcha: 'false', _honey: '' });
+  }
   return fetch(ep, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload) })
-    .then(function(r) { if (!r.ok) throw new Error('endpoint ' + r.status); return r.json(); })
-    .then(function(j) { if (j && (j.success === 'true' || j.success === true)) return { via: 'endpoint' }; throw new Error('endpoint rejected'); })
+    .then(function(r) { return r.json().catch(function() { return {}; }).then(function(j) { if (r.ok && j && (j.success === 'true' || j.success === true)) return { via: 'endpoint' }; throw new Error('endpoint rejected'); }); })
     .catch(function() { return mailto(); });
 }
 function initNoteBox(d) {

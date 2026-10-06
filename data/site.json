@@ -205,8 +205,9 @@
     "_note": "GoatCounter site code. Create the account at goatcounter.com with this code; leave empty to disable tracking."
   },
   "forms": {
-    "endpoint": "https://formsubmit.co/ajax/asaf.ahmad.shayaan@gmail.com",
-    "_note": "FormSubmit AJAX endpoint. The first submission sends an activation email to this address; click the link once and every later message is delivered. Leave empty to fall back to opening the visitor's email app."
+    "endpoint": "https://api.web3forms.com/submit",
+    "access_key": "",
+    "_note": "Web3Forms: get a free access key at web3forms.com (it is emailed to you), paste it in access_key. Alternative: endpoint https://formsubmit.co/ajax/<email> with no key. Empty key or endpoint falls back to the visitor's email app."
   },
   "notebox": {
     "label": "Say Anything",
