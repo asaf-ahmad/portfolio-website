@@ -108,10 +108,10 @@ The admin is a single encrypted page at an unlisted address. There is no `admin.
 
 ## Welcome screen (first-visit view chooser)
 
-`index.html` shows a full-screen chooser on a visitor's first visit (no stored theme). Picking a view flies the
+`index.html` opens with a full-screen view chooser once per browser session (it is the landing page). Picking a view flies the
 button into the theme toggle and reveals the page. Controls for testing and rollback:
 
-- `?welcome=1` forces it, `?welcome=0` skips it. Clearing site data in the browser resets the "first visit".
+- `?welcome=1` forces it, `?welcome=0` or `?theme=...` skips it. Closing the tab resets the session, so it shows again next visit.
 - `WELCOME_ENABLED = false` at the top of `index.html` switches it off without removing it.
 - The build before the welcome screen is tagged `before-welcome`. To roll back entirely:
   `git revert --no-edit before-welcome..HEAD && git push` (keeps history) or

@@ -27,12 +27,14 @@
 </head>
 <body>
 <script>
-/* WELCOME_ENABLED: set to false to switch the first-visit view chooser off. ?welcome=1 forces it, ?welcome=0 skips it. */
+/* WELCOME_ENABLED: the view chooser is the landing page. It shows once per browser session on the home page.
+   ?welcome=1 forces it, ?welcome=0 skips it, ?theme=... skips it (direct links to a view). Set to false to switch it off. */
 var WELCOME_ENABLED = true;
 try {
   var _q = new URLSearchParams(location.search), _stored = localStorage.getItem('asaf_theme');
   if (_stored === 'minimal' || _q.get('theme') === 'minimal') document.body.classList.add('minimal-mode');
-  if (WELCOME_ENABLED && _q.get('welcome') !== '0' && (_q.get('welcome') === '1' || (!_stored && !_q.get('theme')))) document.body.classList.add('welcome-open');
+  var _seen = false; try { _seen = sessionStorage.getItem('asaf_welcomed') === '1'; } catch (e2) {}
+  if (WELCOME_ENABLED && _q.get('welcome') !== '0' && (_q.get('welcome') === '1' || (!_seen && !_q.get('theme')))) document.body.classList.add('welcome-open');
 } catch (e) {}
 </script>
 <!-- First-visit view chooser -->
@@ -43,24 +45,22 @@ try {
     <p><span class="w-l">Do not worry! You can change the view later.</span><span class="w-r" aria-hidden="true">Do not worry! You can change the view later.</span></p>
   </div>
   <button class="w-pane w-minimal" data-theme="minimal" type="button" aria-label="Minimal view">
-    <span class="w-badge">From the Product Manager inside me</span>
     <span class="w-preview w-prev-min" aria-hidden="true">
       <span class="w-card"><span class="w-dot"></span><span class="w-line"></span><span class="w-line short"></span></span>
       <span class="w-pill"></span>
     </span>
     <span class="w-name">Minimal</span>
-    <span class="w-desc">Cream, calm, soft shadows. The quiet professional read.</span>
+    <span class="w-desc">From the Product Manager inside me</span>
     <span class="w-btn w-btn-min">Open Minimal &rarr;</span>
   </button>
   <button class="w-pane w-artsy" data-theme="creative" type="button" aria-label="Artsy view">
-    <span class="w-badge">From the Artist inside me</span>
     <span class="w-preview w-prev-art" aria-hidden="true">
       <span class="w-splash a"></span><span class="w-splash b"></span>
       <span class="w-mark">ASAF</span>
       <svg class="w-bolt" viewBox="0 0 40 70"><path d="M24 2 6 40h14l-6 28 22-42H22z" fill="#FFD23F" stroke="#0A0A0E" stroke-width="2" stroke-linejoin="round"/></svg>
     </span>
     <span class="w-name">Artsy</span>
-    <span class="w-desc">Dark, neon, doodles and stickers. The side that sketches.</span>
+    <span class="w-desc">From the Artist inside me</span>
     <span class="w-btn w-btn-art">Open Artsy &rarr;</span>
   </button>
 </div>
@@ -314,6 +314,7 @@ try {
   if (!document.body.classList.contains('welcome-open')) { w.remove(); return; }
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function finish(theme) {
+    try { sessionStorage.setItem('asaf_welcomed', '1'); } catch (e) {}
     DB.setTheme(theme); restoreTheme();
     document.body.classList.remove('welcome-open'); w.remove();
     var opt = document.getElementById(theme === 'minimal' ? 'toggle-minimal' : 'toggle-creative');
@@ -324,6 +325,7 @@ try {
       if (w.classList.contains('leaving')) return;
       var theme = pane.dataset.theme;
       if (reduce) { finish(theme); return; }
+      try { sessionStorage.setItem('asaf_welcomed', '1'); } catch (e) {}
       w.classList.add('leaving', theme === 'minimal' ? 'to-minimal' : 'to-artsy'); pane.classList.add('chosen');
       var btn = pane.querySelector('.w-btn'), from = btn.getBoundingClientRect();
       /* apply the theme underneath now so the reveal shows the right look */
