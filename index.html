@@ -26,7 +26,44 @@
 <link rel="stylesheet" href="css/style.css"/><link rel="stylesheet" href="css/artsy.css"/><link rel="stylesheet" href="css/minimal.css"/>
 </head>
 <body>
-<script>try{if(localStorage.getItem('asaf_theme')==="minimal"||new URLSearchParams(location.search).get("theme")==="minimal")document.body.classList.add("minimal-mode")}catch(e){}</script>
+<script>
+/* WELCOME_ENABLED: set to false to switch the first-visit view chooser off. ?welcome=1 forces it, ?welcome=0 skips it. */
+var WELCOME_ENABLED = true;
+try {
+  var _q = new URLSearchParams(location.search), _stored = localStorage.getItem('asaf_theme');
+  if (_stored === 'minimal' || _q.get('theme') === 'minimal') document.body.classList.add('minimal-mode');
+  if (WELCOME_ENABLED && _q.get('welcome') !== '0' && (_q.get('welcome') === '1' || (!_stored && !_q.get('theme')))) document.body.classList.add('welcome-open');
+} catch (e) {}
+</script>
+<!-- First-visit view chooser -->
+<div id="welcome" class="welcome" role="dialog" aria-modal="true" aria-labelledby="w-title">
+  <div class="w-head">
+    <div class="w-hello">Hello, Welcome to My Portfolio Website!</div>
+    <h2 id="w-title"><span class="w-l">Which view would you like?</span><span class="w-r" aria-hidden="true">Which view would you like?</span></h2>
+    <p><span class="w-l">Do not worry! You can change the view later.</span><span class="w-r" aria-hidden="true">Do not worry! You can change the view later.</span></p>
+  </div>
+  <button class="w-pane w-minimal" data-theme="minimal" type="button" aria-label="Minimal view">
+    <span class="w-badge">Soft and Calm</span>
+    <span class="w-preview w-prev-min" aria-hidden="true">
+      <span class="w-card"><span class="w-dot"></span><span class="w-line"></span><span class="w-line short"></span></span>
+      <span class="w-pill"></span>
+    </span>
+    <span class="w-name">Minimal</span>
+    <span class="w-desc">Cream, calm, soft shadows. The quiet professional read.</span>
+    <span class="w-btn w-btn-min">Open Minimal &rarr;</span>
+  </button>
+  <button class="w-pane w-artsy" data-theme="creative" type="button" aria-label="Artsy view">
+    <span class="w-badge">Loud and Playful</span>
+    <span class="w-preview w-prev-art" aria-hidden="true">
+      <span class="w-splash a"></span><span class="w-splash b"></span>
+      <span class="w-mark">ASAF</span>
+      <svg class="w-bolt" viewBox="0 0 40 70"><path d="M24 2 6 40h14l-6 28 22-42H22z" fill="#FFD23F" stroke="#0A0A0E" stroke-width="2" stroke-linejoin="round"/></svg>
+    </span>
+    <span class="w-name">Artsy</span>
+    <span class="w-desc">Dark, neon, doodles and stickers. The side that sketches.</span>
+    <span class="w-btn w-btn-art">Open Artsy &rarr;</span>
+  </button>
+</div>
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursor-ring"></div>
 <nav class="navbar" aria-label="Primary">
@@ -163,21 +200,22 @@
         <span class="skills-note">What I work with</span>
       </div>
       <div class="skills-grid reveal">
-        <div class="skill-tile"><div class="skill-icon" style="--c:#E8521F;background:#E8521F">LOS</div><span>Loan Origination</span></div>
-        <div class="skill-tile"><div class="skill-icon" style="--c:#E8B51F;background:#E8B51F">MSME</div><span>Credit Underwriting</span></div>
-        <div class="skill-tile"><div class="skill-icon" style="--c:#2BB673;background:#2BB673">COL</div><span>Collections</span></div>
-        <div class="skill-tile"><div class="skill-icon" style="--c:#0EA5A4;background:#0EA5A4">BRE</div><span>Business Rule Engine</span></div>
-        <div class="skill-tile"><div class="skill-icon" style="--c:#B14BFF;background:#B14BFF">DOC</div><span>Document Intelligence</span></div>
-        <div class="skill-tile"><div class="skill-icon" style="--c:#4CC3FF;background:#4CC3FF">CAM</div><span>CAM Automation</span></div>
-        <div class="skill-tile"><div class="skill-icon" style="--c:#FF5CA8;background:#FF5CA8">NLP</div><span>Conversational AI</span></div>
-        <div class="skill-tile"><div class="skill-icon" style="--c:#1F6FE8;background:#1F6FE8">KYC</div><span>Onboarding &amp; KYC/KYB</span></div>
-        <div class="skill-tile"><div class="skill-icon" style="--c:#FF8A3D;background:#FF8A3D">API</div><span>Integration &amp; Architecture</span></div>
-        <div class="skill-tile"><div class="skill-icon" style="--c:#3D9BE9;background:#3D9BE9">SQL</div><span>SQL &amp; Data Models</span></div>
-        <div class="skill-tile"><div class="skill-icon" style="--c:#E76F00;background:#E76F00">Java</div><span>Core Java &amp; Python</span></div>
-        <div class="skill-tile"><div class="skill-icon" style="--c:#D97757;background:#D97757">CC</div><span>Claude Code &amp; AI Tooling</span></div>
-        <div class="skill-tile"><div class="skill-icon" style="--c:#A259FF;background:#A259FF">Fig</div><span>Figma &amp; UX</span></div>
-        <div class="skill-tile"><div class="skill-icon" style="--c:#2684FF;background:#2684FF">Jira</div><span>Agile &middot; PSPO I</span></div>
-        <div class="skill-tile"><div class="skill-icon" style="--c:#BFFF3C;background:#BFFF3C;color:#111">FN</div><span>FinnOne Neo</span></div>
+        <div class="skill-tile"><div class="skill-icon" style="--c:#E8521F;background:#E8521F"><img src="https://unpkg.com/lucide-static@latest/icons/landmark.svg" alt="" loading="lazy" width="24" height="24" class="ico-line"/></div><span>Loan Origination</span></div>
+        <div class="skill-tile"><div class="skill-icon" style="--c:#E8B51F;background:#E8B51F"><img src="https://unpkg.com/lucide-static@latest/icons/scale.svg" alt="" loading="lazy" width="24" height="24" class="ico-line"/></div><span>Credit Underwriting</span></div>
+        <div class="skill-tile"><div class="skill-icon" style="--c:#2BB673;background:#2BB673"><img src="https://unpkg.com/lucide-static@latest/icons/hand-coins.svg" alt="" loading="lazy" width="24" height="24" class="ico-line"/></div><span>Collections</span></div>
+        <div class="skill-tile"><div class="skill-icon" style="--c:#0EA5A4;background:#0EA5A4"><img src="https://unpkg.com/lucide-static@latest/icons/git-branch.svg" alt="" loading="lazy" width="24" height="24" class="ico-line"/></div><span>Business Rule Engine</span></div>
+        <div class="skill-tile"><div class="skill-icon" style="--c:#B14BFF;background:#B14BFF"><img src="https://unpkg.com/lucide-static@latest/icons/scan-text.svg" alt="" loading="lazy" width="24" height="24" class="ico-line"/></div><span>Document Intelligence</span></div>
+        <div class="skill-tile"><div class="skill-icon" style="--c:#4CC3FF;background:#4CC3FF"><img src="https://unpkg.com/lucide-static@latest/icons/file-check.svg" alt="" loading="lazy" width="24" height="24" class="ico-line"/></div><span>CAM Automation</span></div>
+        <div class="skill-tile"><div class="skill-icon" style="--c:#FF5CA8;background:#FF5CA8"><img src="https://unpkg.com/lucide-static@latest/icons/message-square-text.svg" alt="" loading="lazy" width="24" height="24" class="ico-line"/></div><span>Conversational AI</span></div>
+        <div class="skill-tile"><div class="skill-icon" style="--c:#1F6FE8;background:#1F6FE8"><img src="https://unpkg.com/lucide-static@latest/icons/user-check.svg" alt="" loading="lazy" width="24" height="24" class="ico-line"/></div><span>Onboarding &amp; KYC/KYB</span></div>
+        <div class="skill-tile"><div class="skill-icon" style="--c:#FF8A3D;background:#FF8A3D"><img src="https://unpkg.com/lucide-static@latest/icons/plug-zap.svg" alt="" loading="lazy" width="24" height="24" class="ico-line"/></div><span>API Integration &amp; Architecture</span></div>
+        <div class="skill-tile"><div class="skill-icon" style="--c:#336791;background:#336791"><img src="https://cdn.simpleicons.org/postgresql/ffffff" alt="" loading="lazy" width="24" height="24"/></div><span>SQL &amp; Data Models</span></div>
+        <div class="skill-tile"><div class="skill-icon" style="--c:#E76F00;background:#E76F00"><img src="https://cdn.simpleicons.org/openjdk/ffffff" alt="" loading="lazy" width="24" height="24"/></div><span>Core Java</span></div>
+        <div class="skill-tile"><div class="skill-icon" style="--c:#3776AB;background:#3776AB"><img src="https://cdn.simpleicons.org/python/ffffff" alt="" loading="lazy" width="24" height="24"/></div><span>Python</span></div>
+        <div class="skill-tile"><div class="skill-icon" style="--c:#D97757;background:#D97757"><img src="https://cdn.simpleicons.org/claude/ffffff" alt="" loading="lazy" width="24" height="24"/></div><span>Claude Code &amp; AI Tooling</span></div>
+        <div class="skill-tile"><div class="skill-icon" style="--c:#A259FF;background:#A259FF"><img src="https://cdn.simpleicons.org/figma/ffffff" alt="" loading="lazy" width="24" height="24"/></div><span>Figma &amp; UX</span></div>
+        <div class="skill-tile"><div class="skill-icon" style="--c:#2684FF;background:#2684FF"><img src="https://cdn.simpleicons.org/jira/ffffff" alt="" loading="lazy" width="24" height="24"/></div><span>Agile &middot; PSPO I</span></div>
+        <div class="skill-tile"><div class="skill-icon" style="--c:#1F2430;background:#1F2430"><img src="https://unpkg.com/lucide-static@latest/icons/building-2.svg" alt="" loading="lazy" width="24" height="24" class="ico-line"/></div><span>FinnOne Neo</span></div>
       </div>
     </div>
   </section>
@@ -268,6 +306,54 @@
 </footer>
 <div id="toast" class="toast"></div>
 <script src="js/data.js"></script>
+<script>
+/* ── Welcome chooser: fly the choice into the theme toggle, then reveal ── */
+(function () {
+  var w = document.getElementById('welcome');
+  if (!w) return;
+  if (!document.body.classList.contains('welcome-open')) { w.remove(); return; }
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function finish(theme) {
+    DB.setTheme(theme); restoreTheme();
+    document.body.classList.remove('welcome-open'); w.remove();
+    var opt = document.getElementById(theme === 'minimal' ? 'toggle-minimal' : 'toggle-creative');
+    if (opt) { opt.classList.add('w-pulse'); setTimeout(function () { opt.classList.remove('w-pulse'); }, 1400); }
+  }
+  w.querySelectorAll('.w-pane').forEach(function (pane) {
+    pane.addEventListener('click', function () {
+      if (w.classList.contains('leaving')) return;
+      var theme = pane.dataset.theme;
+      if (reduce) { finish(theme); return; }
+      w.classList.add('leaving'); pane.classList.add('chosen');
+      var btn = pane.querySelector('.w-btn'), from = btn.getBoundingClientRect();
+      /* apply the theme underneath now so the reveal shows the right look */
+      DB.setTheme(theme); restoreTheme();
+      var opt = document.getElementById(theme === 'minimal' ? 'toggle-minimal' : 'toggle-creative');
+      var to = opt ? opt.getBoundingClientRect() : { left: window.innerWidth - 80, top: 20, width: 60, height: 26 };
+      /* flying clone of the button */
+      var fly = btn.cloneNode(true); fly.className = 'w-fly ' + btn.className;
+      fly.style.cssText = 'position:fixed;left:' + from.left + 'px;top:' + from.top + 'px;width:' + from.width + 'px;height:' + from.height + 'px;margin:0;z-index:2200;transform-origin:top left;will-change:transform,opacity';
+      document.body.appendChild(fly); btn.style.visibility = 'hidden';
+      var dx = to.left - from.left, dy = to.top - from.top, sx = to.width / from.width, sy = to.height / from.height;
+      requestAnimationFrame(function () {
+        fly.style.transition = 'transform .85s cubic-bezier(.2,.8,.2,1), opacity .25s ease .7s, border-radius .85s ease';
+        fly.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + sx + ',' + sy + ')';
+        fly.style.opacity = '0';
+      });
+      /* circular wipe of the overlay towards the toggle */
+      var cx = to.left + to.width / 2, cy = to.top + to.height / 2;
+      var r = Math.hypot(Math.max(cx, window.innerWidth - cx), Math.max(cy, window.innerHeight - cy));
+      w.style.clipPath = 'circle(' + r + 'px at ' + cx + 'px ' + cy + 'px)';
+      requestAnimationFrame(function () { requestAnimationFrame(function () {
+        w.style.transition = 'clip-path .9s cubic-bezier(.7,0,.3,1) .25s';
+        w.style.clipPath = 'circle(0px at ' + cx + 'px ' + cy + 'px)';
+      }); });
+      document.body.classList.add('page-enter');
+      setTimeout(function () { fly.remove(); finish(theme); setTimeout(function () { document.body.classList.remove('page-enter'); }, 1200); }, 1250);
+    });
+  });
+})();
+</script>
 <script>
   Content.load(function() {
     var posts = Content.articles().slice(0, 3);

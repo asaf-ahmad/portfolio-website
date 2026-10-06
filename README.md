@@ -106,6 +106,17 @@ The admin is a single encrypted page at an unlisted address. There is no `admin.
   login and shows analytics from GoatCounter when a read token is added.
 - Never put the admin address in this README, the sitemap, robots.txt or any page: the repository is public.
 
+## Welcome screen (first-visit view chooser)
+
+`index.html` shows a full-screen chooser on a visitor's first visit (no stored theme). Picking a view flies the
+button into the theme toggle and reveals the page. Controls for testing and rollback:
+
+- `?welcome=1` forces it, `?welcome=0` skips it. Clearing site data in the browser resets the "first visit".
+- `WELCOME_ENABLED = false` at the top of `index.html` switches it off without removing it.
+- The build before the welcome screen is tagged `before-welcome`. To roll back entirely:
+  `git revert --no-edit before-welcome..HEAD && git push` (keeps history) or
+  `git reset --hard before-welcome && git push --force` (rewrites history).
+
 ## Content pipeline
 
 Pages hydrate from JSON at load time (`data/site.json`, `data/experience.json`, `data/services.json`,
