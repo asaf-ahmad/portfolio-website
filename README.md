@@ -50,6 +50,7 @@ Helpers in `tools/`:
 - `python tools/publish_article.py --id slug --title "..." --date YYYY-MM-DD --category books --readlength medium --excerpt "..." --html body.html [--url medium-link]`
   copies the body to `content/articles/`, upserts `data/learnings.json` and regenerates `sitemap.xml`. It refuses semicolons, em dashes and the banned marketing words.
 - `python tools/mindmap.py spec.json img/articles/<slug>-mind-map` draws the RapidBook-style mind map (SVG + 1800x1000 PNG) from a five-branch spec.
+- `python tools/banner.py --all` builds a 1600x900 title banner for every article that lacks one (publish_article.py does this automatically for new articles). Banners are the card image, post hero and social share image.
 
 In Claude Code, `/write-article {category, topic}` (project skill in `.claude/skills/write-article/`) researches, writes in Asaf's voice,
 draws the mind map and any supporting diagram, publishes through the tools above, pushes, and returns the live URL plus a Medium SEO pack.

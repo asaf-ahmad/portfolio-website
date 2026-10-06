@@ -84,6 +84,11 @@ something the prose cannot (a sequence, a comparison, a before and after). Never
 3. Open the PNG and check that no text overlaps or runs off the edge. Shorten labels and redraw if it does.
 4. Place it after the opening: `<figure><img src="img/articles/<slug>-mind-map.png" alt="Mind map: <five headings>" loading="lazy" /><figcaption>Mind map: <topic> in five ideas.</figcaption></figure>`.
 
+### Banner (automatic)
+`tools/publish_article.py` builds a 1600 by 900 banner (`img/articles/<slug>-banner.png`) from the title and
+category when you register the article. It is the card image, the post hero and the social share image.
+Pass `--banner img/...` to use your own, or `--no-banner` to fall back to the category photo.
+
 ### Other diagrams (optional)
 - Inline SVG inside a `<figure>` with a one-line `<figcaption>`. Width 1200, height as needed, `viewBox` set, background `#FAF8F3`, same palette as the mind map (`#2F6FDB #C8591A #1F8A5B #8E4ED6 #C23A5C`, dark `#1F2430`), font Helvetica or Arial, text 20 to 26px. Everything legible at phone width.
 - Patterns that earn their place: a left-to-right flow of three to five steps, a two-by-two with four labelled quadrants, a timeline, a before/after pair. Read the `dataviz` skill if it is listed before drawing a chart.
@@ -121,7 +126,7 @@ something the prose cannot (a sequence, a comparison, a before and after). Never
 
 ## 7. Report back
 
-In the reply give, in this order: the live URL, the path of the mind map PNG (ready for Medium upload),
+In the reply give, in this order: the live URL, the paths of the mind map PNG and the banner PNG (both ready for Medium upload),
 and the SEO pack: SEO title (60 characters or fewer), meta description (140 to 156 characters), five
 Medium tags, and the suggested Medium slug. Then one line on anything you left out or could not verify.
 Nothing else.

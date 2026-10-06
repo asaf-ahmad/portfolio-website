@@ -2,6 +2,16 @@
   "_readme": "Public content for the Learnings page. Articles: give each an id, title, date (ISO), category (an id from CATEGORIES in js/data.js: product, books, ai, los, underwriting, collections, lending, fintech, presales, career, data, ux), readlength (rapid | medium | long), excerpt, and either a source (HTML file under content/articles/), inline content, or a url (e.g. a Medium post). Documents: id, title, type (pdf | ppt | pptx), category, description, date, file (path under files/), optional pages.",
   "articles": [
     {
+      "id": "designing-a-loan-origination-system-around-the-lending-book",
+      "title": "Designing a Loan Origination System Around the Lending Book",
+      "date": "2026-10-06",
+      "category": "product",
+      "readlength": "medium",
+      "excerpt": "How a product manager maps a lending book before configuring a loan origination system: two kinds of exposure, repayment patterns, a collateral master, one process spine and four build layers.",
+      "source": "content/articles/designing-a-loan-origination-system-around-the-lending-book.html",
+      "banner": "img/articles/designing-a-loan-origination-system-around-the-lending-book-banner.png"
+    },
+    {
       "id": "rapidbook-the-best-books-summarised-in-five-ideas",
       "title": "RapidBook: The Best Books Summarised in Five Ideas",
       "date": "2026-10-06",
@@ -9,7 +19,8 @@
       "readlength": "medium",
       "excerpt": "The best books in five ideas each, for people who own more books than they have time to read.",
       "source": "content/articles/rapidbook-the-best-books-summarised-in-five-ideas.html",
-      "medium": "https://medium.com/@asaf.ahmad.shayaan/rapidbook-the-best-books-summarised-in-five-ideas-543e9dfad5fe"
+      "medium": "https://medium.com/@asaf.ahmad.shayaan/rapidbook-the-best-books-summarised-in-five-ideas-543e9dfad5fe",
+      "banner": "img/articles/rapidbook-the-best-books-summarised-in-five-ideas-banner.png"
     },
     {
       "id": "rapidbook-2-the-magic-of-thinking-big-david-schwartz",
@@ -19,7 +30,8 @@
       "readlength": "medium",
       "excerpt": "A summary of The Magic of Thinking Big by David Schwartz in five ideas: belief, excusitis, action, big thinking and turning defeat into victory.",
       "source": "content/articles/rapidbook-2-the-magic-of-thinking-big-david-schwartz.html",
-      "medium": "https://medium.com/@asaf.ahmad.shayaan/rapidbook-2-the-magic-of-thinking-big-by-david-schwartz-summarised-in-five-ideas-9a062d46c237"
+      "medium": "https://medium.com/@asaf.ahmad.shayaan/rapidbook-2-the-magic-of-thinking-big-by-david-schwartz-summarised-in-five-ideas-9a062d46c237",
+      "banner": "img/articles/rapidbook-2-the-magic-of-thinking-big-david-schwartz-banner.png"
     },
     {
       "id": "rapidbook-1-cogito-ergo-sum-descartes-in-five-ideas",
@@ -29,7 +41,8 @@
       "readlength": "medium",
       "excerpt": "What does “I think, therefore I am” mean? A plain summary of Descartes’s cogito ergo sum in five ideas, with the objections that still stand.",
       "source": "content/articles/rapidbook-1-cogito-ergo-sum-descartes-in-five-ideas.html",
-      "medium": "https://medium.com/@asaf.ahmad.shayaan/rapidbook-1-cogito-ergo-sum-explained-descartes-in-five-ideas-d0355360b177"
+      "medium": "https://medium.com/@asaf.ahmad.shayaan/rapidbook-1-cogito-ergo-sum-explained-descartes-in-five-ideas-d0355360b177",
+      "banner": "img/articles/rapidbook-1-cogito-ergo-sum-descartes-in-five-ideas-banner.png"
     },
     {
       "id": "five-ai-capabilities-in-production-lending",
@@ -38,7 +51,8 @@
       "category": "ai",
       "readlength": "medium",
       "excerpt": "Eighteen months, five AI capabilities, one live lending platform. Why we started with the credit memo, measured turnaround time instead of accuracy, and designed PII handling before writing a single prompt.",
-      "source": "content/articles/five-ai-capabilities-in-production-lending.html"
+      "source": "content/articles/five-ai-capabilities-in-production-lending.html",
+      "banner": "img/articles/five-ai-capabilities-in-production-lending-banner.png"
     },
     {
       "id": "how-i-use-claude-in-my-day-to-day-pm-work",
@@ -48,7 +62,8 @@
       "readlength": "rapid",
       "excerpt": "Think about the best junior you ever trained. For the first month they were bright but generic. Then they learnt the house standards, and you could hand them a meeting recording, say “minutes,…",
       "source": "content/articles/how-i-use-claude-in-my-day-to-day-pm-work.html",
-      "medium": "https://medium.com/@asaf.ahmad.shayaan/how-i-use-claude-in-my-day-to-day-pm-work-level-basic-37ca25d25bab"
+      "medium": "https://medium.com/@asaf.ahmad.shayaan/how-i-use-claude-in-my-day-to-day-pm-work-level-basic-37ca25d25bab",
+      "banner": "img/articles/how-i-use-claude-in-my-day-to-day-pm-work-banner.png"
     }
   ],
   "documents": []

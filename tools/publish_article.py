@@ -3,12 +3,13 @@
 
 Usage:
   python tools/publish_article.py --id SLUG --title "..." --date YYYY-MM-DD --category books \
-      --readlength medium --excerpt "..." --html path/to/body.html [--url https://medium.com/...]
+      --readlength medium --excerpt "..." --html path/to/body.html [--url https://medium.com/...] [--banner img/...]
 
 What it does:
   1. Copies the HTML body to content/articles/<id>.html (unless --html already points there).
   2. Upserts the entry in data/learnings.json (matched by id).
-  3. Regenerates sitemap.xml so the new post URL is listed.
+  3. Builds a 1600x900 banner with tools/banner.py unless --banner or --no-banner is given.
+  4. Regenerates sitemap.xml so the new post URL is listed.
 
 The body file must contain only the article body (no <html>/<head>): <p>, <h2>, <h3>, <ul>, <ol>,
 <figure><img ...><figcaption>...</figcaption></figure>, <a>, <em>, <strong>, <blockquote>.
@@ -91,8 +92,18 @@ def publish(args):
         entry["medium"] = args.url
         if not args.html:
             entry["url"] = args.url
-    if args.cover:
-        entry["cover_image"] = args.cover
+    banner = args.banner
+    if not banner and not args.no_banner:
+        try:
+            sys.path.insert(0, os.path.join(ROOT, "tools"))
+            import banner as banner_tool
+            out = os.path.join(ROOT, "img", "articles", args.id + "-banner")
+            if banner_tool.build(args.title, args.category, out):
+                banner = f"img/articles/{args.id}-banner.png"
+        except Exception as e:  # banner is a nicety, never block publishing on it
+            print("banner skipped:", e)
+    if banner:
+        entry["banner"] = banner
 
     arts = data.setdefault("articles", [])
     for i, a in enumerate(arts):
@@ -117,6 +128,7 @@ if __name__ == "__main__":
     p.add_argument("--excerpt", required=True)
     p.add_argument("--html", help="path to the article body HTML")
     p.add_argument("--url", help="Medium URL (cross-post link, or the only destination when no --html)")
-    p.add_argument("--cover", help="optional cover image path under img/")
+    p.add_argument("--banner", help="banner image path under img/ (built automatically when omitted)")
+    p.add_argument("--no-banner", action="store_true", help="skip automatic banner generation")
     p.add_argument("--force", action="store_true", help="publish even if the style checks fail")
     publish(p.parse_args())

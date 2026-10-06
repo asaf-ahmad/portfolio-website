@@ -206,7 +206,7 @@ var Content = {
   articles: function() {
     var fromJson = (this._data ? this._data.articles : []).map(function(a) {
       return { id: a.id, title: a.title, date: a.date, cover: a.category, readlength: a.readlength,
-               excerpt: a.excerpt || '', content: a.content || '', source: a.source || '', url: a.url || '', isStatic: true };
+               excerpt: a.excerpt || '', content: a.content || '', source: a.source || '', url: a.url || '', banner: a.banner || '', medium: a.medium || '', isStatic: true };
     });
     var ids = {}; fromJson.forEach(function(a) { ids[a.id] = true; });
     var local = DB.getPosts().filter(function(p) { return !ids[p.id]; });
@@ -263,7 +263,8 @@ function requireAuth() { if (!DB.isLoggedIn()) window.location.href = 'admin.htm
 function buildBlogCard(p, excerptLen) {
   var cat = p.cover ? CATEGORIES.find(function(c) { return c.id === p.cover; }) : null;
   var rl  = p.readlength ? READ_LENGTHS.find(function(r) { return r.id === p.readlength; }) : null;
-  var bg  = cat ? "background-image:url('" + cat.url + "');background-size:cover;background-position:center" : 'background:linear-gradient(135deg,#111,#2a2a2a)';
+  var img = p.banner || (cat ? cat.url : '');
+  var bg  = img ? "background-image:url('" + img + "');background-size:cover;background-position:center" : 'background:linear-gradient(135deg,#111,#2a2a2a)';
   var badges = '';
   if (rl)  badges += '<span class="card-badge" style="background:' + rl.color + '">' + rl.label + '</span>';
   if (cat) badges += '<span class="card-badge card-badge-dark">' + cat.label + '</span>';
@@ -272,7 +273,7 @@ function buildBlogCard(p, excerptLen) {
   var open = p.url ? "window.open('" + p.url + "','_blank','noopener')" : "window.location='post.html?id=" + p.id + "'";
   var more = p.url ? 'Read on Medium &nearr;' : 'Read article &rarr;';
   return '<article class="card blog-card" onclick="' + open + '">' +
-    '<div class="blog-card-img" style="' + bg + ';position:relative" role="img" aria-label="' + (cat ? cat.label : 'Article') + '">' +
+    '<div class="blog-card-img' + (p.banner ? ' has-banner' : '') + '" style="' + bg + ';position:relative" role="img" aria-label="' + (cat ? cat.label : 'Article') + '">' +
     (badges ? '<div class="card-badges">' + badges + '</div>' : '') +
     '</div><div class="blog-date">' + formatDate(p.date) + '</div>' +
     '<h3 class="blog-title">' + p.title + '</h3>' +

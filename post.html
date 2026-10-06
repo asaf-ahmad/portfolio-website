@@ -92,16 +92,20 @@
     document.getElementById('post-title').textContent = post.title;
     document.getElementById('post-date').textContent = formatDate(post.date) + (cat ? '  ·  ' + cat.label : '') + (rl ? '  ·  ' + rl.label + ' ' + rl.mins : '');
     document.getElementById('post-content').innerHTML = html || '<p>This article could not be loaded.</p>';
-    if (cat) {
+    var heroImg = post.banner || (cat ? cat.url : '');
+    if (heroImg) {
       var hero = document.getElementById('post-hero');
-      hero.style.backgroundImage = "url('" + cat.url + "')"; hero.style.backgroundSize = 'cover'; hero.style.backgroundPosition = 'center';
+      hero.style.backgroundImage = "url('" + heroImg + "')"; hero.style.backgroundSize = 'cover'; hero.style.backgroundPosition = 'center';
+      if (post.banner) hero.classList.add('has-banner');
     }
+    var og = document.querySelector('meta[property="og:image"]'); if (og && post.banner) og.setAttribute('content', 'https://asafahmad.com/' + post.banner);
+    var tw = document.querySelector('meta[name="twitter:image"]'); if (tw && post.banner) tw.setAttribute('content', 'https://asafahmad.com/' + post.banner);
     var ld = document.createElement('script'); ld.type = 'application/ld+json';
     ld.textContent = JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": post.title, "description": text,
       "datePublished": post.date, "dateModified": post.updatedAt || post.date, "inLanguage": "en",
       "author": { "@type": "Person", "name": "Asaf Ahmad Shayaan", "url": "https://asafahmad.com/" },
       "publisher": { "@type": "Person", "name": "Asaf Ahmad Shayaan" },
-      "image": cat ? cat.url : "https://asafahmad.com/img/og-cover.png",
+      "image": post.banner ? "https://asafahmad.com/" + post.banner : (cat ? cat.url : "https://asafahmad.com/img/og-cover.png"),
       "articleSection": cat ? cat.label : "Learnings",
       "mainEntityOfPage": "https://asafahmad.com/post.html?id=" + post.id });
     document.head.appendChild(ld);
