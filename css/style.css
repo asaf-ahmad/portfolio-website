@@ -523,4 +523,4 @@ body:not(.minimal-mode) .poem-card::after { color: rgba(184,150,46,0.07) }
    ARTICLE BANNERS
    ═══════════════════════════════════════════════════ */
 .blog-card-img.has-banner::after { background: linear-gradient(to top, rgba(12,11,9,0.35), transparent 60%) }
-.post-hero.has-banner::before { background: linear-gradient(to top, rgba(12,11,9,0.96) 45%, rgba(12,11,9,0.55) 100%) }
+.post-hero.has-banner::before { background: linear-gradient(to top, rgba(12,11,9,0.97) 40%, rgba(12,11,9,0.9) 100%) }
