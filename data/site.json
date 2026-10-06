@@ -206,7 +206,7 @@
   },
   "forms": {
     "endpoint": "https://api.web3forms.com/submit",
-    "access_key": "",
+    "access_key": "f4ad27b1-4313-42c2-bab2-5de8b16c67b5",
     "_note": "Web3Forms: get a free access key at web3forms.com (it is emailed to you), paste it in access_key. Alternative: endpoint https://formsubmit.co/ajax/<email> with no key. Empty key or endpoint falls back to the visitor's email app."
   },
   "notebox": {
