@@ -165,7 +165,7 @@ body:not(.minimal-mode) .hero-scroll::after { background: linear-gradient(to bot
 
 body:not(.minimal-mode) .artsy-hey { font-family: var(--hand); font-size: 2.2rem; font-weight: 700; color: var(--text-soft); line-height: 1; margin: 0 18px 4px 0; transform: rotate(-3deg); display: inline-block }
 body:not(.minimal-mode) .artsy-hey span { font-family: var(--marker); color: #fff; font-size: 2.6rem; margin-left: 6px; display: inline-block; transform: rotate(2deg) }
-body:not(.minimal-mode) .artsy-name { font-size: clamp(4.2rem, 10vw, 8.5rem); line-height: 0.95; position: relative; display: inline-block; margin: 0 0 18px; padding-right: 0.2em }
+body:not(.minimal-mode) .artsy-name { text-transform: uppercase; font-size: clamp(4.2rem, 10vw, 8.5rem); line-height: 0.95; position: relative; display: inline-block; margin: 0 0 18px; padding-right: 0.2em }
 body:not(.minimal-mode) .artsy-name::after { content: ''; position: absolute; left: 4%; right: 14%; bottom: -8px; height: 0.14em; background: var(--lime); border-radius: 48% 52% 40% 60% / 70% 40% 60% 30%; transform: rotate(-1.4deg); z-index: -1 }
 body:not(.minimal-mode) .artsy-name .artsy-crown { position: absolute; top: -0.32em; right: 0.02em; width: 0.42em; height: 0.42em; transform: rotate(14deg) }
 body:not(.minimal-mode) .artsy-role { font-family: var(--marker); font-size: clamp(1.4rem, 2.4vw, 1.9rem); color: #fff; margin: 4px 0 10px; letter-spacing: 0.01em }

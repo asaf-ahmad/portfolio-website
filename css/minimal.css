@@ -1,0 +1,261 @@
+/* ═══════════════════════════════════════════════════
+   MINIMAL MODE — soft neumorphic system
+   Cream surfaces, raised / inset layers, teal accent,
+   Poppins type. Every rule is scoped to body.minimal-mode
+   so the Artsy theme is untouched. Loaded after artsy.css.
+   ═══════════════════════════════════════════════════ */
+
+body.minimal-mode {
+  --m-bg: #EAE4D7;
+  --m-face: #EFEADE;
+  --m-sd: #CDC5B2;            /* dark shadow */
+  --m-sl: #FFFFFF;            /* light shadow */
+  --m-teal: #156A6A;
+  --m-teal-dark: #0D5555;
+  --m-teal-soft: #D8E6E3;
+  --m-text: #2A2823;
+  --m-soft: #55514A;
+  --m-muted: #857F72;
+  --m-line: #D9D2C2;
+  --m-danger: #B3452F;
+  --raised: 9px 9px 18px var(--m-sd), -9px -9px 18px var(--m-sl);
+  --raised-sm: 5px 5px 10px var(--m-sd), -5px -5px 10px var(--m-sl);
+  --inset: inset 5px 5px 10px var(--m-sd), inset -5px -5px 10px var(--m-sl);
+  --inset-sm: inset 3px 3px 6px var(--m-sd), inset -3px -3px 6px var(--m-sl);
+
+  --ink: var(--m-text);
+  --ink-soft: #3A3732;
+  --paper: var(--m-bg);
+  --paper-dark: var(--m-bg);
+  --cream: var(--m-face);
+  --gold: var(--m-teal);
+  --gold-light: #2A8A8A;
+  --accent: var(--m-teal);
+  --accent-light: #2A8A8A;
+  --rust: var(--m-danger);
+  --text: var(--m-text);
+  --text-soft: var(--m-soft);
+  --text-muted: var(--m-muted);
+  --border: var(--m-line);
+  --border-dark: #BFB7A4;
+  --radius: 16px;
+  --shadow: var(--raised-sm);
+  --shadow-lg: var(--raised);
+  --sans: 'Poppins', 'Segoe UI', sans-serif;
+  font-family: var(--sans);
+  background: var(--m-bg);
+  color: var(--m-text);
+}
+
+/* ── Type ────────────────────────────────────────── */
+body.minimal-mode h1, body.minimal-mode h2, body.minimal-mode h3, body.minimal-mode h4 { font-family: var(--sans); color: var(--m-text); letter-spacing: -0.01em }
+body.minimal-mode h1 { font-weight: 700 }
+body.minimal-mode h2 { font-weight: 600; font-size: clamp(1.7rem, 3.2vw, 2.4rem) }
+body.minimal-mode h3 { font-weight: 600; font-size: 1.1rem }
+body.minimal-mode p { color: var(--m-soft) }
+body.minimal-mode .section-label { font-family: var(--sans); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--m-teal) }
+body.minimal-mode .section-label::before { background: var(--m-teal); width: 18px; height: 2px; border-radius: 2px }
+body.minimal-mode .section-desc { font-family: var(--sans); color: var(--m-soft); font-weight: 400; font-size: 0.95rem }
+body.minimal-mode .section { padding: 88px 0 }
+
+/* ── Navbar ──────────────────────────────────────── */
+body.minimal-mode .navbar { background: rgba(234,228,215,0.9); border-bottom: 1px solid rgba(255,255,255,0.7); box-shadow: 0 6px 18px rgba(120,110,90,0.12) }
+body.minimal-mode .nav-logo { font-family: var(--sans); font-weight: 700; color: var(--m-text); letter-spacing: -0.02em }
+body.minimal-mode .nav-logo span { color: var(--m-teal) }
+body.minimal-mode .nav-links a { font-family: var(--sans); font-size: 0.78rem; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--m-soft) }
+body.minimal-mode .nav-links a::after { height: 2px; background: var(--m-teal); border-radius: 2px }
+body.minimal-mode .nav-links a:hover, body.minimal-mode .nav-links a.active { color: var(--m-text) }
+body.minimal-mode .nav-cta { background: var(--m-teal) !important; color: #fff !important; border-radius: 100px !important; padding: 9px 20px !important; font-weight: 600 !important; box-shadow: var(--raised-sm) }
+body.minimal-mode .nav-cta:hover { background: var(--m-teal-dark) !important; color: #fff !important }
+body.minimal-mode .nav-toggle span { background: var(--m-text) }
+body.minimal-mode .theme-toggle { background: var(--m-bg); border: none; box-shadow: var(--inset-sm); padding: 5px }
+body.minimal-mode .toggle-option { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.68rem; font-weight: 500; color: var(--m-muted) }
+body.minimal-mode .toggle-option.active { background: var(--m-teal); color: #fff; font-weight: 600; box-shadow: 3px 3px 8px rgba(13,85,85,0.35) }
+
+/* ── Buttons ─────────────────────────────────────── */
+body.minimal-mode .btn { font-family: var(--sans); font-size: 0.84rem; font-weight: 600; letter-spacing: 0; text-transform: none; border-radius: 100px; padding: 13px 28px; border: none }
+body.minimal-mode .btn-gold, body.minimal-mode .btn-ink { background: var(--m-teal); color: #fff; box-shadow: 6px 6px 14px var(--m-sd), -6px -6px 14px var(--m-sl) }
+body.minimal-mode .btn-gold:hover, body.minimal-mode .btn-ink:hover { background: var(--m-teal-dark); transform: none; box-shadow: var(--inset-sm), 0 0 0 0 transparent; color: #fff }
+body.minimal-mode .btn-outline-light, body.minimal-mode .btn-outline-ink { background: var(--m-bg); color: var(--m-teal); box-shadow: var(--raised-sm) }
+body.minimal-mode .btn-outline-light:hover, body.minimal-mode .btn-outline-ink:hover { background: var(--m-bg); color: var(--m-teal-dark); box-shadow: var(--inset-sm); transform: none }
+
+/* ── Surfaces ────────────────────────────────────── */
+body.minimal-mode .card { background: var(--m-face); border: none; border-radius: 20px; box-shadow: var(--raised); padding: 28px }
+body.minimal-mode .card::before { display: none }
+body.minimal-mode .card:hover { transform: translateY(-3px); box-shadow: 12px 12px 24px var(--m-sd), -12px -12px 24px var(--m-sl); border: none }
+body.minimal-mode .card-tag { font-family: var(--sans); font-size: 0.64rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; display: inline-block; padding: 5px 11px; border-radius: 8px; background: var(--m-teal-soft); color: var(--m-teal-dark); margin-bottom: 14px }
+body.minimal-mode .card h3 { font-size: 1.05rem }
+body.minimal-mode .card p { color: var(--m-soft); font-size: 0.88rem }
+body.minimal-mode .blog-card-img, body.minimal-mode .portfolio-preview { margin: -28px -28px 20px; border-radius: 20px 20px 0 0 }
+body.minimal-mode .blog-date, body.minimal-mode .sketch-date, body.minimal-mode .poem-date, body.minimal-mode .doc-meta, body.minimal-mode .timeline-company { font-family: var(--sans); letter-spacing: 0; text-transform: none; font-size: 0.74rem; color: var(--m-muted) }
+body.minimal-mode .blog-title { font-family: var(--sans); font-size: 1.05rem }
+body.minimal-mode .blog-read-more, body.minimal-mode .poem-read-more, body.minimal-mode .service-price, body.minimal-mode .timeline-date { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-weight: 600; font-size: 0.78rem; color: var(--m-teal) }
+body.minimal-mode .card-badge { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-weight: 600; font-size: 0.66rem; border-radius: 6px; padding: 4px 9px }
+body.minimal-mode .impact { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-weight: 500; background: var(--m-bg); border: none; box-shadow: var(--inset-sm); border-radius: 100px; color: var(--m-text) }
+body.minimal-mode .impact strong { font-family: var(--sans); color: var(--m-teal); font-weight: 700; font-size: 0.9rem }
+body.minimal-mode .section[style*="paper-dark"] { background: transparent !important }
+body.minimal-mode .section[style*="var(--ink)"] { background: transparent !important; padding: 36px 0 }
+body.minimal-mode .section[style*="var(--ink)"] > div:first-child { display: none }
+body.minimal-mode .section[style*="var(--ink)"] > .container { background: var(--m-face); border-radius: 28px; box-shadow: var(--raised); padding: 60px 56px; max-width: calc(var(--max-w) + 56px) }
+body.minimal-mode .section[style*="var(--ink)"] h2, body.minimal-mode .section[style*="var(--ink)"] h2 em { color: var(--m-text) !important; font-style: normal }
+body.minimal-mode .section[style*="var(--ink)"] h2 em { color: var(--m-teal) !important }
+body.minimal-mode .section[style*="var(--ink)"] p { color: var(--m-soft) !important }
+body.minimal-mode .section[style*="var(--ink)"] [style*="aspect-ratio"] { background: var(--m-bg) !important; border: none !important; box-shadow: var(--inset); border-radius: 18px !important; color: var(--m-teal) !important }
+body.minimal-mode .section[style*="var(--ink)"] [style*="opacity:0.65"] { opacity: 1 !important }
+body.minimal-mode div[style*="background:var(--ink)"]:not(.section) { background: var(--m-face) !important; box-shadow: var(--raised); border-radius: 20px !important }
+body.minimal-mode div[style*="background:var(--ink)"] h3, body.minimal-mode div[style*="background:var(--ink)"] span[style*="color:var(--paper)"] { color: var(--m-text) !important; font-family: var(--sans) !important; letter-spacing: 0 !important }
+body.minimal-mode div[style*="background:var(--ink)"] span[style*="rgba(247,244,238,0.3)"] { color: var(--m-teal) !important; font-family: var(--sans) !important; font-weight: 600 }
+
+/* ── Hero ────────────────────────────────────────── */
+body.minimal-mode .hero { background: transparent; padding-bottom: 150px }
+body.minimal-mode .hero-lines, body.minimal-mode .hero-bg-text { display: none }
+body.minimal-mode .hero-content { text-align: left; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: center; padding: 56px 28px 40px }
+body.minimal-mode .hero-eyebrow { font-family: var(--sans); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em; color: var(--m-teal); justify-content: flex-start; margin-bottom: 20px }
+body.minimal-mode .hero-eyebrow::before { display: none }
+body.minimal-mode .hero-eyebrow::after { background: var(--m-teal); opacity: 0.5 }
+body.minimal-mode .artsy-hey { font-family: var(--sans); font-size: 1.3rem; font-weight: 500; color: var(--m-soft); margin-bottom: 4px }
+body.minimal-mode .artsy-hey span { font-weight: 500 }
+body.minimal-mode .hero h1.artsy-name { font-family: var(--sans); font-size: clamp(3.4rem, 7.5vw, 6rem); font-weight: 700; color: var(--m-text); letter-spacing: -0.03em; line-height: 1; margin: 0 0 14px; text-transform: none }
+body.minimal-mode .artsy-crown { display: none }
+body.minimal-mode .artsy-role { font-family: var(--sans); font-size: clamp(1.1rem, 1.8vw, 1.35rem); font-weight: 600; color: var(--m-teal); margin: 0 0 8px }
+body.minimal-mode .hero-tagline { font-size: 1.05rem; font-weight: 500; color: var(--m-text); margin-bottom: 18px; display: inline-flex; align-items: center; gap: 10px }
+body.minimal-mode .hero-tagline::before { content: ''; width: 28px; height: 2px; background: var(--m-teal); border-radius: 2px }
+body.minimal-mode .hero-desc { font-family: var(--sans); color: var(--m-soft); font-weight: 400; font-size: 0.98rem; line-height: 1.8; margin: 0 0 22px; max-width: 500px }
+body.minimal-mode .artsy-tech { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 30px; padding: 0 }
+body.minimal-mode .artsy-tech li { font-family: var(--sans); font-size: 0.74rem; font-weight: 500; color: var(--m-soft); padding: 7px 14px; border-radius: 100px; background: var(--m-bg); box-shadow: var(--inset-sm) }
+body.minimal-mode .hero-btns { justify-content: flex-start }
+body.minimal-mode .hero-scroll { font-family: var(--sans); text-transform: none; letter-spacing: 0; color: var(--m-muted); bottom: 150px }
+body.minimal-mode .hero-scroll::after { background: linear-gradient(to bottom, var(--m-teal), transparent) }
+body.minimal-mode .hero-art { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px }
+body.minimal-mode .artsy-avatar { width: min(100%, 400px); aspect-ratio: 1; border-radius: 40px; background: var(--m-face); box-shadow: var(--raised); display: flex; align-items: flex-end; justify-content: center; overflow: hidden; position: relative }
+body.minimal-mode .artsy-avatar::before { content: ''; position: absolute; inset: 18px; border-radius: 30px; box-shadow: var(--inset); background: linear-gradient(180deg, #F3EEE3, #E6DFD0) }
+body.minimal-mode .artsy-avatar img { position: relative; width: 86%; height: auto; max-height: 92%; object-fit: contain; display: none; -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%); mask-image: linear-gradient(to bottom, #000 86%, transparent 100%) }
+body.minimal-mode .artsy-avatar.has-img img { display: block }
+body.minimal-mode .artsy-avatar.has-img .artsy-avatar-fallback { display: none }
+body.minimal-mode .artsy-avatar-fallback { position: relative; width: 60%; aspect-ratio: 1; border-radius: 50%; background: var(--m-teal); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 20%; box-shadow: var(--raised) }
+body.minimal-mode .artsy-avatar-fallback strong { font-family: var(--sans); font-size: 4rem; font-weight: 700 }
+body.minimal-mode .artsy-avatar-fallback small { font-size: 0.8rem }
+body.minimal-mode .hero-chips { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center }
+body.minimal-mode .hero-chips span { font-size: 0.78rem; font-weight: 500; color: var(--m-text); padding: 10px 16px; border-radius: 100px; background: var(--m-face); box-shadow: var(--raised-sm); display: inline-flex; align-items: center; gap: 8px }
+body.minimal-mode .hero-chips span i { font-style: normal; color: var(--m-teal) }
+body.minimal-mode .stats-bar { border-top: none; gap: 20px; padding: 0 28px 28px }
+body.minimal-mode .stat-item { background: var(--m-face); border-radius: 18px; padding: 18px 28px; min-width: 160px; box-shadow: var(--raised) }
+body.minimal-mode .stat-value { font-family: var(--sans); font-weight: 700; color: var(--m-teal); font-size: 1.9rem }
+body.minimal-mode .stat-label { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0; text-transform: none; color: var(--m-muted); font-weight: 500 }
+
+/* ── Skills, hobbies, note box ───────────────────── */
+body.minimal-mode .skills-note { font-family: var(--sans); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--m-muted) }
+body.minimal-mode .skill-tile { background: var(--m-face); border: none; border-radius: 18px; box-shadow: var(--raised-sm); padding: 20px 10px 16px }
+body.minimal-mode .skill-tile:hover { transform: translateY(-3px); box-shadow: var(--raised) }
+body.minimal-mode .skill-icon { background: var(--m-teal) !important; color: #fff; border-radius: 12px; font-family: var(--sans); font-size: 0.78rem; font-weight: 700; box-shadow: 4px 4px 10px rgba(13,85,85,0.3) }
+body.minimal-mode .skill-tile span { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.72rem; color: var(--m-soft); font-weight: 500 }
+body.minimal-mode .hobby-row { background: var(--m-bg); border: none; box-shadow: var(--inset); border-radius: 20px; padding: 24px 28px }
+body.minimal-mode .hobby-label { font-family: var(--sans); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; color: var(--m-teal) }
+body.minimal-mode .hobby-icon { background: var(--m-face); color: var(--m-teal); box-shadow: var(--raised-sm) }
+body.minimal-mode .hobby strong { color: var(--m-text); font-weight: 600 }
+body.minimal-mode .notebox { background: var(--m-face); border: none; border-radius: 28px; box-shadow: var(--raised); padding: 48px }
+body.minimal-mode .nb-form textarea, body.minimal-mode .nb-form input { background: var(--m-bg); border: none; box-shadow: var(--inset); border-radius: 14px; font-family: var(--sans); color: var(--m-text) }
+body.minimal-mode .nb-form textarea:focus, body.minimal-mode .nb-form input:focus { box-shadow: var(--inset), 0 0 0 2px var(--m-teal) }
+body.minimal-mode .nb-done { font-family: var(--sans); font-style: normal; font-weight: 500; font-size: 1.15rem; color: var(--m-teal-dark) }
+
+/* ── Page header, timeline, tags, lists ──────────── */
+body.minimal-mode .page-header { background: transparent; padding: 80px 0 40px }
+body.minimal-mode .page-header::before { display: none }
+body.minimal-mode .page-header h1 { color: var(--m-text); font-size: clamp(2.6rem, 6vw, 4.4rem); letter-spacing: -0.03em }
+body.minimal-mode .page-header p { font-family: var(--sans); color: var(--m-soft); font-weight: 400; font-size: 1rem }
+body.minimal-mode .timeline::before { width: 3px; background: var(--m-teal); opacity: 0.35; border-radius: 3px }
+body.minimal-mode .timeline-item::before { background: var(--m-teal); border-color: var(--m-bg); box-shadow: 0 0 0 3px var(--m-teal), var(--raised-sm) }
+body.minimal-mode .timeline-title { font-family: var(--sans); font-weight: 600; font-size: 1.25rem }
+body.minimal-mode .timeline-body li { color: var(--m-soft); font-size: 0.9rem }
+body.minimal-mode .tag { font-family: var(--sans); letter-spacing: 0; font-size: 0.7rem; font-weight: 500; background: var(--m-face); color: var(--m-soft); border: none; border-radius: 100px; padding: 6px 13px; box-shadow: var(--raised-sm) }
+body.minimal-mode .card-list li { color: var(--m-soft) }
+body.minimal-mode .steps { gap: 24px }
+body.minimal-mode .step { background: var(--m-face); border: none; border-radius: 20px; box-shadow: var(--raised) }
+body.minimal-mode .step::before { font-family: var(--sans); font-weight: 700; color: var(--m-teal) }
+body.minimal-mode .faq details { border-bottom-color: var(--m-line) }
+body.minimal-mode .faq summary { font-family: var(--sans); font-weight: 600; font-size: 1.02rem; color: var(--m-text) }
+body.minimal-mode .faq summary::after { color: var(--m-teal); font-family: var(--sans); width: 30px; height: 30px; border-radius: 50%; background: var(--m-bg); box-shadow: var(--inset-sm); display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0 }
+body.minimal-mode .doc-card { background: var(--m-face); border: none; border-radius: 20px; box-shadow: var(--raised) }
+body.minimal-mode .doc-card:hover { box-shadow: 12px 12px 24px var(--m-sd), -12px -12px 24px var(--m-sl); border: none }
+body.minimal-mode .doc-type { font-family: var(--sans); font-weight: 700; border-radius: 10px; background: var(--m-teal) }
+body.minimal-mode .doc-type.pdf { background: var(--m-danger) } body.minimal-mode .doc-type.ppt { background: #B8702E }
+body.minimal-mode .doc-type::after { border-color: var(--m-face) var(--m-face) rgba(255,255,255,0.35) rgba(255,255,255,0.35) }
+
+/* ── Tabs, filters, forms ────────────────────────── */
+body.minimal-mode .tabs { border-bottom: none; gap: 8px; padding: 6px; background: var(--m-bg); box-shadow: var(--inset-sm); border-radius: 100px; display: inline-flex; margin-bottom: 48px }
+body.minimal-mode .tab-btn { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.84rem; font-weight: 500; color: var(--m-muted); border: none; border-radius: 100px; padding: 10px 24px; margin: 0 }
+body.minimal-mode .tab-btn.active { background: var(--m-teal); color: #fff; box-shadow: 3px 3px 8px rgba(13,85,85,0.35) }
+body.minimal-mode .tab-btn:hover:not(.active) { color: var(--m-text) }
+body.minimal-mode .filter-btn { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.76rem; font-weight: 500; border: none; border-radius: 100px; background: var(--m-face); color: var(--m-soft); box-shadow: var(--raised-sm); padding: 8px 16px }
+body.minimal-mode .filter-btn.active { background: var(--m-teal); color: #fff; box-shadow: var(--inset-sm) }
+body.minimal-mode select { font-family: var(--sans) !important; border: none !important; border-radius: 100px !important; background: var(--m-face) !important; box-shadow: var(--raised-sm); color: var(--m-text) !important; padding: 9px 16px !important }
+body.minimal-mode .form-group label { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.78rem; font-weight: 500; color: var(--m-soft) }
+body.minimal-mode .form-group input, body.minimal-mode .form-group textarea, body.minimal-mode .form-group select { font-family: var(--sans); background: var(--m-bg); border: none; box-shadow: var(--inset); border-radius: 14px; color: var(--m-text); padding: 13px 16px }
+body.minimal-mode .form-group input:focus, body.minimal-mode .form-group textarea:focus { background: var(--m-bg); box-shadow: var(--inset), 0 0 0 2px var(--m-teal) }
+body.minimal-mode .service-card.selected { box-shadow: var(--inset), 0 0 0 2px var(--m-teal); border: none }
+body.minimal-mode .service-card:hover { border: none }
+body.minimal-mode .whatsapp-link a { color: var(--m-teal); font-weight: 600 }
+
+/* ── Contact ─────────────────────────────────────── */
+body.minimal-mode .contact-link { border-bottom: none; padding: 10px 0 }
+body.minimal-mode .contact-link-icon { width: 46px; height: 46px; border-radius: 50%; background: var(--m-face); color: var(--m-teal); box-shadow: var(--raised-sm); font-weight: 600 }
+body.minimal-mode .contact-link:hover .contact-link-icon { background: var(--m-teal); color: #fff; box-shadow: var(--inset-sm) }
+body.minimal-mode .contact-link-text small { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.7rem }
+body.minimal-mode .contact-link-text strong { color: var(--m-text); font-weight: 600 }
+
+/* ── Creative, post, modals ──────────────────────── */
+body.minimal-mode .sketch-card { background: var(--m-face); border: none; border-radius: 20px; box-shadow: var(--raised) }
+body.minimal-mode .sketch-card:hover { transform: translateY(-5px); box-shadow: 12px 12px 24px var(--m-sd), -12px -12px 24px var(--m-sl) }
+body.minimal-mode .sketch-title { font-family: var(--sans); font-weight: 600 }
+body.minimal-mode .sketch-disclaimer { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.82rem; color: var(--m-muted) }
+body.minimal-mode .poem-card { background: var(--m-face); color: var(--m-text); border-radius: 20px; box-shadow: var(--raised) }
+body.minimal-mode .poem-card::after { color: rgba(21,106,106,0.12) }
+body.minimal-mode .poem-title { color: var(--m-teal) }
+body.minimal-mode .poem-body { color: var(--m-soft) }
+body.minimal-mode .poem-date { color: var(--m-muted) }
+body.minimal-mode .post-hero { background: var(--m-bg) !important; background-image: none !important; min-height: 0; padding: 80px 0 40px; border-radius: 0 }
+body.minimal-mode .post-hero::before { display: none }
+body.minimal-mode .post-hero h1 { font-family: var(--sans); font-weight: 700; font-size: clamp(2rem, 4.5vw, 3.2rem); color: var(--m-text); letter-spacing: -0.02em }
+body.minimal-mode .post-hero a { color: var(--m-teal) !important }
+body.minimal-mode .post-meta-bar span { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.78rem; color: var(--m-muted) }
+body.minimal-mode .post-banner-min { max-width: 720px; margin: 8px auto 0; border-radius: 20px; box-shadow: var(--raised); display: block }
+body.minimal-mode .post-body p:first-child em:only-child { font-family: var(--sans); font-style: normal; font-weight: 500; font-size: 1.15rem; color: var(--m-soft) }
+body.minimal-mode .post-body blockquote { background: var(--m-face); box-shadow: var(--inset); border-left: 4px solid var(--m-teal); font-family: var(--sans); font-style: normal; font-size: 1.05rem; border-radius: 14px }
+body.minimal-mode .post-body figcaption { font-family: var(--sans); letter-spacing: 0; text-transform: none; font-size: 0.78rem }
+body.minimal-mode .post-body figure img, body.minimal-mode .post-body figure svg { border: none; border-radius: 18px; box-shadow: var(--raised-sm) }
+body.minimal-mode .modal { background: var(--m-bg); border-radius: 24px }
+body.minimal-mode .modal-close { border-radius: 50%; background: var(--m-face); box-shadow: var(--raised-sm) }
+body.minimal-mode .modal-close:hover { background: var(--m-teal); color: #fff }
+body.minimal-mode .toast { background: var(--m-teal); color: #fff; border-left: none; border-radius: 100px; font-family: var(--sans); letter-spacing: 0; font-weight: 600; font-size: 0.84rem; box-shadow: var(--raised) }
+body.minimal-mode .toast.error { background: var(--m-danger) }
+
+/* ── Footer ──────────────────────────────────────── */
+body.minimal-mode .footer { background: var(--m-bg); box-shadow: var(--inset); padding: 64px 0 40px; margin-top: 24px }
+body.minimal-mode .footer-inner { border-bottom-color: var(--m-line) }
+body.minimal-mode .footer-brand { font-family: var(--sans); font-weight: 700; color: var(--m-text); letter-spacing: -0.02em }
+body.minimal-mode .footer-brand span { color: var(--m-teal) }
+body.minimal-mode .footer-tagline { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.8rem; color: var(--m-muted) }
+body.minimal-mode .footer-nav h4, body.minimal-mode .footer-head { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.8rem; font-weight: 600; color: var(--m-text) }
+body.minimal-mode .footer-nav a { font-family: var(--sans); font-size: 0.86rem; color: var(--m-soft) }
+body.minimal-mode .footer-nav a:hover { color: var(--m-teal) }
+body.minimal-mode .footer-copy { font-family: var(--sans); letter-spacing: 0; font-size: 0.74rem; color: var(--m-muted) }
+body.minimal-mode .footer-credit { color: var(--m-muted) }
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 900px) {
+  body.minimal-mode .hero-content { grid-template-columns: 1fr; text-align: center; padding-top: 36px }
+  body.minimal-mode .hero-eyebrow, body.minimal-mode .hero-btns, body.minimal-mode .artsy-tech { justify-content: center }
+  body.minimal-mode .hero-desc { margin: 0 auto 22px }
+  body.minimal-mode .artsy-avatar { width: min(100%, 300px) }
+  body.minimal-mode .section[style*="var(--ink)"] > .container { padding: 40px 24px; border-radius: 22px }
+  body.minimal-mode .section[style*="var(--ink)"] > .container > div { display: block !important }
+  body.minimal-mode .section[style*="var(--ink)"] > .container > div > div:last-child { display: none }
+}
+@media (max-width: 768px) {
+  body.minimal-mode .nav-links { background: var(--m-bg) }
+  body.minimal-mode .hero { padding-bottom: 200px }
+  body.minimal-mode .stats-bar { gap: 10px; padding: 0 16px 20px }
+  body.minimal-mode .stat-item { min-width: 0; padding: 14px 10px }
+  body.minimal-mode .tabs { display: flex }
+  body.minimal-mode .section[style*="paper-dark"] > .container, body.minimal-mode .section[style*="var(--ink)"] > .container { max-width: calc(100% - 32px) }
+}
