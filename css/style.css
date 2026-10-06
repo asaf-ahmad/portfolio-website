@@ -524,3 +524,13 @@ body:not(.minimal-mode) .poem-card::after { color: rgba(184,150,46,0.07) }
    ═══════════════════════════════════════════════════ */
 .blog-card-img.has-banner::after { background: linear-gradient(to top, rgba(12,11,9,0.35), transparent 60%) }
 .post-hero.has-banner::before { background: linear-gradient(to top, rgba(12,11,9,0.97) 40%, rgba(12,11,9,0.9) 100%) }
+
+/* ═══════════════════════════════════════════════════
+   HOBBY ROW
+   ═══════════════════════════════════════════════════ */
+.hobby-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding: 22px 28px; border: 1px dashed var(--border-dark); border-radius: var(--radius); background: var(--cream) }
+.hobby-label { font-family: 'DM Mono', monospace; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); margin-right: 8px }
+.hobby { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 220px }
+.hobby-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--ink); color: var(--paper); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0 }
+.hobby strong { display: block; font-size: 0.95rem; color: var(--ink) }
+.hobby small { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4 }

@@ -385,3 +385,12 @@ body:not(.minimal-mode) .sketch-note { color: var(--text-muted) }
 body:not(.minimal-mode) .sketch-disclaimer { font-family: var(--hand); font-size: 1.15rem; letter-spacing: 0; text-transform: none; color: var(--text-soft); transform: rotate(-1.5deg) }
 body:not(.minimal-mode) .sketch-modal-caption { color: var(--text-soft) }
 body:not(.minimal-mode) .footer-credit { color: var(--text-muted) }
+
+/* ── Hobby row ───────────────────────────────────── */
+body:not(.minimal-mode) .hobby-row { background: var(--cream); border: 1px dashed var(--border-dark); border-radius: var(--radius) }
+body:not(.minimal-mode) .hobby-label { font-family: var(--hand); font-size: 1.15rem; letter-spacing: 0; text-transform: none; color: var(--lime); font-weight: 700 }
+body:not(.minimal-mode) .hobby-icon { background: var(--purple); color: #fff; transform: rotate(-6deg) }
+body:not(.minimal-mode) .hobby:nth-child(3) .hobby-icon { background: var(--blue); color: #0A0A0E; transform: rotate(5deg) }
+body:not(.minimal-mode) .hobby:nth-child(4) .hobby-icon { background: var(--lime); color: #0A0A0E; transform: rotate(-4deg) }
+body:not(.minimal-mode) .hobby strong { color: #fff }
+body:not(.minimal-mode) .artsy-sticker.s1 { font-size: 1.15rem; line-height: 1.35; text-align: left }
