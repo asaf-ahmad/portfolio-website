@@ -1,0 +1,15 @@
+{
+  "_readme": "Public content for the Learnings page. Articles: give each an id, title, date (ISO), category (an id from CATEGORIES in js/data.js: product, books, ai, los, underwriting, collections, lending, fintech, presales, career, data, ux), readlength (rapid | medium | long), excerpt, and either a source (HTML file under content/articles/), inline content, or a url (e.g. a Medium post). Documents: id, title, type (pdf | ppt | pptx), category, description, date, file (path under files/), optional pages.",
+  "articles": [
+    {
+      "id": "five-ai-capabilities-in-production-lending",
+      "title": "Five AI Capabilities in Production Lending: What Actually Moved the Needle",
+      "date": "2026-09-14",
+      "category": "ai",
+      "readlength": "medium",
+      "excerpt": "Eighteen months, five AI capabilities, one live lending platform. Why we started with the credit memo, measured turnaround time instead of accuracy, and designed PII handling before writing a single prompt.",
+      "source": "content/articles/five-ai-capabilities-in-production-lending.html"
+    }
+  ],
+  "documents": []
+}

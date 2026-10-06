@@ -309,7 +309,7 @@ body:not(.minimal-mode) .footer-inner { border-bottom-color: var(--border) }
 body:not(.minimal-mode) .footer-brand { font-family: var(--marker); text-transform: uppercase; letter-spacing: 0.03em; color: #fff }
 body:not(.minimal-mode) .footer-brand span { color: var(--lime) }
 body:not(.minimal-mode) .footer-tagline { font-family: var(--hand); font-size: 1.05rem; text-transform: none; letter-spacing: 0; color: var(--text-muted); font-weight: 500 }
-body:not(.minimal-mode) .footer-nav h4 { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.8rem; font-weight: 600; color: #fff }
+body:not(.minimal-mode) .footer-nav h4, body:not(.minimal-mode) .footer-head { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.8rem; font-weight: 600; color: #fff }
 body:not(.minimal-mode) .footer-nav a { font-family: var(--sans); font-size: 0.86rem; color: var(--text-muted) }
 body:not(.minimal-mode) .footer-nav a:hover { color: var(--lime) }
 body:not(.minimal-mode) .footer-copy { font-family: var(--sans); letter-spacing: 0; font-size: 0.74rem; color: var(--text-muted); text-align: left }
@@ -350,3 +350,26 @@ body:not(.minimal-mode) .footer::after { content: 'Keep Building \2665'; positio
   body:not(.minimal-mode) .section[style*="var(--ink)"] > .container { padding: 36px 20px; max-width: calc(100% - 32px) }
   body:not(.minimal-mode) .page-header .container::after { display: none }
 }
+
+/* ── Badges, impact, documents, FAQ, steps ───────── */
+body:not(.minimal-mode) .card-badge { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-weight: 600; font-size: 0.66rem; border-radius: 6px; padding: 4px 9px }
+body:not(.minimal-mode) .impact { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-weight: 500; color: #fff; background: #1b1b23; border: 1px solid var(--border-dark); border-radius: 100px; font-size: 0.74rem }
+body:not(.minimal-mode) .impact strong { font-family: var(--marker); font-weight: 400; color: var(--lime); font-size: 1rem }
+body:not(.minimal-mode) .card-list li { color: var(--text-muted) }
+body:not(.minimal-mode) .doc-card { background: var(--cream); border-color: var(--border); border-radius: var(--radius) }
+body:not(.minimal-mode) .doc-card:hover { border-color: var(--purple); transform: translateY(-4px) rotate(-0.5deg); box-shadow: 0 18px 50px rgba(0,0,0,0.5) }
+body:not(.minimal-mode) .doc-type { font-family: var(--marker); font-size: 0.72rem; border-radius: 10px; letter-spacing: 0.02em }
+body:not(.minimal-mode) .doc-type.pdf { background: var(--pink); color: #0A0A0E }
+body:not(.minimal-mode) .doc-type.ppt { background: var(--yellow); color: #0A0A0E }
+body:not(.minimal-mode) .doc-type::after { border-color: var(--cream) var(--cream) rgba(0,0,0,0.25) rgba(0,0,0,0.25) }
+body:not(.minimal-mode) .doc-info h3 { color: #fff }
+body:not(.minimal-mode) .doc-meta { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.72rem }
+body:not(.minimal-mode) .doc-card:hover .doc-dl { color: var(--lime) }
+body:not(.minimal-mode) .step { background: var(--cream); border-color: var(--border); border-radius: var(--radius) }
+body:not(.minimal-mode) .step::before { font-family: var(--marker); color: var(--lime); font-weight: 400 }
+body:not(.minimal-mode) .faq details { border-bottom-color: var(--border) }
+body:not(.minimal-mode) .faq summary { font-family: var(--sans); font-weight: 600; font-size: 1.05rem; color: #fff }
+body:not(.minimal-mode) .faq summary::after { color: var(--lime); font-family: var(--sans); font-size: 1.4rem }
+body:not(.minimal-mode) .faq details p { color: var(--text-soft) }
+body:not(.minimal-mode) .whatsapp-link { color: var(--text-soft) }
+body:not(.minimal-mode) .whatsapp-link a { color: var(--lime); font-weight: 600 }

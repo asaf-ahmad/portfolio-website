@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Learnings | Product Management, AI in Lending & Book Notes | Asaf Ahmad Shayaan</title>
+<meta name="description" content="Articles and downloadable decks on product management, AI in lending, credit underwriting, fintech and what a product manager takes from the books he reads."/>
+<meta name="author" content="Asaf Ahmad Shayaan"/>
+<meta name="robots" content="index,follow,max-image-preview:large"/>
+<link rel="canonical" href="https://asafahmad.com/learnings.html"/>
+<meta property="og:site_name" content="Asaf Ahmad Shayaan"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Learnings | Product Management, AI in Lending & Book Notes | Asaf Ahmad Shayaan"/>
+<meta property="og:description" content="Articles and downloadable decks on product management, AI in lending, credit underwriting, fintech and what a product manager takes from the books he reads."/>
+<meta property="og:url" content="https://asafahmad.com/learnings.html"/>
+<meta property="og:image" content="https://asafahmad.com/img/og-cover.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:locale" content="en_IN"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Learnings | Product Management, AI in Lending & Book Notes | Asaf Ahmad Shayaan"/>
+<meta name="twitter:description" content="Articles and downloadable decks on product management, AI in lending, credit underwriting, fintech and what a product manager takes from the books he reads."/>
+<meta name="twitter:image" content="https://asafahmad.com/img/og-cover.png"/>
+<meta name="theme-color" content="#0C0B09"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230C0B09'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='40' fill='%23F7F4EE'%3EA%3C/text%3E%3Ccircle cx='50' cy='48' r='6' fill='%23BFFF3C'/%3E%3C/svg%3E"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","name":"Learnings","url":"https://asafahmad.com/learnings.html","about":["Product Management","AI in Lending","Fintech","Books"],"author":{"@id":"https://asafahmad.com/#person"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://asafahmad.com/"},{"@type":"ListItem","position":2,"name":"Learnings","item":"https://asafahmad.com/learnings.html"}]}]}</script>
+<link rel="stylesheet" href="css/style.css"/><link rel="stylesheet" href="css/artsy.css"/>
+</head>
+<body class="minimal-mode">
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<nav class="navbar" aria-label="Primary">
+  <div class="container">
+    <a href="index.html" class="nav-logo" aria-label="Asaf Ahmad Shayaan, home">Asaf<span>.</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="learnings.html">Learnings</a></li>
+      <li><a href="services.html">Consulting</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="creative.html">Creative</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <div style="display:flex;align-items:center"><div class="theme-toggle" onclick="toggleTheme()" title="Switch view mode" role="button" tabindex="0">
+      <span class="toggle-option active" id="toggle-minimal">Minimal</span>
+      <span class="toggle-option" id="toggle-creative">Artsy</span>
+    </div></div>
+    <div class="nav-toggle" aria-label="Open menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<main class="page-body">
+  <div class="page-header" data-title="LEARN">
+    <div class="container"><h1>Learnings</h1><p>Articles on product management, AI in lending and fintech, notes from the books I read, and the decks and papers behind them.</p></div>
+  </div>
+
+  <section class="section" id="articles">
+    <div class="container">
+      <div class="section-split reveal">
+        <div><span class="section-label">Articles</span><h2 class="section-title">Articles &amp; Notes</h2><p class="section-desc">Filter by topic or by how long you have.</p></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap" id="rl-filters">
+          <button onclick="setRL('all',this)" class="filter-btn active">All lengths</button>
+          <button onclick="setRL('rapid',this)" class="filter-btn">Rapid</button>
+          <button onclick="setRL('medium',this)" class="filter-btn">Medium</button>
+          <button onclick="setRL('long',this)" class="filter-btn">Long</button>
+        </div>
+      </div>
+      <div class="pill-row reveal" id="cat-filters"></div>
+      <div class="blog-grid" id="article-list"><div class="empty-state"><h3>Loading&hellip;</h3></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="documents" style="background:var(--paper-dark)">
+    <div class="container">
+      <div class="reveal"><span class="section-label">Decks &amp; Papers</span><h2 class="section-title">Presentations &amp; PDFs</h2><p class="section-desc">Slide decks, one-pagers and longer write-ups you can download and keep.</p></div>
+      <div class="doc-grid reveal" id="doc-list"><div class="empty-state"><h3>Loading&hellip;</h3></div></div>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div><div class="footer-brand">Asaf<span>.</span></div><div class="footer-tagline">Senior Product Manager &middot; Lending &amp; AI &middot; Mumbai</div></div>
+      <div class="footer-nav"><div class="footer-head">Work</div><a href="experience.html">Experience</a><a href="services.html#consultancy">Consultancy</a><a href="services.html#mentoring">Mentoring</a><a href="portfolio.html">Portfolio</a></div>
+      <div class="footer-nav"><div class="footer-head">Learnings</div><a href="learnings.html">All Learnings</a><a href="learnings.html?topic=ai">AI in Lending</a><a href="learnings.html?topic=product">Product Management</a><a href="learnings.html?topic=books">Learnings from Books</a></div>
+      <div class="footer-nav"><div class="footer-head">Personal</div><a href="about.html">About</a><a href="creative.html">Creative</a><a href="contact.html">Contact</a><a href="resume-download.html">Resume</a></div>
+      <div class="footer-nav"><div class="footer-head">Connect</div><a href="mailto:asaf.ahmad.shayaan@gmail.com">Email</a><a href="https://www.linkedin.com/in/asaf-ahmad/" target="_blank" rel="noopener me">LinkedIn</a><a href="https://wa.me/917280999699" target="_blank" rel="noopener">WhatsApp</a></div>
+    </div>
+    <div class="footer-copy">&copy; 2026 Asaf Ahmad Shayaan &middot; Senior Product Manager, Lending &amp; AI Consultant, Mumbai, India &middot; All rights reserved</div>
+  </div>
+</footer>
+<div id="toast" class="toast"></div>
+<script src="js/data.js"></script>
+<script>
+var activeRL = 'all', activeCat = 'all';
+function setRL(v, btn) {
+  activeRL = v;
+  document.querySelectorAll('#rl-filters .filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  render();
+}
+function setCat(v, btn) {
+  activeCat = v;
+  document.querySelectorAll('#cat-filters .filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  render();
+}
+function render() {
+  var all = Content.articles();
+  var list = all.filter(function(p) {
+    return (activeRL === 'all' || p.readlength === activeRL) && (activeCat === 'all' || p.cover === activeCat);
+  });
+  var el = document.getElementById('article-list');
+  el.innerHTML = list.length ? list.map(function(p) { return buildBlogCard(p, 160); }).join('')
+    : '<div class="empty-state"><h3>Nothing here yet</h3><p>Try another filter, or check back soon.</p></div>';
+  var docs = Content.documents().filter(function(d) { return activeCat === 'all' || d.category === activeCat; });
+  var dl = document.getElementById('doc-list');
+  dl.innerHTML = docs.length ? docs.map(buildDocCard).join('')
+    : '<div class="empty-state" style="grid-column:1/-1"><h3>Decks and papers coming soon</h3><p>The first presentations are being prepared for upload.</p></div>';
+}
+Content.load(function() {
+  var all = Content.articles(), docs = Content.documents();
+  var used = {};
+  all.forEach(function(p) { used[p.cover] = true; });
+  docs.forEach(function(d) { used[d.category] = true; });
+  var bar = document.getElementById('cat-filters');
+  var html = '<button class="filter-btn active" onclick="setCat(\'all\',this)">All topics</button>';
+  CATEGORIES.forEach(function(c) { if (used[c.id]) html += '<button class="filter-btn" onclick="setCat(\'' + c.id + '\',this)">' + c.label + '</button>'; });
+  bar.innerHTML = html;
+  var want = new URLSearchParams(location.search).get('topic');
+  if (want && used[want]) { activeCat = want; bar.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.toggle('active', b.textContent === (CATEGORIES.find(function(c){return c.id===want;})||{}).label); }); }
+  render();
+});
+</script>
+</body>
+</html>

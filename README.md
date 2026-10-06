@@ -9,20 +9,48 @@ portfolio/
 ├── index.html          → Home page
 ├── about.html          → About page
 ├── experience.html     → Career timeline
-├── blog.html           → Blog listing with category + read-length filters
-├── post.html           → Single blog post view
+├── learnings.html      → Learnings: articles (by topic + read length) and downloadable decks/PDFs
+├── blog.html           → Redirects to learnings.html (kept for old links)
+├── post.html           → Single article view
 ├── portfolio.html      → Design portfolio gallery
 ├── creative.html       → Sketches + Poetry gallery
-├── services.html       → 6 consultation offerings + booking form
+├── services.html       → Consultancy (6 offerings), mentoring (3), how it works, FAQ, brief form
 ├── contact.html        → Contact page
 ├── resume-download.html→ Public resume download page
 ├── admin.html          → Admin panel (password protected)
 ├── css/
 │   ├── style.css       → Global styles (Minimal theme + shared layout)
 │   └── artsy.css       → Artsy theme overrides (dark, neon, hand-drawn)
-└── js/
-    └── data.js         → Data management (localStorage) + theme toggle
+├── js/
+│   └── data.js         → Data layer (localStorage + public content loader) + theme toggle
+├── data/learnings.json → PUBLIC articles and documents shown on the Learnings page
+├── content/articles/   → Article bodies (HTML) referenced from learnings.json
+├── files/              → Resume PDF and downloadable decks/papers
+├── img/og-cover.png    → Social share image; img/avatar.png (optional) shows in the Artsy hero
+├── robots.txt, sitemap.xml
 ```
+
+## Publishing content (important)
+
+Anything saved in the admin panel lives in **that browser's localStorage only**. Visitors and
+search engines never see it. To publish for real:
+
+1. **Articles**: add an entry to `data/learnings.json` under `articles` with `id`, `title`, `date`,
+   `category` (product, books, ai, los, underwriting, collections, lending, fintech, presales, career,
+   data, ux), `readlength` (rapid, medium, long), `excerpt`, and either `source` (an HTML file under
+   `content/articles/`), inline `content`, or a `url` (e.g. a Medium post). The admin panel's
+   *Publish to Learnings* page exports drafts in this shape.
+2. **Decks and PDFs**: put the file in `files/` and add an entry under `documents` with `id`, `title`,
+   `type` (pdf, ppt, pptx), `category`, `description`, `date`, `file` and optional `pages`.
+3. **Resume**: save it as `files/Asaf_Ahmad_Shayaan_Resume.pdf`. The download page picks it up automatically.
+4. Commit and push. GitHub Pages redeploys within a minute or two.
+
+## SEO
+
+Every page carries a unique title and description, canonical URL, Open Graph and Twitter tags,
+and JSON-LD structured data (Person, WebSite, ProfessionalService with an offer catalogue, FAQPage,
+BreadcrumbList, Article). `sitemap.xml` and `robots.txt` are at the root. After deploying, submit
+`https://asafahmad.com/sitemap.xml` in Google Search Console.
 
 ## Features
 
@@ -32,11 +60,10 @@ portfolio/
 - Append `?theme=artsy` or `?theme=minimal` to any page URL to switch (the choice is remembered)
 - Home hero in Artsy mode shows a placeholder monogram; drop a transparent PNG at `img/avatar.png` to show your own illustration instead
 
-### Blog System
-- Rich text editor (bold, italic, headings, lists, quotes, links)
-- 15 category options with auto-assigned cover images
-- Read length tags: Rapid (< 3 min), Medium (5-8 min), Long (10+ min)
-- Filter by category and read length on the blog page
+### Learnings (articles + decks)
+- Articles by topic (Product Management, Learnings from Books, AI in Lending, LOS, Credit Underwriting, Collections, Digital Lending, Fintech, Pre-Sales, Career, Data, UX) and read length
+- Decks and PDFs listed with type badges and direct download
+- Rich text editor in the admin for drafting; publish via `data/learnings.json` (see above)
 
 ### Design Portfolio
 - Upload HTML designs — they render live in a modal
@@ -46,14 +73,14 @@ portfolio/
 - **Sketches** — Upload images (JPG/PNG/GIF, max 5MB), view in lightbox
 - **Poetry** — Write and publish poems with preserved line breaks
 
-### Services / Consultations
-- 6 consultation offerings (Lending, Career, Product Strategy, Due Diligence, AI, Pre-Sales)
-- Booking form captures Name, WhatsApp, Email, Company, Description
-- All requests visible in admin panel
+### Consultancy & Mentoring
+- Consultancy: Lending Systems Advisory, AI in Lending, Credit Product Strategy, Fintech Due Diligence, Pre-Sales & Proposal Support, Fractional Product Leadership
+- Mentoring: PM Career Mentoring, Lending & Fintech Domain Coaching, Early-Career & B-School Guidance
+- How-it-works steps and FAQ (FAQPage structured data)
+- Brief form opens a pre-filled email and offers a WhatsApp alternative, so requests actually reach Asaf
 
-### Resume Manager
-- Upload PDF resume from admin panel
-- Public download page at `/resume-download.html`
+### Resume
+- Public download page at `/resume-download.html` serves `files/Asaf_Ahmad_Shayaan_Resume.pdf` when present
 
 ## Admin Panel
 

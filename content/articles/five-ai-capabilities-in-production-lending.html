@@ -1,0 +1,27 @@
+<p>Over the last eighteen months I have taken five AI capabilities from idea to production inside a live lending platform used by banks and NBFCs. None of them were research projects. Each one had to survive a credit committee, an operations floor and an information-security review before a single borrower benefited. Here is what actually moved the needle, and what did not.</p>
+
+<h2>Start with the write-up nobody wants to do</h2>
+<p>The first capability we shipped was a CAM Automation Agent. A Credit Appraisal Memo is the document an analyst writes to justify a lending decision. For SME loans it runs to several pages across risk dimensions: promoter background, business model, financials, banking conduct, collateral. Analysts dislike writing it and approvers dislike reading it.</p>
+<p>That made it a good first target. The output was already structured, the inputs already lived in the system, and the pain was shared by both sides of the table. We did not try to make the decision. We generated the commentary, kept the analyst as the author of record, and made every paragraph editable. Adoption followed because the tool removed a chore rather than a judgement.</p>
+
+<h2>Measure turnaround time, not accuracy</h2>
+<p>The Bank Statement Analyzer and the Financial Statement Reader came next. Both extract and interpret borrower documents that used to be spread by hand. The temptation with document intelligence is to chase extraction accuracy as the headline metric. Credit teams do not care about character-level accuracy. They care whether the file reaches a decision faster and whether they can trust what they see.</p>
+<p>So we measured turnaround time. Both capabilities delivered roughly a ten percent reduction in TAT on the journeys they touched. The Document Analyzer, which triangulates information across several documents in the same file, cut relationship-manager turnaround by about twenty percent. Those numbers won budget for the next build in a way that an F1 score never would have.</p>
+
+<h2>Design the PII handling before the prompt</h2>
+<p>Lending data is some of the most sensitive data a company can hold. Every one of these capabilities went through the same discipline: decide what personally identifiable information the model needs to see, strip or mask everything else, and log what was sent. We designed that into the data flow first and wrote the prompts second.</p>
+<p>This sounds slow. It was the opposite. Having the PII-risk story ready meant the technology and risk teams aligned early, and the CXO conversations were about outcomes rather than exposure.</p>
+
+<h2>Give operations a way to ask questions</h2>
+<p>The fifth capability was a chatbot over live loan data and policy guidelines. Operations teams used to raise a ticket or find an analyst whenever they needed a number or a rule. Now they ask in plain language. The interesting part was not the model. It was deciding which tables and which policy documents it was allowed to read, and making the answer cite its source so a human could check it.</p>
+
+<h2>What I would tell another product manager</h2>
+<ul>
+  <li>Pick the first use case for adoption, not ambition. A chore that everyone shares beats a decision that nobody wants to hand over.</li>
+  <li>Report the metric your sponsor already tracks. In lending that is almost always turnaround time.</li>
+  <li>Treat PII handling as a product feature. It is the thing that gets you through the door with risk and security.</li>
+  <li>Keep a human as the author of record. Editable output is the difference between a tool that is used and a tool that is audited.</li>
+  <li>Ship into the existing workflow. Nothing we built had its own screen. Every capability lived inside the step where the work already happened.</li>
+</ul>
+
+<p>Five capabilities later, the platform processes credit faster and the analysts spend their time on the judgement they are paid for. That is the whole point.</p>

@@ -1,24 +1,21 @@
 /* ═══════════════════════════════════════════════════════════
-   Asaf Ahmad Shayaan — Portfolio Database v12
+   Asaf Ahmad Shayaan — Portfolio Database v13
    Unified data layer with Collection API
    ═══════════════════════════════════════════════════════════ */
 
 var CATEGORIES = [
-  { id: "los",         label: "Loan Origination Systems",   url: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",  color: "#1A3A5C" },
-  { id: "lending",     label: "Digital Lending",            url: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80",  color: "#2C4A3E" },
-  { id: "msme",        label: "MSME & Credit",              url: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80", color: "#3D2B1F" },
-  { id: "collections", label: "Collections",                url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80", color: "#1C2B3A" },
-  { id: "ai",          label: "AI in Fintech",              url: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80", color: "#1A1A2E" },
-  { id: "product",     label: "Product Strategy",           url: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&q=80", color: "#2E2416" },
-  { id: "ux",          label: "UX & Design",                url: "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=800&q=80", color: "#1A1A1A" },
-  { id: "career",      label: "Career in Product",          url: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",  color: "#1F2937" },
-  { id: "fintech",     label: "Fintech Trends",             url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",  color: "#0F2027" },
-  { id: "banking",     label: "Banking Technology",         url: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80", color: "#1C1C2E" },
-  { id: "underwriting",label: "Credit Underwriting",        url: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80", color: "#2D1B1B" },
-  { id: "startup",     label: "Startup & Growth",           url: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80", color: "#1A2A1A" },
-  { id: "presales",    label: "Pre-Sales & GTM",            url: "https://images.unsplash.com/photo-1561414927-6d86591d0c4f?w=800&q=80",  color: "#2A1F0F" },
-  { id: "data",        label: "Data & Analytics",           url: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80", color: "#0D1B2A" },
-  { id: "payments",    label: "Payments & Embedded Finance",url: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&q=80", color: "#1A0A2E" }
+  { id: "product",      label: "Product Management",           url: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&q=80", color: "#2E2416" },
+  { id: "books",        label: "Learnings from Books",         url: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&q=80", color: "#3D2B1F" },
+  { id: "ai",           label: "AI in Lending",                url: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80", color: "#1A1A2E" },
+  { id: "los",          label: "Loan Origination Systems",     url: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",  color: "#1A3A5C" },
+  { id: "underwriting", label: "Credit Underwriting",          url: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80", color: "#2D1B1B" },
+  { id: "collections",  label: "Collections",                  url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80", color: "#1C2B3A" },
+  { id: "lending",      label: "Digital Lending & Onboarding", url: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80",  color: "#2C4A3E" },
+  { id: "fintech",      label: "Fintech & Banking",            url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",  color: "#0F2027" },
+  { id: "presales",     label: "Pre-Sales & GTM",              url: "https://images.unsplash.com/photo-1561414927-6d86591d0c4f?w=800&q=80",  color: "#2A1F0F" },
+  { id: "career",       label: "Career in Product",            url: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",  color: "#1F2937" },
+  { id: "data",         label: "Data & Analytics",             url: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80", color: "#0D1B2A" },
+  { id: "ux",           label: "UX & Design",                  url: "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=800&q=80", color: "#1A1A1A" }
 ];
 
 var READ_LENGTHS = [
@@ -188,6 +185,54 @@ var DB = {
 
 
 /* ═══════════════════════════════════════════════════════════
+   CONTENT — public articles & documents from data/learnings.json
+   localStorage posts are private to this browser; anything in the
+   JSON file is served by GitHub Pages to every visitor (and Google).
+   ═══════════════════════════════════════════════════════════ */
+var Content = {
+  _data: null, _loading: null,
+  load: function(cb) {
+    var self = this;
+    if (self._data) { cb(self._data); return; }
+    if (!self._loading) {
+      self._loading = fetch('data/learnings.json', { cache: 'no-cache' })
+        .then(function(r) { return r.ok ? r.json() : { articles: [], documents: [] }; })
+        .catch(function() { return { articles: [], documents: [] }; })
+        .then(function(d) { d.articles = d.articles || []; d.documents = d.documents || []; self._data = d; return d; });
+    }
+    self._loading.then(cb);
+  },
+  /* All articles: static JSON first, then anything drafted locally in the admin */
+  articles: function() {
+    var fromJson = (this._data ? this._data.articles : []).map(function(a) {
+      return { id: a.id, title: a.title, date: a.date, cover: a.category, readlength: a.readlength,
+               excerpt: a.excerpt || '', content: a.content || '', source: a.source || '', url: a.url || '', isStatic: true };
+    });
+    var ids = {}; fromJson.forEach(function(a) { ids[a.id] = true; });
+    var local = DB.getPosts().filter(function(p) { return !ids[p.id]; });
+    return fromJson.concat(local).sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
+  },
+  article: function(id) {
+    var list = this.articles();
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+    return null;
+  },
+  documents: function() {
+    return (this._data ? this._data.documents : []).slice().sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
+  },
+  /* Resolve the HTML body of an article (inline content or a fetched file) */
+  body: function(a, cb) {
+    if (a.content) { cb(a.content); return; }
+    if (a.source) {
+      fetch(a.source).then(function(r) { return r.ok ? r.text() : ''; }).catch(function() { return ''; }).then(cb);
+      return;
+    }
+    cb('');
+  }
+};
+
+
+/* ═══════════════════════════════════════════════════════════
    HELPERS
    ═══════════════════════════════════════════════════════════ */
 function toast(msg, type) {
@@ -220,15 +265,31 @@ function buildBlogCard(p, excerptLen) {
   var rl  = p.readlength ? READ_LENGTHS.find(function(r) { return r.id === p.readlength; }) : null;
   var bg  = cat ? "background-image:url('" + cat.url + "');background-size:cover;background-position:center" : 'background:linear-gradient(135deg,#111,#2a2a2a)';
   var badges = '';
-  if (rl)  badges += '<span style="font-family:\'DM Mono\',monospace;font-size:0.6rem;text-transform:uppercase;background:' + rl.color + ';color:#fff;padding:3px 8px;border-radius:2px">' + rl.label + '</span>';
-  if (cat) badges += '<span style="font-family:\'DM Mono\',monospace;font-size:0.6rem;text-transform:uppercase;background:rgba(0,0,0,0.6);color:#fff;padding:3px 8px;border-radius:2px;backdrop-filter:blur(4px)">' + cat.label + '</span>';
-  return '<div class="card blog-card" onclick="window.location=\'post.html?id=' + p.id + '\'">' +
-    '<div class="blog-card-img" style="' + bg + ';position:relative">' +
-    (badges ? '<div style="position:absolute;bottom:12px;left:12px;display:flex;gap:6px;flex-wrap:wrap">' + badges + '</div>' : '') +
+  if (rl)  badges += '<span class="card-badge" style="background:' + rl.color + '">' + rl.label + '</span>';
+  if (cat) badges += '<span class="card-badge card-badge-dark">' + cat.label + '</span>';
+  var text = p.excerpt || stripHtml(p.content || '');
+  if (text.length > excerptLen) text = text.substring(0, excerptLen).replace(/\s+\S*$/, '') + '…';
+  var open = p.url ? "window.open('" + p.url + "','_blank','noopener')" : "window.location='post.html?id=" + p.id + "'";
+  var more = p.url ? 'Read on Medium &nearr;' : 'Read article &rarr;';
+  return '<article class="card blog-card" onclick="' + open + '">' +
+    '<div class="blog-card-img" style="' + bg + ';position:relative" role="img" aria-label="' + (cat ? cat.label : 'Article') + '">' +
+    (badges ? '<div class="card-badges">' + badges + '</div>' : '') +
     '</div><div class="blog-date">' + formatDate(p.date) + '</div>' +
     '<h3 class="blog-title">' + p.title + '</h3>' +
-    '<p class="blog-excerpt">' + stripHtml(p.content).substring(0, excerptLen) + '...</p>' +
-    '<span class="blog-read-more">Read more &rarr;</span></div>';
+    '<p class="blog-excerpt">' + text + '</p>' +
+    '<span class="blog-read-more">' + more + '</span></article>';
+}
+
+function buildDocCard(d) {
+  var cat = d.category ? CATEGORIES.find(function(c) { return c.id === d.category; }) : null;
+  var type = (d.type || (d.file || '').split('.').pop() || 'file').toUpperCase();
+  var isPdf = type === 'PDF';
+  return '<a class="doc-card" href="' + d.file + '" target="_blank" rel="noopener">' +
+    '<span class="doc-type ' + (isPdf ? 'pdf' : 'ppt') + '">' + type + '</span>' +
+    '<div class="doc-info"><h3>' + d.title + '</h3>' +
+    (d.description ? '<p>' + d.description + '</p>' : '') +
+    '<div class="doc-meta">' + formatDate(d.date) + (cat ? ' &middot; ' + cat.label : '') + (d.pages ? ' &middot; ' + d.pages + ' pages' : '') + '</div></div>' +
+    '<span class="doc-dl" aria-hidden="true">&darr;</span></a>';
 }
 
 
