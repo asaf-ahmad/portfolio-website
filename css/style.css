@@ -248,7 +248,7 @@ body.minimal-mode .page-header::before { display: none }
 .sketch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px }
 .sketch-card { background: var(--cream); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: all var(--transition) }
 .sketch-card:hover { transform: translateY(-6px) rotate(0.4deg); box-shadow: var(--shadow-lg) }
-.sketch-img { aspect-ratio: 4/3; overflow: hidden }
+.sketch-img { aspect-ratio: 4/5; overflow: hidden; background: #e9e6df }
 .sketch-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s }
 .sketch-card:hover .sketch-img img { transform: scale(1.06) }
 .sketch-info { padding: 16px 20px }
