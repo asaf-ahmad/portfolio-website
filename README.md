@@ -92,11 +92,26 @@ BreadcrumbList, Article). `sitemap.xml` and `robots.txt` are at the root. After 
 ### Resume
 - Public download page at `/resume-download.html` serves `files/Asaf_Ahmad_Shayaan_Resume.pdf` when present
 
-## Admin Panel
+## Admin Panel (Studio)
 
-1. Go to `yoursite.com/admin.html`
-2. Default password: **Asaf@2026**
-3. Change your password immediately in Settings
+The admin is a single encrypted page at an unlisted address. There is no `admin.html`.
+
+- Source lives in `admin-src/app.html` (git-ignored). `ADMIN_USER=... ADMIN_PASS=... node tools/build_admin.mjs`
+  encrypts it (PBKDF2-SHA256 600k rounds, AES-256-GCM) into `<opaque>/index.html`; the opaque folder name is
+  kept in `.admin-path` (git-ignored) so rebuilds overwrite the same page. Only the ciphertext is committed.
+- Open the page, log in, and add a fine-grained GitHub token (Contents: read/write on this repo) in Settings.
+  Every save commits straight to `main` and GitHub Pages redeploys.
+- It edits: site copy and bio (`data/site.json`), experience, consulting, articles (with banner generation),
+  decks and PDFs, sketches and poems, the resume, any page's HTML, and raw data files. It can also rotate its own
+  login and shows analytics from GoatCounter when a read token is added.
+- Never put the admin address in this README, the sitemap, robots.txt or any page: the repository is public.
+
+## Content pipeline
+
+Pages hydrate from JSON at load time (`data/site.json`, `data/experience.json`, `data/services.json`,
+`data/learnings.json`, `data/creative.json`). The HTML keeps the same text as a fallback for crawlers.
+Forms post to the FormSubmit endpoint in `site.json` (first submission triggers an activation email) and fall
+back to opening the visitor's mail app. Analytics load GoatCounter when `analytics.goatcounter` is set.
 
 ### Admin sections:
 - Dashboard — stats overview + quick actions

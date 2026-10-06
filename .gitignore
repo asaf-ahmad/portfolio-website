@@ -1,0 +1,3 @@
+# admin panel source: only the encrypted build is committed
+admin-src/
+.admin-path

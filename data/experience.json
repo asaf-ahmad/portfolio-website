@@ -1,0 +1,83 @@
+{
+  "_readme": "Experience page content. The page renders from this file; edit here or in the admin panel.",
+  "header": { "title": "Experience", "sub": "Around five years in banking technology: from building a loan origination system as an engineer to owning the AI roadmap for one as a product manager." },
+  "timeline": [
+    {
+      "period": "Apr 2026 — Present",
+      "title": "Senior Product Manager — Loan Origination System & AI",
+      "company": "Care Analytics and Advisory Pvt. Ltd. (CareEdge Group) · India",
+      "bullets": [
+        "Own the AI product roadmap for the lending platform: identifying credit and operations workflows where AI removes manual effort, defining requirements with credit and risk stakeholders, and sequencing the build.",
+        "Designed and launched four AI capabilities into live lending workflows (CAM Automation, Bank Statement Analyzer, Financial Statement Reader, Document Analyzer), each with PII-risk handling built into the data flow.",
+        "Architected an end-to-end straight-through-processing journey for existing-to-bank customers across multiple product nuances, targeting a 90% TAT reduction.",
+        "Leading a USD 1M+ engagement end-to-end: requirements gathering, solution architecture and Agile delivery."
+      ],
+      "tags": ["AI Product Roadmap", "Document Intelligence", "CAM Automation", "STP", "PII Risk", "LOS"]
+    },
+    {
+      "period": "Mar 2025 — Mar 2026",
+      "title": "Product Manager — Loan Origination System",
+      "company": "Care Analytics and Advisory Pvt. Ltd. (CareEdge Group) · India",
+      "bullets": [
+        "Integrated the platform's first AI components into production lending workflows: CAM automation, AI BSA for automated financial spreading and borrower analysis, and an AI chatbot for natural-language querying of loan data and policy guidelines.",
+        "Closed a USD 1M+ deal end-to-end, independently leading proposal authoring, product demos, stakeholder meetings and onsite presentations to client leadership through to signed contract. The largest single deal won in this tenure.",
+        "Led a team of 5 across 5 concurrent end-to-end LOS implementations for global clients valued at USD 1M+, owning scope, budget and timelines to achieve on-time go-lives.",
+        "Architected a Report Generator module with API integrations, model formulation and parameterisation to automate MSME credit underwriting workflows.",
+        "Spearheaded standardisation and a UX revamp of the LOS through continuous user research and workshops, targeting 20% TAT reduction and 30% faster implementations.",
+        "Ideated and formulated a Loan Collections module for a global client and converted the idea to a signed deal within two months.",
+        "Authored 15+ proposals across LOS, Mobile LOS, Collections and Collateral Management, representing a USD 7M+ pipeline.",
+        "Led pre-sales discovery workshops with CXOs and functional heads across India, Bhutan and Sri Lanka, drafting customised credit appraisal transformation solutions.",
+        "Delivered UI/UX upgrades targeting 15% faster loan decision turnaround and upgraded the digital onboarding channel to cut clicks-to-complete by 30%.",
+        "Delivered training, hyper-care and handover artefacts (FSDs, SOPs, user manuals, video walkthroughs) enabling over 95% task self-service by client operations teams within 30 days of go-live."
+      ],
+      "tags": ["LOS", "Pre-Sales", "MSME Credit", "Collections", "AI BSA", "AI Chatbot", "UX Research"]
+    },
+    {
+      "period": "Sep 2020 — Jan 2024",
+      "title": "Senior Software Engineer",
+      "company": "Nucleus Software Exports Ltd. · FinnOne Neo · India",
+      "bullets": [
+        "Built and enhanced FinnOne Neo, Nucleus' customer acquisition system covering the full lending lifecycle from lead generation to disbursement, for a Middle Eastern banking client.",
+        "Led 5 engineers through Agile delivery of 10+ major product customisations aligned to banking requirements.",
+        "Built a digital parsing solution for loan application migration between data formats (95% faster) and a script migration tool that cut data migration from one day to ten minutes.",
+        "Automated code debugging through a custom UI tool, cutting development time 90%; transformed the code-review system impacting 1,000+ employees.",
+        "Architected a three-tier environment structure (Local, Smoke, Quality), reducing performance defects 70%; standardised development templates cut developer idle time 90%.",
+        "Presented product insights and customisation proposals to CXO-level stakeholders at cross-border banking clients."
+      ],
+      "tags": ["FinnOne Neo", "LOS", "Core Java", "SQL", "Agile", "Team Lead"]
+    },
+    {
+      "period": "May 2024 — Aug 2024",
+      "title": "AI Product Management Intern",
+      "company": "Predixion AI",
+      "bullets": ["Defined the IT vision for a debt collection product, built the product architecture to enhance UX, and designed a data enrichment engine that improved decision accuracy."],
+      "tags": []
+    },
+    {
+      "period": "May 2018 — Jul 2018",
+      "title": "Developer Intern",
+      "company": "Aditya Birla Insulator",
+      "bullets": ["Built a business portal to digitise customer order processing, targeting an 80% reduction in order processing time."],
+      "tags": []
+    }
+  ],
+  "education": [
+    { "period": "2023 — 2025", "degree": "PGPM — Information Management", "school": "S.P. Jain Institute of Management & Research (SPJIMR), Mumbai" },
+    { "period": "2016 — 2020", "degree": "B.E. — Electrical & Electronics Engineering", "school": "BITS Pilani, Pilani Campus · Pre-Placement Offer from Nucleus Software · AIR 5,240 in JEE Advanced" }
+  ],
+  "awards": [
+    { "title": "Professional Scrum Product Owner I (PSPO I)", "detail": "Scrum.org" },
+    { "title": "Star of Quarter", "detail": "two consecutive quarters, Care Analytics" },
+    { "title": "Four consecutive above-average appraisals", "detail": "CareEdge Analytics and Advisory and Nucleus Software Exports" },
+    { "title": "SPOT Award", "detail": "Nucleus Software, for transforming the code-review process across 1,000+ employees" },
+    { "title": "Most Innovative Team", "detail": "NSEL Annual Ceremony, for cross-border project implementation" },
+    { "title": "AIR 5,240 in JEE Advanced", "detail": "top 0.5 percentile of 1.2M+ applicants" },
+    { "title": "Founded and scaled a multi-cuisine café", "detail": "₹2.5L+ revenue in four months" }
+  ],
+  "competencies": [
+    { "group": "AI Product", "items": "AI Product Roadmap & Prioritisation · AI Use-Case Discovery · Document Intelligence & Extraction · Conversational Interfaces · Underwriting Automation · PII & Data-Risk Handling · AI Integration into Core Platforms" },
+    { "group": "Product Management", "items": "Product Lifecycle · Feature Scoping & MVP Definition · BRD / FSD Authoring · Go-to-Market · Agile / Scrum (PSPO I) · Design Thinking · User Research · Stakeholder Management · Executive Communication · Pre-Sales" },
+    { "group": "Banking & Lending", "items": "Loan Origination Systems · Business Rule Engine & Credit Decisioning · MSME & SME Credit Underwriting · Credit Appraisal · Collections · Digital Onboarding · KYC / KYB · Collateral Management · Lead-to-Disbursement Lifecycle" },
+    { "group": "Technical", "items": "API Integration · System Architecture · Data Modelling · Python · SQL / RDBMS · Core Java · Claude Code & AI Tooling · Figma · JIRA · Advanced Excel" }
+  ]
+}

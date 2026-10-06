@@ -51,7 +51,7 @@
 </nav>
 <main class="page-body">
   <div class="page-header" data-title="WORK">
-    <div class="container"><h1>Experience</h1><p>Around five years in banking technology: from building a loan origination system as an engineer to owning the AI roadmap for one as a product manager.</p></div>
+    <div class="container"><h1 id="exp-title">Experience</h1><p id="exp-sub">Around five years in banking technology: from building a loan origination system as an engineer to owning the AI roadmap for one as a product manager.</p></div>
   </div>
   <section class="section">
     <div class="container">
@@ -59,7 +59,7 @@
         <div class="reveal">
           <span class="section-label">Career</span>
           <h2 style="margin-bottom:48px">Professional Timeline</h2>
-          <div class="timeline">
+          <div class="timeline" id="timeline-root">
             <div class="timeline-item">
               <div class="timeline-date">Apr 2026 &mdash; Present</div>
               <div class="timeline-title">Senior Product Manager &mdash; Loan Origination System &amp; AI</div>
@@ -121,12 +121,14 @@
         <div class="reveal">
           <span class="section-label">Education</span>
           <h2 style="margin-bottom:40px">Academic Background</h2>
+          <div id="education-root">
           <div class="card" style="margin-bottom:24px"><span class="card-tag">2023 &mdash; 2025</span><h3>PGPM &mdash; Information Management</h3><p style="margin-top:8px">S.P. Jain Institute of Management &amp; Research (SPJIMR), Mumbai</p></div>
           <div class="card" style="margin-bottom:48px"><span class="card-tag">2016 &mdash; 2020</span><h3>B.E. &mdash; Electrical &amp; Electronics Engineering</h3><p style="margin-top:8px">BITS Pilani, Pilani Campus &middot; Pre-Placement Offer from Nucleus Software &middot; AIR 5,240 in JEE Advanced</p></div>
 
+          </div>
           <span class="section-label">Certifications &amp; Awards</span>
           <div class="card" style="margin-top:24px;margin-bottom:48px">
-            <ul class="card-list" style="margin-top:0">
+            <ul class="card-list" style="margin-top:0" id="awards-root">
               <li><strong>Professional Scrum Product Owner I (PSPO I)</strong>, Scrum.org</li>
               <li><strong>Star of Quarter</strong>, two consecutive quarters, Care Analytics</li>
               <li><strong>Four consecutive above-average appraisals</strong>, CareEdge Analytics and Advisory and Nucleus Software Exports</li>
@@ -138,7 +140,7 @@
           </div>
 
           <span class="section-label">Core Competencies</span>
-          <div class="card" style="margin-top:24px">
+          <div class="card" style="margin-top:24px" id="competencies-root">
             <p style="font-size:0.68rem;font-weight:700;color:var(--accent);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.1em;font-family:'DM Mono',monospace">AI Product</p>
             <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:18px">AI Product Roadmap &amp; Prioritisation &middot; AI Use-Case Discovery &middot; Document Intelligence &amp; Extraction &middot; Conversational Interfaces &middot; Underwriting Automation &middot; PII &amp; Data-Risk Handling &middot; AI Integration into Core Platforms</p>
             <p style="font-size:0.68rem;font-weight:700;color:var(--accent);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.1em;font-family:'DM Mono',monospace">Product Management</p>
@@ -157,13 +159,13 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-inner">
-      <div><div class="footer-brand">Asaf<span>.</span></div><div class="footer-tagline">Senior Product Manager &middot; Lending &amp; AI &middot; Mumbai</div></div>
+      <div><div class="footer-brand">Asaf<span>.</span></div><div class="footer-tagline" data-site="footer.tagline">Senior Product Manager &middot; Lending &amp; AI &middot; Mumbai</div></div>
       <div class="footer-nav"><div class="footer-head">Work</div><a href="experience.html">Experience</a><a href="services.html#consultancy">Consultancy</a><a href="services.html#mentoring">Mentoring</a><a href="portfolio.html">Portfolio</a></div>
       <div class="footer-nav"><div class="footer-head">Learnings</div><a href="learnings.html">All Learnings</a><a href="learnings.html?topic=ai">AI in Lending</a><a href="learnings.html?topic=product">Product Management</a><a href="learnings.html?topic=books">Learnings from Books</a></div>
       <div class="footer-nav"><div class="footer-head">Personal</div><a href="about.html">About</a><a href="creative.html">Creative</a><a href="contact.html">Contact</a><a href="resume-download.html">Resume</a></div>
-      <div class="footer-nav"><div class="footer-head">Connect</div><a href="mailto:asaf.ahmad.shayaan@gmail.com">Email</a><a href="https://www.linkedin.com/in/asaf-ahmad/" target="_blank" rel="noopener me">LinkedIn</a><a href="https://wa.me/919784227966" target="_blank" rel="noopener">WhatsApp</a></div>
+      <div class="footer-nav"><div class="footer-head">Connect</div><a href="mailto:asaf.ahmad.shayaan@gmail.com" data-site-href="mailto:contact.email">Email</a><a href="https://www.linkedin.com/in/asaf-ahmad/" target="_blank" rel="noopener me" data-site-href="contact.linkedin">LinkedIn</a><a href="https://wa.me/919784227966" target="_blank" rel="noopener" data-site-href="wa:contact.whatsapp">WhatsApp</a></div>
     </div>
-    <div class="footer-copy">&copy; 2026 Asaf Ahmad Shayaan &middot; Senior Product Manager, Lending &amp; AI Consultant, Mumbai, India &middot; All rights reserved<br><span class="footer-credit">Designed and built by Asaf Ahmad Shayaan. Vibe-coded with Claude Code in HTML, CSS and JavaScript. No template.</span></div>
+    <div class="footer-copy"><span data-site="footer.copy">&copy; 2026 Asaf Ahmad Shayaan &middot; Senior Product Manager, Lending &amp; AI Consultant, Mumbai, India &middot; All rights reserved</span><br><span class="footer-credit" data-site="footer.credit">Designed and built by Asaf Ahmad Shayaan. Vibe-coded with Claude Code in HTML, CSS and JavaScript. No template.</span></div>
   </div>
 </footer>
 <div id="toast" class="toast"></div>

@@ -1,0 +1,45 @@
+{
+  "_readme": "Consultancy & Mentoring page content. The page renders from this file; edit here or in the admin panel.",
+  "header": { "title": "Consultancy & Mentoring", "sub": "Independent lending, AI and product consultancy for banks, NBFCs, fintechs and vendors, plus mentoring for people building a career in product management." },
+  "consultancy": {
+    "label": "Consultancy", "title": "Lending & Fintech Consulting",
+    "desc": "Hire a product consultant who has sat on both sides of the table: built a loan origination system as an engineer, then owned one as a product manager, shipped five AI capabilities into it, and closed the deals that paid for them.",
+    "items": [
+      { "icon": "🏦", "tag": "Lending Systems", "title": "Lending Systems Advisory", "desc": "LOS and LMS selection, vendor evaluation, target architecture and implementation roadmap. Business Rule Engine design so credit policy, eligibility, deviations and approvals live as configuration rather than code. Hands-on with FinnOne Neo and in-house platforms, from lead to disbursement.", "price": "Strategy · Rule Engine · Roadmap" },
+      { "icon": "🤖", "tag": "AI in Lending", "title": "AI in Lending Advisory", "desc": "AI use-case discovery with credit and risk teams, build-versus-buy, CAM automation, bank and financial statement analysis, document intelligence, chatbots over loan data, and PII-risk design that gets through security review.", "price": "Use Cases · Roadmap · PII Design" },
+      { "icon": "🗺", "tag": "Credit Product", "title": "Credit Product Strategy", "desc": "MSME and SME underwriting journeys, straight-through processing for existing-to-bank customers, collections modules, digital onboarding and KYC/KYB. Roadmap reviews, prioritisation and PRD/BRD feedback with TAT as the yardstick.", "price": "Roadmap · Journeys · TAT" },
+      { "icon": "🔍", "tag": "Advisory", "title": "Fintech Due Diligence", "desc": "Technology and product assessment of lending platforms for investors, lenders and acquirers. Tech-stack evaluation, roadmap credibility, build-versus-buy and integration risk.", "price": "Assessment · Evaluation · Risk" },
+      { "icon": "🤝", "tag": "Pre-Sales", "title": "Pre-Sales & Proposal Support", "desc": "Discovery workshop design, RFP responses, proposal authoring and demo strategy for lending technology companies. Fifteen-plus proposals, a USD 7M+ pipeline and a USD 1M+ deal closed end-to-end.", "price": "Workshops · Proposals · Demos" },
+      { "icon": "⚡", "tag": "Fractional", "title": "Fractional Product Leadership", "desc": "A few days a month as the product lead for a team that is not ready for a full-time hire. Lending and fintech are home ground, but the method travels: roadmap, discovery, delivery cadence and stakeholder alignment work the same in any product team.", "price": "Retainer · Part-Time · Interim" }
+    ]
+  },
+  "mentoring": {
+    "label": "Mentoring", "title": "Product Management Mentoring",
+    "desc": "I moved from engineering into product, through a PGPM at SPJIMR, into owning an AI roadmap. I mentor people making the same moves. Sessions are one-to-one and practical.",
+    "items": [
+      { "icon": "🚀", "tag": "Career", "title": "Product Management Career Mentoring", "desc": "Engineer-to-PM transitions, positioning for product roles in fintech or anywhere else, resume and portfolio review, interview preparation and offer negotiation. Honest feedback, specific next steps.", "price": "Transition · Resume · Interviews" },
+      { "icon": "📚", "tag": "Domain", "title": "Lending & Fintech Domain Coaching", "desc": "For PMs, analysts and engineers entering BFSI: how a loan origination system actually works, MSME underwriting, collections, onboarding and KYC, and where AI fits. The domain crash course I wish I had.", "price": "LOS · Underwriting · AI" },
+      { "icon": "🎓", "tag": "Early Career", "title": "Early-Career & B-School Guidance", "desc": "From BITS Pilani to SPJIMR to product leadership. Guidance on internships, choosing between engineering and management tracks, B-school applications and landing a first product role.", "price": "Guidance · Applications · First Role" }
+    ]
+  },
+  "steps": {
+    "label": "How It Works", "title": "Simple to start",
+    "items": [
+      { "title": "Share the brief", "desc": "Pick a service below and tell me what you are trying to do in a few lines. Two minutes is enough." },
+      { "title": "Thirty-minute discovery call", "desc": "We talk through the problem, what good looks like and whether I am the right person. No charge for this conversation." },
+      { "title": "Agree the format", "desc": "A single advisory session, a two-to-four-week sprint, or a monthly retainer. Mentoring is usually a short series of one-to-one sessions." }
+    ]
+  },
+  "faq": {
+    "label": "FAQ", "title": "Questions people ask before hiring",
+    "items": [
+      { "q": "Who do you typically consult for?", "a": "Banks and NBFCs building or buying lending technology, fintechs designing credit products, lending-software vendors who need pre-sales or product help, and investors assessing a lending platform. Fractional product work and mentoring are not limited to fintech. Engagements have covered India, Sri Lanka, Bhutan and the Middle East." },
+      { "q": "What makes you different from a generalist product consultant?", "a": "I have built a loan origination system as an engineer, run five concurrent LOS implementations as a product manager, shipped five AI capabilities into live credit workflows, and closed a USD 1M+ deal myself. The advice comes from having done the work, not from a framework." },
+      { "q": "Can you help us decide whether to build AI in-house or buy it?", "a": "Yes. That decision is most of what AI-in-lending advisory is about. We look at the use case, the data you actually hold, the PII and regulatory exposure, the vendor landscape and your team's capacity, then write it up as a recommendation your risk and technology teams can both sign." },
+      { "q": "How is mentoring structured?", "a": "One-to-one sessions of forty-five to sixty minutes. Most people book three to five sessions over a couple of months. You bring the goal, I bring structure, feedback and a point of view from inside fintech product management." },
+      { "q": "Do you work remotely?", "a": "Yes. I am based in Mumbai and work remotely with clients across time zones. Onsite workshops can be arranged for discovery and pre-sales engagements in India and nearby markets." },
+      { "q": "How do fees work?", "a": "Advisory sessions are priced per session, sprints as a fixed fee and retainers monthly. Mentoring is priced per session with a discount for a series. Send the brief and I will reply with a quote after the discovery call." }
+    ]
+  },
+  "form": { "title": "Send a brief", "hint": "Select a service above, or just describe what you need.", "button": "Send Brief by Email →" }
+}

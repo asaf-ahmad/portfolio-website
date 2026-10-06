@@ -55,8 +55,8 @@
     <div class="hero-bg-text">LENDING</div>
 
     <!-- Artsy-only doodles (hidden in Minimal) -->
-    <div class="doodle-note left artsy-only">Engineer at heart<br>Product by trade<br>Problem Solver<br>Always Learning</div>
-    <div class="doodle-note right artsy-only">Ideas<br>To<br>Production<small>&lt;/&gt;</small></div>
+    <div class="doodle-note left artsy-only" data-site-html="hero.note_left_html">Engineer at heart<br>Product by trade<br>Problem Solver<br>Always Learning</div>
+    <div class="doodle-note right artsy-only" data-site-html="hero.note_right_html">Ideas<br>To<br>Production<small>&lt;/&gt;</small></div>
     <div class="doodle d-arrow-1 artsy-only"><svg viewBox="0 0 90 60"><path d="M4 52c20-30 48-40 80-30" fill="none" stroke="#BFFF3C" stroke-width="3.5" stroke-linecap="round"/><path d="M72 14l13 8-9 11" fill="none" stroke="#BFFF3C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     <div class="doodle d-scribble-1 artsy-only"><svg viewBox="0 0 120 34"><path d="M3 24c10-18 18 14 30-6s16 14 30-6 16 14 30-6 10 8 24-2" fill="none" stroke="#B14BFF" stroke-width="4" stroke-linecap="round"/></svg></div>
     <div class="doodle d-bolt-1 artsy-only"><svg viewBox="0 0 40 70"><path d="M24 2 6 40h14l-6 28 22-42H22z" fill="#FFD23F" stroke="#0A0A0E" stroke-width="2" stroke-linejoin="round"/></svg></div>
@@ -68,22 +68,22 @@
 
     <div class="hero-content">
       <div class="hero-text">
-        <div class="hero-eyebrow">Senior Product Manager &middot; Lending &amp; AI &middot; Mumbai, India</div>
+        <div class="hero-eyebrow" data-site="hero.eyebrow">Senior Product Manager &middot; Lending &amp; AI &middot; Mumbai, India</div>
         <div class="artsy-hey artsy-only">Hey, <span>I'm</span></div>
-        <h1 class="minimal-only" id="hero-title">Building AI-Powered<br>Credit Products<em>That Actually Work</em></h1>
+        <h1 class="minimal-only" id="hero-title" data-site-html="hero.headline_html">Building AI-Powered<br>Credit Products<em>That Actually Work</em></h1>
         <h1 class="artsy-name artsy-only">ASAF<span class="sr-only"> Ahmad Shayaan, Senior Product Manager for Lending &amp; AI</span><span class="artsy-crown"><svg viewBox="0 0 40 34"><path d="M3 30h34l-3-20-8 8-6-14-6 14-8-8z" fill="#FFD23F" stroke="#0A0A0E" stroke-width="2" stroke-linejoin="round"/></svg></span></h1>
-        <div class="artsy-role artsy-only">Senior Product Manager &middot; Lending &amp; AI</div>
-        <p class="hero-desc">Engineer turned product manager, with around five years in banking technology. Five production AI capabilities shipped into a live lending platform. A USD 1M+ deal closed end-to-end. I build credit products for banks and NBFCs across India, Sri Lanka, Bhutan and the Middle East, and I consult and mentor on the side.</p>
-        <ul class="artsy-tech artsy-only"><li>Loan Origination</li><li>AI Products</li><li>Rule Engine</li><li>Java &middot; Python &middot; SQL</li><li>APIs &amp; Architecture</li><li>Pre-Sales</li></ul>
+        <div class="artsy-role artsy-only" data-site="hero.artsy_role">Senior Product Manager &middot; Lending &amp; AI</div>
+        <p class="hero-desc" data-site="hero.description">Engineer turned product manager, with around five years in banking technology. Five production AI capabilities shipped into a live lending platform. A USD 1M+ deal closed end-to-end. I build credit products for banks and NBFCs across India, Sri Lanka, Bhutan and the Middle East, and I consult and mentor on the side.</p>
+        <ul class="artsy-tech artsy-only" data-site-render="tech" data-site-src="hero.tech"><li>Loan Origination</li><li>AI Products</li><li>Rule Engine</li><li>Java &middot; Python &middot; SQL</li><li>APIs &amp; Architecture</li><li>Pre-Sales</li></ul>
         <div class="hero-btns">
-          <a href="services.html" class="btn btn-gold">Work With Me &rarr;</a>
-          <a href="experience.html" class="btn btn-outline-light">See My Experience</a>
+          <a href="services.html" class="btn btn-gold" data-site="hero.cta_primary.label" data-site-href="hero.cta_primary.href">Work With Me &rarr;</a>
+          <a href="experience.html" class="btn btn-outline-light" data-site="hero.cta_secondary.label" data-site-href="hero.cta_secondary.href">See My Experience</a>
         </div>
       </div>
       <div class="hero-art artsy-only">
-        <div class="artsy-bubble">I TURN THOUGHTS TO PRODUCTS</div>
-        <div class="artsy-sticker s1">&#9823; CHESS<br>&#9992; AIRCRAFT<br>&#127918; FIFA</div>
-        <div class="artsy-sticker s2">Discover &middot; Define<br>Design &middot; Deliver</div>
+        <div class="artsy-bubble" data-site="hero.bubble">I TURN THOUGHTS TO PRODUCTS</div>
+        <div class="artsy-sticker s1" data-site-html="hero.sticker_1_html">&#9823; CHESS<br>&#9992; AIRCRAFT<br>&#127918; FIFA</div>
+        <div class="artsy-sticker s2" data-site-html="hero.sticker_2_html">Discover &middot; Define<br>Design &middot; Deliver</div>
         <div class="artsy-avatar">
           <!-- Drop a transparent PNG at img/avatar.png to replace the placeholder -->
           <img src="img/avatar.png" alt="Illustration of Asaf Ahmad Shayaan" onload="this.parentNode.classList.add('has-img')"/>
@@ -92,7 +92,7 @@
       </div>
     </div>
     <div class="hero-scroll">Scroll</div>
-    <div class="stats-bar" style="position:absolute;bottom:0;left:0;right:0">
+    <div class="stats-bar" style="position:absolute;bottom:0;left:0;right:0" data-site-render="stats" data-site-src="hero.stats">
       <div class="stat-item"><div class="stat-value">5<sup style="font-size:0.5em;vertical-align:super">+</sup></div><div class="stat-label">Years in Banking Tech</div></div>
       <div class="stat-item"><div class="stat-value">5</div><div class="stat-label">AI Products in Production</div></div>
       <div class="stat-item"><div class="stat-value">$7M<sup style="font-size:0.5em;vertical-align:super">+</sup></div><div class="stat-label">Proposal Pipeline Authored</div></div>
@@ -102,7 +102,7 @@
 
   <section class="section" style="background:var(--paper-dark)" aria-labelledby="expertise-title">
     <div class="container">
-      <div class="reveal"><span class="section-label">What I Do</span><h2 class="section-title" id="expertise-title">Lending &amp; AI Expertise</h2><p class="section-desc">Deep product experience across the full lending lifecycle, from lead to disbursement to collections, with AI built into the workflow rather than bolted on.</p></div>
+      <div class="reveal"><span class="section-label" data-site="labels.home_expertise_label">What I Do</span><h2 class="section-title" id="expertise-title" data-site="labels.home_expertise_title">Lending &amp; AI Expertise</h2><p class="section-desc">Deep product experience across the full lending lifecycle, from lead to disbursement to collections, with AI built into the workflow rather than bolted on.</p></div>
       <div class="grid-3 reveal">
         <div class="card"><span class="card-tag">Core Domain</span><h3>AI in Lending</h3><p>Own the AI product roadmap for an enterprise lending platform. Use-case discovery with credit and risk teams, requirement definition, prioritisation and adoption after go-live, with PII-risk handling designed into every component.</p></div>
         <div class="card"><span class="card-tag">Core Domain</span><h3>Loan Origination Systems</h3><p>End-to-end LOS strategy, architecture and implementation. Three years building FinnOne Neo for a Middle Eastern bank, then five concurrent LOS roll-outs for global clients as a product manager.</p></div>
@@ -118,7 +118,7 @@
 
   <section class="section" aria-labelledby="ai-title">
     <div class="container">
-      <div class="reveal"><span class="section-label">Shipped</span><h2 class="section-title" id="ai-title">Five AI Products in Production</h2><p class="section-desc">Each of these runs inside live lending workflows today, replacing manual effort for credit analysts, relationship managers and operations teams.</p></div>
+      <div class="reveal"><span class="section-label" data-site="labels.home_ai_label">Shipped</span><h2 class="section-title" id="ai-title" data-site="labels.home_ai_title">Five AI Products in Production</h2><p class="section-desc">Each of these runs inside live lending workflows today, replacing manual effort for credit analysts, relationship managers and operations teams.</p></div>
       <div class="blog-grid reveal">
         <div class="card"><span class="card-tag">Credit Appraisal</span><h3>CAM Automation Agent</h3><p>AI-generated credit appraisal commentary across multiple SME risk dimensions, replacing manual analyst write-ups inside the decisioning flow.</p><span class="impact">Impact <strong>Analyst write-ups automated</strong></span></div>
         <div class="card"><span class="card-tag">Document Intelligence</span><h3>AI Bank Statement Analyzer</h3><p>Automated statement spreading and borrower analysis with PII-risk controls designed into the data flow.</p><span class="impact">Impact <strong>10% TAT reduction</strong></span></div>
@@ -131,7 +131,7 @@
 
   <section class="section" aria-labelledby="builder-title">
     <div class="container">
-      <div class="reveal"><span class="section-label">Builder First</span><h2 class="section-title" id="builder-title">Technical Enough to Build It, Product Enough to Ship It</h2><p class="section-desc">I spent three and a half years as a software engineer before I became a product manager. The craft I use every day is not tied to lending, it just happens to be where I have used it most.</p></div>
+      <div class="reveal"><span class="section-label" data-site="labels.home_builder_label">Builder First</span><h2 class="section-title" id="builder-title" data-site="labels.home_builder_title">Technical Enough to Build It, Product Enough to Ship It</h2><p class="section-desc">I spent three and a half years as a software engineer before I became a product manager. The craft I use every day is not tied to lending, it just happens to be where I have used it most.</p></div>
       <div class="grid-2 reveal" style="gap:28px;margin-bottom:28px">
         <div class="card">
           <span class="card-tag">Engineering Roots</span>
@@ -146,7 +146,7 @@
           <ul class="card-list"><li>0 to 1 products: collections module from idea to signed deal in two months</li><li>AI products in production, with PII and risk designed in</li><li>Pre-sales, proposals and CXO workshops</li><li>Research-led UX and onboarding redesign</li></ul>
         </div>
       </div>
-      <div class="hobby-row reveal">
+      <div class="hobby-row reveal" data-site-render="hobbies" data-site-src="hobbies">
         <span class="hobby-label">Off the clock</span>
         <div class="hobby"><span class="hobby-icon">&#9823;</span><div><strong>Chess</strong><small>Positional play, slow games, too many openings half-learnt</small></div></div>
         <div class="hobby"><span class="hobby-icon">&#9992;</span><div><strong>Aircraft</strong><small>Can identify most airliners by the engine nacelles alone</small></div></div>
@@ -158,7 +158,7 @@
   <section class="section" style="background:var(--paper-dark)" aria-labelledby="skills-title">
     <div class="container">
       <div class="skills-head reveal">
-        <div><span class="section-label">Toolkit</span><h2 class="section-title" id="skills-title" style="margin-bottom:0">Skills &amp; Tools</h2></div>
+        <div><span class="section-label" data-site="labels.home_skills_label">Toolkit</span><h2 class="section-title" id="skills-title" style="margin-bottom:0" data-site="labels.home_skills_title">Skills &amp; Tools</h2></div>
         <span class="skills-note">What I work with</span>
       </div>
       <div class="skills-grid reveal">
@@ -184,7 +184,7 @@
   <section class="section" aria-labelledby="learnings-title">
     <div class="container">
       <div class="section-split reveal">
-        <div><span class="section-label">Learnings</span><h2 class="section-title" id="learnings-title">Latest Learnings</h2><p class="section-desc">Articles on product management, AI in lending and what I take from the books I read.</p></div>
+        <div><span class="section-label" data-site="labels.home_learnings_label">Learnings</span><h2 class="section-title" id="learnings-title" data-site="labels.home_learnings_title">Latest Learnings</h2><p class="section-desc">Articles on product management, AI in lending and what I take from the books I read.</p></div>
         <a href="learnings.html" class="btn btn-outline-ink">All Learnings &rarr;</a>
       </div>
       <div class="blog-grid reveal" id="home-posts"><div class="empty-state"><h3>Loading&hellip;</h3></div></div>
@@ -193,7 +193,7 @@
 
   <section class="section" style="background:var(--paper-dark)" aria-labelledby="consult-title">
     <div class="container">
-      <div class="reveal"><span class="section-label">Work With Me</span><h2 class="section-title" id="consult-title">Consultancy &amp; Mentoring</h2><p class="section-desc">Independent advice for teams building or buying lending technology, and mentoring for people building a career in product.</p></div>
+      <div class="reveal"><span class="section-label" data-site="labels.home_consult_label">Work With Me</span><h2 class="section-title" id="consult-title" data-site="labels.home_consult_title">Consultancy &amp; Mentoring</h2><p class="section-desc">Independent advice for teams building or buying lending technology, and mentoring for people building a career in product.</p></div>
       <div class="grid-2 reveal" style="gap:28px">
         <div class="card">
           <span class="card-tag">Consultancy</span>
@@ -213,12 +213,34 @@
     </div>
   </section>
 
+  <section class="section" aria-labelledby="note-title" id="say-anything">
+    <div class="container">
+      <div class="notebox reveal" id="notebox">
+        <div class="nb-copy">
+          <span class="section-label" data-site="notebox.label">Say Anything</span>
+          <h2 id="note-title" data-site="notebox.title">Drop me a line</h2>
+          <p data-site="notebox.text">Appreciation, a question, a disagreement, a book I should read, a problem you are stuck on, or just hello. No form to fill, no account. It lands straight in my inbox.</p>
+        </div>
+        <div class="nb-form">
+          <textarea id="nb-msg" rows="5" placeholder="Write anything…" aria-label="Your message"></textarea>
+          <div class="nb-row">
+            <input type="text" id="nb-name" placeholder="Your name (optional)" autocomplete="name" aria-label="Your name"/>
+            <input type="email" id="nb-email" placeholder="Email, if you want a reply" autocomplete="email" aria-label="Your email"/>
+            <input type="text" id="nb-hp" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true"/>
+            <button class="btn btn-ink" type="button" data-site="notebox.button">Send it &rarr;</button>
+          </div>
+        </div>
+        <p class="nb-done" id="nb-done" style="display:none"></p>
+      </div>
+    </div>
+  </section>
+
   <section class="section" style="background:var(--ink);position:relative;overflow:hidden" aria-labelledby="creative-title">
     <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(184,150,46,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(184,150,46,0.03) 1px,transparent 1px);background-size:60px 60px"></div>
     <div class="container" style="position:relative;z-index:1">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center" class="reveal">
         <div>
-          <span class="section-label">Beyond Work</span>
+          <span class="section-label" data-site="labels.home_creative_label">Beyond Work</span>
           <h2 style="color:var(--paper);margin-bottom:20px" id="creative-title">Sketches &amp;<br><em style="font-style:italic;color:var(--gold-light)">Poems</em></h2>
           <p style="color:rgba(247,244,238,0.5);font-weight:300;line-height:2;margin-bottom:36px">A product manager who builds credit systems by day and writes verse by night. Sketches, poetry and unstructured thought.</p>
           <a href="creative.html" class="btn btn-gold">Explore Creative &rarr;</a>
@@ -234,13 +256,13 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-inner">
-      <div><div class="footer-brand">Asaf<span>.</span></div><div class="footer-tagline">Senior Product Manager &middot; Lending &amp; AI &middot; Mumbai</div></div>
+      <div><div class="footer-brand">Asaf<span>.</span></div><div class="footer-tagline" data-site="footer.tagline">Senior Product Manager &middot; Lending &amp; AI &middot; Mumbai</div></div>
       <div class="footer-nav"><div class="footer-head">Work</div><a href="experience.html">Experience</a><a href="services.html#consultancy">Consultancy</a><a href="services.html#mentoring">Mentoring</a><a href="portfolio.html">Portfolio</a></div>
       <div class="footer-nav"><div class="footer-head">Learnings</div><a href="learnings.html">All Learnings</a><a href="learnings.html?topic=ai">AI in Lending</a><a href="learnings.html?topic=product">Product Management</a><a href="learnings.html?topic=books">Learnings from Books</a></div>
       <div class="footer-nav"><div class="footer-head">Personal</div><a href="about.html">About</a><a href="creative.html">Creative</a><a href="contact.html">Contact</a><a href="resume-download.html">Resume</a></div>
-      <div class="footer-nav"><div class="footer-head">Connect</div><a href="mailto:asaf.ahmad.shayaan@gmail.com">Email</a><a href="https://www.linkedin.com/in/asaf-ahmad/" target="_blank" rel="noopener me">LinkedIn</a><a href="https://wa.me/919784227966" target="_blank" rel="noopener">WhatsApp</a></div>
+      <div class="footer-nav"><div class="footer-head">Connect</div><a href="mailto:asaf.ahmad.shayaan@gmail.com" data-site-href="mailto:contact.email">Email</a><a href="https://www.linkedin.com/in/asaf-ahmad/" target="_blank" rel="noopener me" data-site-href="contact.linkedin">LinkedIn</a><a href="https://wa.me/919784227966" target="_blank" rel="noopener" data-site-href="wa:contact.whatsapp">WhatsApp</a></div>
     </div>
-    <div class="footer-copy">&copy; 2026 Asaf Ahmad Shayaan &middot; Senior Product Manager, Lending &amp; AI Consultant, Mumbai, India &middot; All rights reserved<br><span class="footer-credit">Designed and built by Asaf Ahmad Shayaan. Vibe-coded with Claude Code in HTML, CSS and JavaScript. No template.</span></div>
+    <div class="footer-copy"><span data-site="footer.copy">&copy; 2026 Asaf Ahmad Shayaan &middot; Senior Product Manager, Lending &amp; AI Consultant, Mumbai, India &middot; All rights reserved</span><br><span class="footer-credit" data-site="footer.credit">Designed and built by Asaf Ahmad Shayaan. Vibe-coded with Claude Code in HTML, CSS and JavaScript. No template.</span></div>
   </div>
 </footer>
 <div id="toast" class="toast"></div>

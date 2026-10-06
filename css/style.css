@@ -534,3 +534,17 @@ body:not(.minimal-mode) .poem-card::after { color: rgba(184,150,46,0.07) }
 .hobby-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--ink); color: var(--paper); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0 }
 .hobby strong { display: block; font-size: 0.95rem; color: var(--ink) }
 .hobby small { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4 }
+
+/* ═══════════════════════════════════════════════════
+   NOTE BOX (home)
+   ═══════════════════════════════════════════════════ */
+.notebox { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: center; background: var(--cream); border: 1px solid var(--border); border-radius: var(--radius); padding: 48px; position: relative }
+.nb-copy h2 { margin-bottom: 14px }
+.nb-copy p { color: var(--text-soft); font-size: 0.95rem; line-height: 1.8 }
+.nb-form textarea, .nb-form input { width: 100%; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius); font-family: 'Raleway', sans-serif; font-size: 0.95rem; color: var(--text); background: var(--paper); transition: border-color var(--transition) }
+.nb-form textarea { min-height: 150px; resize: vertical; margin-bottom: 12px; line-height: 1.7 }
+.nb-form textarea:focus, .nb-form input:focus { outline: none; border-color: var(--accent) }
+.nb-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: stretch }
+.nb-row .btn { justify-content: center; white-space: nowrap }
+.nb-done { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; color: var(--ink); grid-column: 1 / -1 }
+@media (max-width: 900px) { .notebox { grid-template-columns: 1fr; gap: 24px; padding: 28px } .nb-row { grid-template-columns: 1fr } }

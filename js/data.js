@@ -233,6 +233,127 @@ var Content = {
 
 
 /* ═══════════════════════════════════════════════════════════
+   SITE CONTENT — data/site.json hydrates [data-site*] elements
+   ═══════════════════════════════════════════════════════════ */
+function esc(t) { return String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+function getPath(o, p) { return p.split('.').reduce(function(a, k) { return a == null ? undefined : a[k]; }, o); }
+function fetchJSON(url, cb) {
+  fetch(url, { cache: 'no-cache' }).then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }).then(cb);
+}
+var SiteRenderers = {
+  stats: function(a) { return a.map(function(x) { return '<div class="stat-item"><div class="stat-value">' + x.value.replace(/\+$/, '<sup style="font-size:0.5em;vertical-align:super">+</sup>') + '</div><div class="stat-label">' + esc(x.label) + '</div></div>'; }).join(''); },
+  tech: function(a) { return a.map(function(x) { return '<li>' + esc(x) + '</li>'; }).join(''); },
+  hobbies: function(a) { return '<span class="hobby-label">Off the clock</span>' + a.map(function(h) { return '<div class="hobby"><span class="hobby-icon">' + h.icon + '</span><div><strong>' + esc(h.title) + '</strong><small>' + esc(h.note) + '</small></div></div>'; }).join(''); },
+  about_paragraphs: function(a) { return a.map(function(p, i) { return '<p style="margin-bottom:' + (i === a.length - 1 ? 36 : 18) + 'px">' + esc(p) + '</p>'; }).join(''); },
+  profile: function(a) { return a.map(function(r) { return '<div style="display:flex;gap:16px"><span style="color:rgba(247,244,238,0.3);font-size:0.72rem;width:90px;flex-shrink:0;font-family:\'DM Mono\',monospace;letter-spacing:0.06em;text-transform:uppercase;padding-top:2px">' + esc(r.k) + '</span><span style="font-size:0.92rem;color:var(--paper)">' + esc(r.v) + '</span></div>'; }).join(''); },
+  competencies: function(a) { return a.map(function(t) { return '<span class="tag">' + esc(t) + '</span>'; }).join(''); }
+};
+function hydrateSite(d) {
+  if (!d) return;
+  document.querySelectorAll('[data-site]').forEach(function(el) { var v = getPath(d, el.getAttribute('data-site')); if (typeof v === 'string') el.textContent = v; });
+  document.querySelectorAll('[data-site-html]').forEach(function(el) { var v = getPath(d, el.getAttribute('data-site-html')); if (typeof v === 'string') el.innerHTML = v; });
+  document.querySelectorAll('[data-site-href]').forEach(function(el) {
+    var spec = el.getAttribute('data-site-href'), m = spec.match(/^(mailto|tel|wa):(.+)$/), key = m ? m[2] : spec, v = getPath(d, key);
+    if (typeof v !== 'string') return;
+    if (!m) el.href = v;
+    else if (m[1] === 'mailto') el.href = 'mailto:' + v;
+    else if (m[1] === 'tel') el.href = 'tel:' + v;
+    else el.href = 'https://wa.me/' + v + (d.contact && d.contact.whatsapp_text ? '?text=' + encodeURIComponent(d.contact.whatsapp_text) : '');
+  });
+  document.querySelectorAll('[data-site-render]').forEach(function(el) {
+    var name = el.getAttribute('data-site-render'), src = el.getAttribute('data-site-src'), v = getPath(d, src);
+    if (Array.isArray(v) && SiteRenderers[name]) el.innerHTML = SiteRenderers[name](v);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   EXPERIENCE + SERVICES — rendered from data/*.json
+   ═══════════════════════════════════════════════════════════ */
+function renderExperience(d) {
+  if (!d) return;
+  var t = document.getElementById('exp-title'), su = document.getElementById('exp-sub');
+  if (t && d.header) t.textContent = d.header.title; if (su && d.header) su.textContent = d.header.sub;
+  var tl = document.getElementById('timeline-root');
+  if (tl && d.timeline) tl.innerHTML = d.timeline.map(function(j) {
+    return '<div class="timeline-item"><div class="timeline-date">' + esc(j.period) + '</div><div class="timeline-title">' + esc(j.title) + '</div><div class="timeline-company">' + esc(j.company) + '</div>' +
+      '<div class="timeline-body">' + (j.bullets && j.bullets.length > 1 ? '<ul>' + j.bullets.map(function(b) { return '<li>' + esc(b) + '</li>'; }).join('') + '</ul>' : '<p>' + esc((j.bullets || [])[0] || '') + '</p>') + '</div>' +
+      (j.tags && j.tags.length ? '<div class="timeline-tags">' + j.tags.map(function(x) { return '<span class="tag">' + esc(x) + '</span>'; }).join('') + '</div>' : '') + '</div>';
+  }).join('');
+  var ed = document.getElementById('education-root');
+  if (ed && d.education) ed.innerHTML = d.education.map(function(e, i) { return '<div class="card" style="margin-bottom:' + (i === d.education.length - 1 ? 48 : 24) + 'px"><span class="card-tag">' + esc(e.period) + '</span><h3>' + esc(e.degree) + '</h3><p style="margin-top:8px">' + esc(e.school) + '</p></div>'; }).join('');
+  var aw = document.getElementById('awards-root');
+  if (aw && d.awards) aw.innerHTML = d.awards.map(function(a) { return '<li><strong>' + esc(a.title) + '</strong>' + (a.detail ? ', ' + esc(a.detail) : '') + '</li>'; }).join('');
+  var co = document.getElementById('competencies-root');
+  if (co && d.competencies) co.innerHTML = d.competencies.map(function(c, i) { return '<p style="font-size:0.68rem;font-weight:700;color:var(--accent);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.1em;font-family:\'DM Mono\',monospace">' + esc(c.group) + '</p><p style="font-size:0.88rem;color:var(--text-muted)' + (i === d.competencies.length - 1 ? '' : ';margin-bottom:18px') + '">' + esc(c.items) + '</p>'; }).join('');
+}
+function renderServices(d) {
+  if (!d) return;
+  function head(sec, blk) { if (!sec || !blk) return; var l = sec.querySelector('.section-label'), t = sec.querySelector('.section-title'), ds = sec.querySelector('.section-desc'); if (l && blk.label) l.textContent = blk.label; if (t && blk.title) t.textContent = blk.title; if (ds && blk.desc) ds.textContent = blk.desc; }
+  function cards(items) { return items.map(function(x) { return '<div class="card service-card" onclick="selectService(\'' + esc(x.title).replace(/'/g, "\\'") + '\',this)"><div class="service-icon">' + x.icon + '</div><span class="card-tag">' + esc(x.tag) + '</span><h3>' + esc(x.title) + '</h3><p>' + esc(x.desc) + '</p><span class="service-price">' + esc(x.price) + '</span></div>'; }).join(''); }
+  var h1 = document.querySelector('.page-header h1'), hp = document.querySelector('.page-header p');
+  if (h1 && d.header) h1.textContent = d.header.title; if (hp && d.header) hp.textContent = d.header.sub;
+  var c = document.getElementById('consultancy'), m = document.getElementById('mentoring');
+  if (c && d.consultancy) { head(c, d.consultancy); var g = c.querySelector('.services-grid'); if (g) g.innerHTML = cards(d.consultancy.items || []); }
+  if (m && d.mentoring) { head(m, d.mentoring); var g2 = m.querySelector('.services-grid'); if (g2) g2.innerHTML = cards(d.mentoring.items || []); }
+  var st = document.querySelector('.steps');
+  if (st && d.steps) { head(st.closest('section'), d.steps); st.innerHTML = (d.steps.items || []).map(function(x) { return '<div class="step"><h3>' + esc(x.title) + '</h3><p>' + esc(x.desc) + '</p></div>'; }).join(''); }
+  var fq = document.querySelector('.faq');
+  if (fq && d.faq) { head(fq.closest('section'), d.faq); fq.innerHTML = (d.faq.items || []).map(function(x) { return '<details><summary>' + esc(x.q) + '</summary><p>' + esc(x.a) + '</p></details>'; }).join(''); }
+  if (d.form) { var ft = document.querySelector('#booking-section h3'), fh = document.getElementById('selected-service-label'), fb = document.querySelector('#booking-section .btn'); if (ft) ft.textContent = d.form.title; if (fh && !fh.dataset.touched) fh.textContent = d.form.hint; if (fb && d.form.button) fb.innerHTML = esc(d.form.button); }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ANALYTICS — GoatCounter page views + a time-on-page beacon
+   ═══════════════════════════════════════════════════════════ */
+function initAnalytics(d) {
+  var code = d && d.analytics && d.analytics.goatcounter;
+  if (!code || /^(localhost|127\.)/.test(location.hostname)) return;
+  var endpoint = 'https://' + code + '.goatcounter.com/count';
+  var s = document.createElement('script'); s.async = true; s.src = '//gc.zgo.at/count.js'; s.setAttribute('data-goatcounter', endpoint); document.head.appendChild(s);
+  var start = Date.now(), active = 0, sent = false;
+  document.addEventListener('visibilitychange', function() { if (document.hidden) { active += Date.now() - start; } else { start = Date.now(); } });
+  function bucket(sec) { return sec < 10 ? 't-10s' : sec < 30 ? 't-30s' : sec < 60 ? 't-60s' : sec < 180 ? 't-3m' : sec < 600 ? 't-10m' : 't-10m-plus'; }
+  window.addEventListener('pagehide', function() {
+    if (sent) return; sent = true;
+    var sec = Math.round((active + (document.hidden ? 0 : Date.now() - start)) / 1000);
+    var url = endpoint + '?p=' + encodeURIComponent(bucket(sec)) + '&e=true&t=' + encodeURIComponent('Time on page ' + bucket(sec)) + '&r=' + encodeURIComponent(location.pathname);
+    if (navigator.sendBeacon) navigator.sendBeacon(url); else { var i = new Image(); i.src = url; }
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FORMS — post to the configured endpoint, fall back to mailto
+   ═══════════════════════════════════════════════════════════ */
+function postForm(fields, subject) {
+  var ep = window.SITE && window.SITE.forms && window.SITE.forms.endpoint;
+  var email = (window.SITE && window.SITE.contact && window.SITE.contact.email) || 'asaf.ahmad.shayaan@gmail.com';
+  var body = Object.keys(fields).map(function(k) { return k + ': ' + fields[k]; }).join('\n');
+  function mailto() { window.location.href = 'mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body); return Promise.resolve({ via: 'mailto' }); }
+  if (!ep) return mailto();
+  var payload = Object.assign({}, fields, { _subject: subject, _template: 'table', _captcha: 'false', _honey: '' });
+  return fetch(ep, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload) })
+    .then(function(r) { if (!r.ok) throw new Error('endpoint ' + r.status); return r.json(); })
+    .then(function(j) { if (j && (j.success === 'true' || j.success === true)) return { via: 'endpoint' }; throw new Error('endpoint rejected'); })
+    .catch(function() { return mailto(); });
+}
+function initNoteBox(d) {
+  var box = document.getElementById('notebox'); if (!box) return;
+  var nb = d.notebox || {};
+  var btn = box.querySelector('button'), msg = document.getElementById('nb-msg'), name = document.getElementById('nb-name'), mail = document.getElementById('nb-email'), done = document.getElementById('nb-done');
+  if (nb.placeholder) msg.placeholder = nb.placeholder;
+  btn.onclick = function() {
+    var text = msg.value.trim(); if (!text) { msg.focus(); toast('Write something first', 'error'); return; }
+    if (box.querySelector('#nb-hp') && box.querySelector('#nb-hp').value) return;
+    btn.disabled = true; btn.textContent = 'Sending…';
+    postForm({ message: text, name: name.value.trim() || 'Anonymous', email: mail.value.trim() || 'not given', page: location.href }, '[asafahmad.com] Note from ' + (name.value.trim() || 'a visitor'))
+      .then(function(r) { box.querySelector('.nb-form').style.display = 'none'; done.textContent = r.via === 'mailto' ? 'Your email app should have opened with the note ready to send.' : (nb.thanks || 'Thank you.'); done.style.display = 'block'; })
+      .catch(function() { btn.disabled = false; btn.textContent = nb.button || 'Send'; toast('Could not send. Please email me directly.', 'error'); });
+  };
+}
+
+
+/* ═══════════════════════════════════════════════════════════
    HELPERS
    ═══════════════════════════════════════════════════════════ */
 function toast(msg, type) {
@@ -334,6 +455,9 @@ document.addEventListener('DOMContentLoaded', function() {
   var links  = document.querySelector('.nav-links');
   if (toggle && links) toggle.addEventListener('click', function() { links.classList.toggle('open'); });
   restoreTheme();
+  fetchJSON('data/site.json', function(d) { hydrateSite(d); window.SITE = d; initAnalytics(d); initNoteBox(d); });
+  if (document.getElementById('timeline-root')) fetchJSON('data/experience.json', renderExperience);
+  if (document.getElementById('consultancy')) fetchJSON('data/services.json', renderServices);
   var cur = document.getElementById('cursor'), ring = document.getElementById('cursor-ring');
   if (cur && ring && window.matchMedia('(hover: hover)').matches) {
     document.addEventListener('mousemove', function(e) {

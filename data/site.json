@@ -1,0 +1,219 @@
+{
+  "_readme": "Site-wide copy. Pages hydrate from this file on load; the HTML keeps the same text as a fallback. Edit in the admin panel or by hand, then commit.",
+  "identity": {
+    "name": "Asaf Ahmad Shayaan",
+    "short": "Asaf",
+    "role": "Senior Product Manager · Lending & AI",
+    "logo_sub": "Senior Product Manager",
+    "tagline": "I turn thoughts to products"
+  },
+  "contact": {
+    "email": "asaf.ahmad.shayaan@gmail.com",
+    "phone_display": "+91 97842 27966",
+    "phone_e164": "+919784227966",
+    "whatsapp": "919784227966",
+    "whatsapp_text": "Hi Asaf, I'd like to talk about a consultation.",
+    "linkedin": "https://www.linkedin.com/in/asaf-ahmad/",
+    "location": "Mumbai, Maharashtra, India"
+  },
+  "hero": {
+    "eyebrow": "Senior Product Manager · Lending & AI · Mumbai, India",
+    "headline_html": "Building AI-Powered<br>Credit Products<em>That Actually Work</em>",
+    "artsy_name": "ASAF",
+    "artsy_role": "Senior Product Manager · Lending & AI",
+    "description": "Engineer turned product manager, with around five years in banking technology. Five production AI capabilities shipped into a live lending platform. A USD 1M+ deal closed end-to-end. I build credit products for banks and NBFCs across India, Sri Lanka, Bhutan and the Middle East, and I consult and mentor on the side.",
+    "tech": [
+      "Loan Origination",
+      "AI Products",
+      "Rule Engine",
+      "Java · Python · SQL",
+      "APIs & Architecture",
+      "Pre-Sales"
+    ],
+    "cta_primary": {
+      "label": "Work With Me →",
+      "href": "services.html"
+    },
+    "cta_secondary": {
+      "label": "See My Experience",
+      "href": "experience.html"
+    },
+    "bubble": "I TURN THOUGHTS TO PRODUCTS",
+    "sticker_1_html": "&#9823; CHESS<br>&#9992; AIRCRAFT<br>&#127918; FIFA",
+    "sticker_2_html": "Discover · Define<br>Design · Deliver",
+    "note_left_html": "Engineer at heart<br>Product by trade<br>Problem Solver<br>Always Learning",
+    "note_right_html": "Ideas<br>To<br>Production<small>&lt;/&gt;</small>",
+    "stats": [
+      {
+        "value": "5+",
+        "label": "Years in Banking Tech"
+      },
+      {
+        "value": "5",
+        "label": "AI Products in Production"
+      },
+      {
+        "value": "$7M+",
+        "label": "Proposal Pipeline Authored"
+      },
+      {
+        "value": "4",
+        "label": "Countries Delivered"
+      }
+    ]
+  },
+  "hobbies": [
+    {
+      "icon": "&#9823;",
+      "title": "Chess",
+      "note": "Positional play, slow games, too many openings half-learnt"
+    },
+    {
+      "icon": "&#9992;",
+      "title": "Aircraft",
+      "note": "Can identify most airliners by the engine nacelles alone"
+    },
+    {
+      "icon": "&#127918;",
+      "title": "FIFA",
+      "note": "Build-up play over long balls, every single time"
+    }
+  ],
+  "about": {
+    "header_title": "About Me",
+    "header_sub": "Senior Product Manager for lending and AI. Banking technology builder. Consultant and mentor.",
+    "heading": "I build credit products that move money, reduce risk and make lending faster for the people who run it.",
+    "paragraphs": [
+      "I am a product manager with around five years in banking technology. Today I own the AI product agenda for an enterprise lending platform at Care Analytics and Advisory, part of the CareEdge Group, where I have launched five production AI capabilities across credit appraisal, document intelligence and conversational access to loan data.",
+      "I own the full arc of a product: use-case discovery with credit and risk teams, requirement definition, roadmap and prioritisation, Agile delivery with engineering, credit and operations, and adoption after go-live. Because the environment is regulated, PII-risk handling is designed into every AI component I ship, and credit, risk, operations and technology stakeholders are aligned at CXO level before anything goes live.",
+      "I am commercially fluent. I independently closed a USD 1M+ deal end-to-end and have authored 15+ proposals representing a USD 7M+ pipeline. My lending domain runs across loan origination systems, MSME and SME underwriting, collections, digital onboarding and KYC/KYB, delivered in India, Sri Lanka, Bhutan and the Middle East.",
+      "Before product I was a developer, and I still think like one. I spent three and a half years building FinnOne Neo at Nucleus Software, which means I understand what I am asking engineers to build and why it is hard. I read a lot, sketch a little and write when something is worth saying.",
+      "The method is not tied to lending. Discovery with the people who do the work, requirement definition, prioritisation, Agile delivery and adoption after go-live are the same job in a payments app, a logistics platform or a SaaS tool. Lending is where I have used it most, under regulation, which is the hard setting.",
+      "This website is my own work as well. I designed both views, wrote the copy and vibe-coded the HTML, CSS and JavaScript with Claude Code, which is as good a product sample as any case study.",
+      "Off the clock I play chess, follow aircraft and aviation more closely than is reasonable, and lose evenings to FIFA."
+    ],
+    "profile": [
+      {
+        "k": "Role",
+        "v": "Senior Product Manager, Loan Origination System & AI"
+      },
+      {
+        "k": "Company",
+        "v": "Care Analytics and Advisory (CareEdge Group)"
+      },
+      {
+        "k": "Domain",
+        "v": "LOS · AI in Lending · Business Rule Engine · MSME Credit · Collections · Onboarding & KYC"
+      },
+      {
+        "k": "Markets",
+        "v": "India · Sri Lanka · Bhutan · Middle East"
+      },
+      {
+        "k": "Education",
+        "v": "PGPM, SPJIMR Mumbai · B.E. EEE, BITS Pilani"
+      },
+      {
+        "k": "Stack",
+        "v": "Core Java · Python · SQL · REST APIs · Figma · JIRA · Claude Code"
+      },
+      {
+        "k": "Off the clock",
+        "v": "Chess · Aircraft · FIFA"
+      },
+      {
+        "k": "Certified",
+        "v": "Professional Scrum Product Owner I (PSPO I)"
+      },
+      {
+        "k": "Based in",
+        "v": "Mumbai, India"
+      }
+    ],
+    "competencies": [
+      "AI Product Roadmap",
+      "AI Use-Case Discovery",
+      "Document Intelligence",
+      "Conversational AI",
+      "Underwriting Automation",
+      "PII & Data Risk",
+      "Loan Origination Systems",
+      "Business Rule Engine",
+      "MSME / SME Credit",
+      "Credit Appraisal",
+      "Collections",
+      "Digital Onboarding",
+      "KYC / KYB",
+      "Collateral Management",
+      "BRD / FSD",
+      "Go-to-Market",
+      "Pre-Sales",
+      "Agile / Scrum",
+      "Design Thinking",
+      "User Research",
+      "API Integration",
+      "System Architecture",
+      "Python",
+      "SQL",
+      "Core Java",
+      "REST APIs",
+      "Data Modelling",
+      "Figma",
+      "JIRA",
+      "Claude Code"
+    ]
+  },
+  "labels": {
+    "nav_home": "Home",
+    "nav_about": "About",
+    "nav_experience": "Experience",
+    "nav_learnings": "Learnings",
+    "nav_consulting": "Consulting",
+    "nav_portfolio": "Portfolio",
+    "nav_creative": "Creative",
+    "nav_contact": "Contact",
+    "home_expertise_label": "What I Do",
+    "home_expertise_title": "Lending & AI Expertise",
+    "home_ai_label": "Shipped",
+    "home_ai_title": "Five AI Products in Production",
+    "home_builder_label": "Builder First",
+    "home_builder_title": "Technical Enough to Build It, Product Enough to Ship It",
+    "home_skills_label": "Toolkit",
+    "home_skills_title": "Skills & Tools",
+    "home_learnings_label": "Learnings",
+    "home_learnings_title": "Latest Learnings",
+    "home_consult_label": "Work With Me",
+    "home_consult_title": "Consultancy & Mentoring",
+    "home_creative_label": "Beyond Work",
+    "learnings_title": "Learnings",
+    "learnings_sub": "Articles on product management, AI in lending and fintech, notes from the books I read, and the decks and papers behind them.",
+    "creative_title": "Creative Work",
+    "creative_sub": "Sketches, poetry, and everything that lives outside the product roadmap.",
+    "contact_title": "Get in Touch",
+    "contact_sub": "Open to conversations about fintech product roles, lending domain challenges, and interesting problems in the credit space.",
+    "portfolio_title": "Design Portfolio",
+    "portfolio_sub": "Selected product design work and prototypes.",
+    "home_note_label": "Say Anything"
+  },
+  "footer": {
+    "tagline": "Senior Product Manager · Lending & AI · Mumbai",
+    "copy": "© 2026 Asaf Ahmad Shayaan · Senior Product Manager, Lending & AI Consultant, Mumbai, India · All rights reserved",
+    "credit": "Designed and built by Asaf Ahmad Shayaan. Vibe-coded with Claude Code in HTML, CSS and JavaScript. No template."
+  },
+  "analytics": {
+    "goatcounter": "asafahmad",
+    "_note": "GoatCounter site code. Create the account at goatcounter.com with this code; leave empty to disable tracking."
+  },
+  "forms": {
+    "endpoint": "https://formsubmit.co/ajax/asaf.ahmad.shayaan@gmail.com",
+    "_note": "FormSubmit AJAX endpoint. The first submission sends an activation email to this address; click the link once and every later message is delivered. Leave empty to fall back to opening the visitor's email app."
+  },
+  "notebox": {
+    "label": "Say Anything",
+    "title": "Drop me a line",
+    "text": "Appreciation, a question, a disagreement, a book I should read, a problem you are stuck on, or just hello. No form to fill, no account. It lands straight in my inbox.",
+    "placeholder": "Write anything…",
+    "button": "Send it →",
+    "thanks": "Got it. Thank you for writing. I read everything and reply to most."
+  }
+}

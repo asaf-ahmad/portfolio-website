@@ -394,3 +394,17 @@ body:not(.minimal-mode) .hobby:nth-child(3) .hobby-icon { background: var(--blue
 body:not(.minimal-mode) .hobby:nth-child(4) .hobby-icon { background: var(--lime); color: #0A0A0E; transform: rotate(-4deg) }
 body:not(.minimal-mode) .hobby strong { color: #fff }
 body:not(.minimal-mode) .artsy-sticker.s1 { font-size: 1.15rem; line-height: 1.35; text-align: left }
+
+/* ── Note box: a sticky note ─────────────────────── */
+body:not(.minimal-mode) .notebox { background: var(--yellow); border: none; border-radius: 6px 6px 28px 6px; transform: rotate(-0.8deg); box-shadow: 0 30px 70px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,0,0,0.2) inset; color: #0A0A0E }
+body:not(.minimal-mode) .notebox::before { content: ''; position: absolute; top: -14px; left: 50%; width: 120px; height: 28px; margin-left: -60px; background: rgba(255,255,255,0.55); transform: rotate(-2deg); box-shadow: 0 2px 6px rgba(0,0,0,0.15) }
+body:not(.minimal-mode) .notebox .section-label { color: #0A0A0E }
+body:not(.minimal-mode) .notebox .section-label::before { color: var(--purple) }
+body:not(.minimal-mode) .notebox h2 { color: #0A0A0E; font-family: var(--marker); font-size: clamp(2rem, 4vw, 3rem); text-transform: none }
+body:not(.minimal-mode) .notebox p { color: #2b2b1f; font-family: var(--hand); font-size: 1.35rem; line-height: 1.5; font-weight: 500 }
+body:not(.minimal-mode) .nb-form textarea, body:not(.minimal-mode) .nb-form input { background: rgba(255,255,255,0.65); border: 1.5px solid rgba(0,0,0,0.15); color: #0A0A0E; font-family: var(--hand); font-size: 1.3rem; border-radius: 10px }
+body:not(.minimal-mode) .nb-form textarea::placeholder, body:not(.minimal-mode) .nb-form input::placeholder { color: #6b6a55 }
+body:not(.minimal-mode) .nb-form textarea:focus, body:not(.minimal-mode) .nb-form input:focus { border-color: var(--purple); box-shadow: 0 0 0 4px rgba(177,75,255,0.15) }
+body:not(.minimal-mode) .notebox .btn { background: #0A0A0E; color: var(--lime); border-color: #0A0A0E; box-shadow: none }
+body:not(.minimal-mode) .notebox .btn:hover { background: var(--purple); color: #fff; border-color: var(--purple) }
+body:not(.minimal-mode) .nb-done { font-family: var(--hand); color: #0A0A0E; font-size: 1.6rem; font-style: normal }
