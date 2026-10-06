@@ -181,7 +181,7 @@ body:not(.minimal-mode) .artsy-tech li:nth-child(5)::before { background: var(--
 body:not(.minimal-mode) .hero-art { position: relative; min-height: 460px; display: flex; align-items: flex-end; justify-content: center }
 body:not(.minimal-mode) .artsy-avatar { position: relative; width: min(100%, 420px); aspect-ratio: 1; display: flex; align-items: center; justify-content: center }
 body:not(.minimal-mode) .artsy-avatar img { display: none; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6)) }
-body:not(.minimal-mode) .artsy-avatar.has-img img { display: block }
+body:not(.minimal-mode) .artsy-avatar.has-img img { display: block; -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%); mask-image: linear-gradient(to bottom, #000 82%, transparent 100%) }
 body:not(.minimal-mode) .artsy-avatar.has-img .artsy-avatar-fallback { display: none }
 body:not(.minimal-mode) .artsy-avatar-fallback { width: 78%; aspect-ratio: 1; background: var(--yellow); border-radius: 56% 44% 62% 38% / 48% 60% 40% 52%; display: flex; align-items: center; justify-content: center; position: relative; transform: rotate(-4deg); box-shadow: 0 30px 70px rgba(255,210,63,0.25), inset 0 -18px 0 rgba(0,0,0,0.08); animation: artsyBlob 9s ease-in-out infinite }
 @keyframes artsyBlob { 0%,100% { border-radius: 56% 44% 62% 38% / 48% 60% 40% 52% } 50% { border-radius: 44% 56% 42% 58% / 58% 42% 58% 42% } }
