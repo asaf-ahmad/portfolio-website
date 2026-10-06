@@ -338,14 +338,27 @@ function postForm(fields, subject) {
   } else {
     payload = Object.assign({}, fields, { _subject: subject, _template: 'table', _captcha: 'false', _honey: '' });
   }
+  /* Last resort when fetch is blocked (strict privacy browsers, extensions): a plain HTML form post.
+     The relay accepts it without CORS and redirects straight back here with ?sent=1. */
+  function formPost() {
+    var u = new URL(location.href); u.searchParams.set('sent', '1'); u.hash = fields.page && /say-anything/.test(fields.page) ? '#say-anything' : u.hash;
+    var f = document.createElement('form'); f.method = 'POST'; f.action = ep; f.style.display = 'none';
+    var data = Object.assign({}, payload, /web3forms/.test(ep) ? { redirect: u.toString() } : { _next: u.toString() });
+    Object.keys(data).forEach(function(k) { var i = document.createElement('input'); i.type = 'hidden'; i.name = k; i.value = data[k]; f.appendChild(i); });
+    document.body.appendChild(f); f.submit();
+    return new Promise(function() {});
+  }
   return fetch(ep, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload) })
     .then(function(r) { return r.json().catch(function() { return {}; }).then(function(j) { if (r.ok && j && (j.success === 'true' || j.success === true)) return { via: 'endpoint' }; throw new Error('endpoint rejected'); }); })
-    .catch(function() { return mailto(); });
+    .catch(function() { return formPost(); });
 }
 function initNoteBox(d) {
+  var sent = new URLSearchParams(location.search).get('sent') === '1';
+  if (sent) { toast((d.notebox && d.notebox.thanks) || 'Sent. Thank you.', 'success'); try { history.replaceState(null, '', location.pathname + location.hash); } catch(e) {} }
   var box = document.getElementById('notebox'); if (!box) return;
   var nb = d.notebox || {};
   var btn = box.querySelector('button'), msg = document.getElementById('nb-msg'), name = document.getElementById('nb-name'), mail = document.getElementById('nb-email'), done = document.getElementById('nb-done');
+  if (sent) { box.querySelector('.nb-form').style.display = 'none'; done.textContent = nb.thanks || 'Thank you.'; done.style.display = 'block'; }
   if (nb.placeholder) msg.placeholder = nb.placeholder;
   btn.onclick = function() {
     var text = msg.value.trim(); if (!text) { msg.focus(); toast('Write something first', 'error'); return; }
@@ -461,6 +474,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (toggle && links) toggle.addEventListener('click', function() { links.classList.toggle('open'); });
   restoreTheme();
   fetchJSON('data/site.json', function(d) { hydrateSite(d); window.SITE = d; initAnalytics(d); initNoteBox(d); });
+  if (!document.getElementById('notebox') && new URLSearchParams(location.search).get('sent') === '1') { toast('Sent. Thank you, I will reply soon.', 'success'); try { history.replaceState(null, '', location.pathname + location.hash); } catch(e) {} }
   if (document.getElementById('timeline-root')) fetchJSON('data/experience.json', renderExperience);
   if (document.getElementById('consultancy')) fetchJSON('data/services.json', renderServices);
   var cur = document.getElementById('cursor'), ring = document.getElementById('cursor-ring');
