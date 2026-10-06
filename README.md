@@ -2,6 +2,8 @@
 
 A fully functional personal portfolio website with built-in blog management, design portfolio system, creative gallery, and consultation booking.
 
+For a plain-language walkthrough of how everything fits together, read [docs/HOW-IT-WORKS.md](docs/HOW-IT-WORKS.md).
+
 ## Files
 
 ```
