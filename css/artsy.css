@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@500;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ═══════════════════════════════════════════════════
+   ARTSY MODE
+   Dark, hand-drawn, neon-sticker look. Every rule here is
+   scoped to body:not(.minimal-mode) so the Minimal theme
+   in style.css is untouched. Loaded after style.css.
+   ═══════════════════════════════════════════════════ */
+
+body.minimal-mode .artsy-only { display: none !important }
+body:not(.minimal-mode) .minimal-only { display: none !important }
+
+/* ── Palette ─────────────────────────────────────── */
+body:not(.minimal-mode) {
+  --ink: #0A0A0E;
+  --ink-soft: #15151B;
+  --ink-faint: #202028;
+  --paper-dark: #111117;      /* alt section / panel bg */
+  --cream: #16161D;           /* card bg */
+  --text: #F3F3F7;
+  --text-soft: #C7C7D1;
+  --text-muted: #8F8F9C;
+  --border: rgba(255,255,255,0.09);
+  --border-dark: rgba(255,255,255,0.2);
+  --lime: #BFFF3C;
+  --purple: #B14BFF;
+  --blue: #4CC3FF;
+  --yellow: #FFD23F;
+  --pink: #FF5CA8;
+  --gold: var(--lime);
+  --gold-light: #D6FF7A;
+  --accent: var(--lime);
+  --accent-light: #D6FF7A;
+  --rust: var(--pink);
+  --radius: 18px;
+  --shadow: 0 10px 40px rgba(0,0,0,0.5);
+  --shadow-lg: 0 24px 80px rgba(0,0,0,0.65);
+  --marker: 'Permanent Marker', 'Comic Sans MS', cursive;
+  --hand: 'Caveat', 'Segoe Script', cursive;
+  --sans: 'Poppins', 'Segoe UI', sans-serif;
+  font-family: var(--sans);
+  background: #0A0A0E;
+  color: var(--text);
+}
+
+/* Paint splashes behind everything */
+body:not(.minimal-mode)::after {
+  content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(ellipse 420px 300px at -4% 2%,   rgba(255,210,63,0.55),  transparent 70%),
+    radial-gradient(ellipse 380px 320px at 103% 6%,  rgba(177,75,255,0.55),  transparent 70%),
+    radial-gradient(ellipse 300px 260px at 102% 40%, rgba(76,195,255,0.35),  transparent 70%),
+    radial-gradient(ellipse 360px 280px at -3% 70%,  rgba(76,195,255,0.4),   transparent 70%),
+    radial-gradient(ellipse 320px 240px at 92% 98%,  rgba(177,75,255,0.45),  transparent 70%),
+    radial-gradient(ellipse 300px 220px at 4% 100%,  rgba(255,210,63,0.4),   transparent 70%);
+}
+body:not(.minimal-mode)::before { opacity: 0.05 }
+
+/* Cursor */
+@media (hover: hover) {
+  body:not(.minimal-mode) .cursor { background: var(--lime); mix-blend-mode: normal; width: 9px; height: 9px }
+  body:not(.minimal-mode) .cursor-ring { border-color: var(--purple); opacity: 0.8; width: 32px; height: 32px }
+}
+
+/* ── Typography ──────────────────────────────────── */
+body:not(.minimal-mode) h1,
+body:not(.minimal-mode) h2,
+body:not(.minimal-mode) h3,
+body:not(.minimal-mode) h4,
+body:not(.minimal-mode) h5 { color: #fff; font-family: var(--sans); letter-spacing: 0 }
+body:not(.minimal-mode) h1 { font-family: var(--marker); font-weight: 400; letter-spacing: 0.01em }
+body:not(.minimal-mode) h2 { font-family: var(--marker); font-weight: 400; font-size: clamp(1.8rem, 3.4vw, 2.6rem); letter-spacing: 0.01em }
+body:not(.minimal-mode) h3 { font-weight: 600; font-size: 1.15rem }
+body:not(.minimal-mode) p { color: var(--text-soft) }
+body:not(.minimal-mode) h2 em,
+body:not(.minimal-mode) h1 em { color: var(--lime) !important; font-style: normal }
+
+/* ── Navbar ──────────────────────────────────────── */
+body:not(.minimal-mode) .navbar { background: rgba(10,10,14,0.82); border-bottom: 1px solid var(--border) }
+body:not(.minimal-mode) .nav-logo { font-family: var(--marker); color: #fff; font-size: 1.45rem; text-transform: uppercase; letter-spacing: 0.03em; line-height: 1; display: block }
+body:not(.minimal-mode) .nav-logo span { color: var(--lime) }
+body:not(.minimal-mode) .nav-logo::after { display: block; margin-top: 3px; content: 'Senior Product Manager'; font-family: var(--hand); font-size: 0.82rem; font-weight: 500; color: var(--text-muted); text-transform: none; letter-spacing: 0.01em }
+body:not(.minimal-mode) .nav-links { gap: 26px }
+body:not(.minimal-mode) .nav-links a { font-family: var(--sans); font-size: 0.78rem; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--text-soft) }
+body:not(.minimal-mode) .nav-links a::after { height: 3px; bottom: -6px; background: var(--lime); border-radius: 3px }
+body:not(.minimal-mode) .nav-links a:hover, body:not(.minimal-mode) .nav-links a.active { color: #fff }
+body:not(.minimal-mode) .nav-cta { background: var(--purple) !important; color: #fff !important; border-radius: 100px !important; padding: 9px 20px !important; font-weight: 600 !important; box-shadow: 0 6px 20px rgba(177,75,255,0.35) }
+body:not(.minimal-mode) .nav-cta:hover { background: #c56eff !important; transform: translateY(-1px) }
+body:not(.minimal-mode) .nav-toggle span { background: #fff }
+body:not(.minimal-mode) .theme-toggle { background: #15151B; border-color: var(--border-dark) }
+body:not(.minimal-mode) .theme-toggle:hover { border-color: var(--lime) }
+body:not(.minimal-mode) .toggle-option { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.68rem; font-weight: 500; color: var(--text-muted) }
+body:not(.minimal-mode) .toggle-option.active { background: var(--lime); color: #0A0A0E; font-weight: 600 }
+
+/* ── Buttons ─────────────────────────────────────── */
+body:not(.minimal-mode) .btn { font-family: var(--sans); font-size: 0.84rem; font-weight: 600; letter-spacing: 0; text-transform: none; border-radius: 100px; padding: 13px 28px; border-width: 2px }
+body:not(.minimal-mode) .btn-gold,
+body:not(.minimal-mode) .btn-ink { background: var(--lime); color: #0A0A0E; border-color: var(--lime); box-shadow: 0 8px 28px rgba(191,255,60,0.22) }
+body:not(.minimal-mode) .btn-gold:hover,
+body:not(.minimal-mode) .btn-ink:hover { background: #d3ff6e; border-color: #d3ff6e; transform: translateY(-2px) rotate(-1deg); box-shadow: 0 12px 34px rgba(191,255,60,0.38) }
+body:not(.minimal-mode) .btn-outline-light,
+body:not(.minimal-mode) .btn-outline-ink { background: transparent; color: #fff; border-color: var(--purple) }
+body:not(.minimal-mode) .btn-outline-light:hover,
+body:not(.minimal-mode) .btn-outline-ink:hover { background: rgba(177,75,255,0.15); border-color: #c56eff; color: #fff; transform: translateY(-2px) rotate(1deg) }
+
+/* ── Section furniture ───────────────────────────── */
+body:not(.minimal-mode) .section { padding: 84px 0 }
+body:not(.minimal-mode) .section-label { font-family: var(--hand); font-size: 1.15rem; font-weight: 700; letter-spacing: 0; text-transform: none; color: var(--lime); margin-bottom: 10px; gap: 8px }
+body:not(.minimal-mode) .section-label::before { content: '\2605'; width: auto; height: auto; background: none; color: var(--purple); font-size: 1.05rem; line-height: 1 }
+body:not(.minimal-mode) .section-title { display: inline-block; position: relative; margin-bottom: 18px; padding-right: 86px }
+body:not(.minimal-mode) .section-title::after {
+  content: ''; position: absolute; right: 0; bottom: 0.25em; width: 72px; height: 18px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 18'%3E%3Cpath d='M2 11c8-8 14 6 22-2s14 6 22-2 14 6 22-2' fill='none' stroke='%23BFFF3C' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/contain;
+}
+body:not(.minimal-mode) .section-desc { font-family: var(--sans); color: var(--text-muted); font-weight: 400; font-size: 0.95rem; line-height: 1.8; margin-bottom: 44px }
+
+/* Light alt-sections become rounded dark panels */
+body:not(.minimal-mode) .section[style*="paper-dark"] { background: transparent !important; padding: 36px 0 }
+body:not(.minimal-mode) .section[style*="paper-dark"] > .container { background: var(--paper-dark); border: 1px solid var(--border); border-radius: 30px; padding: 60px 56px; max-width: calc(var(--max-w) + 56px); position: relative }
+body:not(.minimal-mode) .section[style*="var(--ink)"] { background: transparent !important; padding: 36px 0 }
+body:not(.minimal-mode) .section[style*="var(--ink)"] > .container { background: linear-gradient(135deg, #15121E, #0F0F15); border: 1px solid rgba(177,75,255,0.3); border-radius: 30px; padding: 60px 56px; max-width: calc(var(--max-w) + 56px) }
+body:not(.minimal-mode) .section[style*="var(--ink)"] > div:first-child { display: none }
+body:not(.minimal-mode) .section[style*="var(--ink)"] h2 { color: #fff }
+body:not(.minimal-mode) .section[style*="var(--ink)"] p { color: var(--text-soft) !important }
+
+/* Inline dark boxes (about quick-profile, creative page) become cards */
+body:not(.minimal-mode) div[style*="background:var(--ink)"]:not(.section) { background: var(--cream) !important; border: 1px solid var(--border); border-radius: var(--radius) !important }
+
+/* Sketch/poem placeholder tiles on the home page */
+body:not(.minimal-mode) .section[style*="var(--ink)"] [style*="aspect-ratio"] { background: #1b1b24 !important; border: 2px dashed rgba(177,75,255,0.5) !important; border-radius: 18px !important; color: #fff !important; font-size: 2.6rem !important; transform: rotate(-3deg) }
+body:not(.minimal-mode) .section[style*="var(--ink)"] [style*="aspect-ratio"]:last-child { transform: rotate(3deg); border-color: rgba(191,255,60,0.5) !important }
+body:not(.minimal-mode) .section[style*="var(--ink)"] [style*="opacity:0.65"] { opacity: 1 !important }
+
+/* ── Cards ───────────────────────────────────────── */
+body:not(.minimal-mode) .card { background: var(--cream); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px }
+body:not(.minimal-mode) .card::before { display: none }
+body:not(.minimal-mode) .card:hover { border-color: rgba(191,255,60,0.6); transform: translateY(-5px) rotate(-0.4deg); box-shadow: 0 18px 50px rgba(0,0,0,0.5), 0 0 0 4px rgba(191,255,60,0.08) }
+body:not(.minimal-mode) .card-tag { font-family: var(--sans); font-size: 0.64rem; font-weight: 600; letter-spacing: 0.02em; text-transform: none; display: inline-block; padding: 4px 11px; border-radius: 7px; margin-bottom: 14px; background: rgba(191,255,60,0.14); color: var(--lime) }
+body:not(.minimal-mode) .card:nth-child(3n+2) .card-tag { background: rgba(177,75,255,0.18); color: #d49bff }
+body:not(.minimal-mode) .card:nth-child(3n) .card-tag { background: rgba(76,195,255,0.16); color: var(--blue) }
+body:not(.minimal-mode) .card h3 { font-size: 1.1rem; margin-bottom: 8px }
+body:not(.minimal-mode) .card p { color: var(--text-muted); font-size: 0.86rem }
+body:not(.minimal-mode) .blog-card-img,
+body:not(.minimal-mode) .portfolio-preview { margin: -26px -26px 20px; height: 200px; border-radius: var(--radius) var(--radius) 0 0 }
+body:not(.minimal-mode) .blog-date { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0; color: var(--text-muted) }
+body:not(.minimal-mode) .blog-title { font-family: var(--sans); font-size: 1.1rem }
+body:not(.minimal-mode) .blog-read-more,
+body:not(.minimal-mode) .poem-read-more,
+body:not(.minimal-mode) .service-price,
+body:not(.minimal-mode) .timeline-date { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-weight: 600; font-size: 0.78rem; color: var(--lime) }
+body:not(.minimal-mode) .preview-overlay { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-weight: 600; background: rgba(10,10,14,0.7) }
+body:not(.minimal-mode) .empty-state h3, body:not(.minimal-mode) .empty-state p { color: var(--text-muted) }
+
+/* ── Hero (shared) ───────────────────────────────── */
+body:not(.minimal-mode) .hero { background: transparent; padding-bottom: 150px }
+body:not(.minimal-mode) .hero-bg-text,
+body:not(.minimal-mode) .hero-lines,
+body:not(.minimal-mode) .hero-eyebrow { display: none }
+body:not(.minimal-mode) .hero-content { text-align: left; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 32px; align-items: center; padding: 56px 28px 40px }
+body:not(.minimal-mode) .hero h1 { color: #fff; margin-bottom: 18px }
+body:not(.minimal-mode) .hero-desc { font-family: var(--sans); color: var(--text-soft); font-weight: 400; font-size: 0.98rem; line-height: 1.8; margin: 0 0 22px; max-width: 480px }
+body:not(.minimal-mode) .hero-btns { justify-content: flex-start }
+body:not(.minimal-mode) .hero-scroll { font-family: var(--sans); text-transform: none; letter-spacing: 0; color: var(--text-muted); bottom: 150px }
+body:not(.minimal-mode) .hero-scroll::after { background: linear-gradient(to bottom, var(--lime), transparent) }
+
+body:not(.minimal-mode) .artsy-hey { font-family: var(--hand); font-size: 2.2rem; font-weight: 700; color: var(--text-soft); line-height: 1; margin: 0 18px 4px 0; transform: rotate(-3deg); display: inline-block }
+body:not(.minimal-mode) .artsy-hey span { font-family: var(--marker); color: #fff; font-size: 2.6rem; margin-left: 6px; display: inline-block; transform: rotate(2deg) }
+body:not(.minimal-mode) .artsy-name { font-size: clamp(4.2rem, 10vw, 8.5rem); line-height: 0.95; position: relative; display: inline-block; margin: 0 0 18px; padding-right: 0.2em }
+body:not(.minimal-mode) .artsy-name::after { content: ''; position: absolute; left: 4%; right: 14%; bottom: -8px; height: 0.14em; background: var(--lime); border-radius: 48% 52% 40% 60% / 70% 40% 60% 30%; transform: rotate(-1.4deg); z-index: -1 }
+body:not(.minimal-mode) .artsy-name .artsy-crown { position: absolute; top: -0.32em; right: 0.02em; width: 0.42em; height: 0.42em; transform: rotate(14deg) }
+body:not(.minimal-mode) .artsy-role { font-family: var(--marker); font-size: clamp(1.4rem, 2.4vw, 1.9rem); color: #fff; margin: 4px 0 10px; letter-spacing: 0.01em }
+body:not(.minimal-mode) .artsy-tech { display: flex; flex-wrap: wrap; gap: 10px 20px; margin: 0 0 30px; padding: 0 }
+body:not(.minimal-mode) .artsy-tech li { font-family: var(--sans); font-size: 0.8rem; font-weight: 500; color: var(--text-soft); display: flex; align-items: center; gap: 8px }
+body:not(.minimal-mode) .artsy-tech li::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--lime) }
+body:not(.minimal-mode) .artsy-tech li:nth-child(2)::before { background: var(--purple) }
+body:not(.minimal-mode) .artsy-tech li:nth-child(3)::before { background: var(--blue) }
+body:not(.minimal-mode) .artsy-tech li:nth-child(4)::before { background: var(--yellow) }
+body:not(.minimal-mode) .artsy-tech li:nth-child(5)::before { background: var(--pink) }
+
+/* Hero art column */
+body:not(.minimal-mode) .hero-art { position: relative; min-height: 460px; display: flex; align-items: flex-end; justify-content: center }
+body:not(.minimal-mode) .artsy-avatar { position: relative; width: min(100%, 420px); aspect-ratio: 1; display: flex; align-items: center; justify-content: center }
+body:not(.minimal-mode) .artsy-avatar img { display: none; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6)) }
+body:not(.minimal-mode) .artsy-avatar.has-img img { display: block }
+body:not(.minimal-mode) .artsy-avatar.has-img .artsy-avatar-fallback { display: none }
+body:not(.minimal-mode) .artsy-avatar-fallback { width: 78%; aspect-ratio: 1; background: var(--yellow); border-radius: 56% 44% 62% 38% / 48% 60% 40% 52%; display: flex; align-items: center; justify-content: center; position: relative; transform: rotate(-4deg); box-shadow: 0 30px 70px rgba(255,210,63,0.25), inset 0 -18px 0 rgba(0,0,0,0.08); animation: artsyBlob 9s ease-in-out infinite }
+@keyframes artsyBlob { 0%,100% { border-radius: 56% 44% 62% 38% / 48% 60% 40% 52% } 50% { border-radius: 44% 56% 42% 58% / 58% 42% 58% 42% } }
+body:not(.minimal-mode) .artsy-avatar-fallback strong { font-family: var(--marker); font-size: clamp(5rem, 11vw, 8rem); color: #0A0A0E; font-weight: 400; letter-spacing: -0.02em; transform: rotate(4deg); line-height: 1 }
+body:not(.minimal-mode) .artsy-avatar-fallback small { position: absolute; bottom: 14%; font-family: var(--hand); font-size: 1.3rem; font-weight: 700; color: #0A0A0E; transform: rotate(4deg) }
+
+/* Stickers around the avatar */
+body:not(.minimal-mode) .artsy-bubble { position: absolute; top: 2%; left: -4%; background: var(--blue); color: #0A0A0E; font-family: var(--marker); font-size: 0.95rem; line-height: 1.25; padding: 16px 20px; border-radius: 26px 26px 26px 6px; max-width: 200px; transform: rotate(-7deg); z-index: 2; box-shadow: 0 12px 30px rgba(76,195,255,0.3) }
+body:not(.minimal-mode) .artsy-bubble::after { content: ''; position: absolute; bottom: -12px; left: 22px; border: 10px solid transparent; border-top-color: var(--blue); border-left-color: var(--blue); transform: rotate(-10deg) }
+body:not(.minimal-mode) .artsy-sticker { position: absolute; font-family: var(--hand); font-weight: 700; color: #fff; font-size: 1.35rem; line-height: 1.05; text-align: center; z-index: 2 }
+body:not(.minimal-mode) .artsy-sticker.s1 { right: -6%; top: 46%; transform: rotate(6deg); background: #0A0A0E; padding: 10px 14px; border: 2px solid rgba(255,255,255,0.15); border-radius: 14px }
+body:not(.minimal-mode) .artsy-sticker.s2 { left: 2%; bottom: 10%; transform: rotate(-6deg); background: #1b1b22; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border-dark); color: var(--lime) }
+
+/* Doodles + side notes */
+body:not(.minimal-mode) .doodle { position: absolute; pointer-events: none; z-index: 1; opacity: 0.95 }
+body:not(.minimal-mode) .doodle svg { width: 100%; height: 100%; display: block; overflow: visible }
+body:not(.minimal-mode) .doodle-note { position: absolute; font-family: var(--hand); font-weight: 700; color: #fff; font-size: 1.3rem; line-height: 1.15; z-index: 1; pointer-events: none }
+body:not(.minimal-mode) .doodle-note.left { left: 3%; top: 40%; transform: rotate(-9deg) }
+body:not(.minimal-mode) .doodle-note.right { right: 2.5%; top: 36%; transform: rotate(8deg); text-align: center }
+body:not(.minimal-mode) .doodle-note small { display: block; font-family: var(--sans); font-size: 0.75rem; font-weight: 500; color: var(--lime); margin-top: 6px }
+body:not(.minimal-mode) .d-bolt-1 { width: 42px; height: 70px; top: 18%; right: 11%; transform: rotate(16deg) }
+body:not(.minimal-mode) .d-bolt-2 { width: 32px; height: 56px; bottom: 32%; left: 46%; transform: rotate(-18deg) }
+body:not(.minimal-mode) .d-star-1 { width: 26px; height: 26px; top: 20%; left: 8%; animation: artsySpin 14s linear infinite }
+body:not(.minimal-mode) .d-star-2 { width: 20px; height: 20px; bottom: 36%; right: 6%; animation: artsySpin 10s linear infinite reverse }
+body:not(.minimal-mode) .d-star-3 { width: 18px; height: 18px; top: 8%; left: 48% }
+body:not(.minimal-mode) .d-arrow-1 { width: 90px; height: 60px; top: 24%; left: 2% }
+body:not(.minimal-mode) .d-scribble-1 { width: 120px; height: 34px; bottom: 28%; left: 3% }
+body:not(.minimal-mode) .d-crown-1 { width: 40px; height: 34px; top: 10%; right: 6%; transform: rotate(-12deg) }
+body:not(.minimal-mode) .d-code { font-family: var(--sans); font-weight: 600; font-size: 1.3rem; color: var(--lime); letter-spacing: 0.1em }
+@keyframes artsySpin { to { transform: rotate(360deg) } }
+
+/* Stats bar at hero bottom */
+body:not(.minimal-mode) .stats-bar { border-top: none; gap: 20px; padding: 0 28px 28px }
+body:not(.minimal-mode) .stat-item { background: var(--cream); border: 1px solid var(--border); border-radius: 16px; padding: 18px 28px; min-width: 150px; transition: all 0.3s }
+body:not(.minimal-mode) .stat-item:hover { transform: translateY(-4px) rotate(-1deg); border-color: var(--lime) }
+body:not(.minimal-mode) .stat-value { font-family: var(--marker); font-weight: 400; color: #fff; font-size: 2.1rem }
+body:not(.minimal-mode) .stat-item:nth-child(2) .stat-value { color: var(--lime) }
+body:not(.minimal-mode) .stat-item:nth-child(3) .stat-value { color: #d49bff }
+body:not(.minimal-mode) .stat-item:nth-child(4) .stat-value { color: var(--blue) }
+body:not(.minimal-mode) .stat-label { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0; text-transform: none; color: var(--text-muted); font-weight: 500 }
+
+/* ── Skills tiles ────────────────────────────────── */
+body:not(.minimal-mode) .skills-note { font-family: var(--hand); font-size: 1.25rem; font-weight: 700; color: var(--text-soft); transform: rotate(-3deg) }
+body:not(.minimal-mode) .skills-grid { gap: 14px }
+body:not(.minimal-mode) .skill-tile { background: var(--cream); border: 1px solid var(--border); border-radius: 16px; padding: 18px 10px 14px }
+body:not(.minimal-mode) .skill-tile:hover { border-color: var(--lime); transform: translateY(-5px) rotate(-2deg); box-shadow: 0 14px 34px rgba(0,0,0,0.45) }
+body:not(.minimal-mode) .skill-icon { background: var(--c, var(--lime)); color: #fff; font-family: var(--marker); font-weight: 400; font-size: 0.95rem; border-radius: 12px; width: 50px; height: 50px; box-shadow: 0 8px 22px color-mix(in srgb, var(--c, var(--lime)) 40%, transparent) }
+body:not(.minimal-mode) .skill-tile span { font-family: var(--sans); font-size: 0.7rem; color: var(--text-soft); text-transform: none; letter-spacing: 0; font-weight: 500 }
+
+/* ── Page header (inner pages) ───────────────────── */
+body:not(.minimal-mode) .page-header { background: transparent; padding: 80px 0 48px }
+body:not(.minimal-mode) .page-header::before { display: none }
+body:not(.minimal-mode) .page-header h1 { font-size: clamp(3rem, 7vw, 5.4rem); display: inline-block; position: relative; padding-right: 0.15em }
+body:not(.minimal-mode) .page-header h1::after { content: ''; position: absolute; left: 2%; right: 10%; bottom: -4px; height: 0.16em; background: var(--lime); border-radius: 48% 52% 40% 60% / 70% 40% 60% 30%; transform: rotate(-1.2deg); z-index: -1 }
+body:not(.minimal-mode) .page-header p { font-family: var(--sans); color: var(--text-soft); font-weight: 400; font-size: 1rem; margin-top: 20px }
+body:not(.minimal-mode) .page-header .container::after { content: '\2605'; position: absolute; right: 8%; top: -10px; font-size: 2.6rem; color: var(--purple); transform: rotate(16deg); animation: artsySpin 16s linear infinite; opacity: 0.9 }
+body:not(.minimal-mode) .page-header .container { position: relative }
+
+/* ── Timeline / tags ─────────────────────────────── */
+body:not(.minimal-mode) .timeline::before { width: 3px; border-radius: 3px; background: repeating-linear-gradient(to bottom, var(--lime) 0 10px, transparent 10px 18px); opacity: 0.6 }
+body:not(.minimal-mode) .timeline-item::before { left: -45px; width: 12px; height: 12px; background: var(--lime); border-color: #0A0A0E; box-shadow: 0 0 0 3px var(--lime), 0 0 18px rgba(191,255,60,0.6) }
+body:not(.minimal-mode) .timeline-item:nth-child(2n)::before { background: var(--purple); box-shadow: 0 0 0 3px var(--purple), 0 0 18px rgba(177,75,255,0.6) }
+body:not(.minimal-mode) .timeline-title { color: #fff; font-family: var(--sans); font-size: 1.3rem; font-weight: 600 }
+body:not(.minimal-mode) .timeline-company { font-family: var(--sans); letter-spacing: 0; font-size: 0.85rem; color: var(--text-muted) }
+body:not(.minimal-mode) .timeline-body li { color: var(--text-soft); font-size: 0.9rem }
+body:not(.minimal-mode) .tag { font-family: var(--sans); letter-spacing: 0; font-size: 0.7rem; font-weight: 500; background: #1b1b23; color: var(--text-soft); border: 1px solid var(--border); border-radius: 100px; padding: 5px 13px }
+
+/* ── Tabs, filters, forms ────────────────────────── */
+body:not(.minimal-mode) .tabs { border-bottom-color: var(--border) }
+body:not(.minimal-mode) .tab-btn { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.85rem; font-weight: 500; color: var(--text-muted) }
+body:not(.minimal-mode) .tab-btn.active, body:not(.minimal-mode) .tab-btn:hover { color: #fff }
+body:not(.minimal-mode) .tab-btn.active { border-bottom: 3px solid var(--lime) }
+body:not(.minimal-mode) .filter-btn { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.78rem; font-weight: 500; border-radius: 100px; border-color: var(--border-dark); color: var(--text-soft); background: transparent }
+body:not(.minimal-mode) .filter-btn.active { background: var(--lime); color: #0A0A0E; border-color: var(--lime) }
+body:not(.minimal-mode) .form-group label { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.78rem; font-weight: 500; color: var(--text-soft) }
+body:not(.minimal-mode) .form-group input,
+body:not(.minimal-mode) .form-group textarea,
+body:not(.minimal-mode) .form-group select { font-family: var(--sans); background: #0E0E13; border: 1.5px solid var(--border-dark); border-radius: 12px; color: #fff; padding: 13px 16px }
+body:not(.minimal-mode) .form-group input::placeholder,
+body:not(.minimal-mode) .form-group textarea::placeholder { color: #5f5f6c }
+body:not(.minimal-mode) .form-group input:focus,
+body:not(.minimal-mode) .form-group textarea:focus { background: #0E0E13; border-color: var(--lime); box-shadow: 0 0 0 4px rgba(191,255,60,0.12) }
+body:not(.minimal-mode) .service-card.selected { border-color: var(--lime); box-shadow: 0 0 0 4px rgba(191,255,60,0.12) }
+body:not(.minimal-mode) .service-icon { font-size: 1.8rem }
+
+/* ── Contact ─────────────────────────────────────── */
+body:not(.minimal-mode) .contact-link { border-bottom-color: var(--border) }
+body:not(.minimal-mode) .contact-link-icon { background: #1b1b23; border-radius: 12px; color: #fff }
+body:not(.minimal-mode) .contact-link:hover { border-color: var(--lime) }
+body:not(.minimal-mode) .contact-link-text small { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.7rem }
+body:not(.minimal-mode) .contact-link-text strong { color: #fff }
+
+/* ── Creative page ───────────────────────────────── */
+body:not(.minimal-mode) .sketch-card { background: var(--cream); border-color: var(--border); border-radius: var(--radius) }
+body:not(.minimal-mode) .sketch-card:hover { border-color: var(--purple); transform: translateY(-6px) rotate(-1deg) }
+body:not(.minimal-mode) .sketch-title { font-family: var(--sans); font-weight: 600; color: #fff }
+body:not(.minimal-mode) .sketch-date, body:not(.minimal-mode) .poem-date { font-family: var(--sans); letter-spacing: 0; text-transform: none }
+body:not(.minimal-mode) .poem-card { background: linear-gradient(145deg, #1a1522, #121218); border: 1px solid rgba(177,75,255,0.3); border-radius: var(--radius) }
+body:not(.minimal-mode) .poem-card::after { color: rgba(177,75,255,0.14); font-family: var(--marker) }
+body:not(.minimal-mode) .poem-card:hover { border-color: var(--purple); box-shadow: 0 20px 60px rgba(177,75,255,0.2) }
+body:not(.minimal-mode) .poem-title { font-family: var(--hand); font-style: normal; font-weight: 700; font-size: 1.7rem; color: #d49bff }
+body:not(.minimal-mode) .poem-body, body:not(.minimal-mode) .poem-modal-body pre { font-family: var(--hand); font-size: 1.25rem; line-height: 1.8; color: var(--text-soft) }
+body:not(.minimal-mode) .poem-modal-body { background: #121218 }
+
+/* ── Post ────────────────────────────────────────── */
+body:not(.minimal-mode) .post-hero { border-radius: 0 0 30px 30px }
+body:not(.minimal-mode) .post-hero h1 { font-family: var(--sans); font-weight: 700; font-size: clamp(2rem, 4.5vw, 3.4rem); color: #fff }
+body:not(.minimal-mode) .post-meta-bar span { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.78rem }
+body:not(.minimal-mode) .post-body p { color: var(--text-soft) }
+body:not(.minimal-mode) .post-body strong { color: #fff }
+body:not(.minimal-mode) .post-body blockquote { background: var(--cream); border-left: 4px solid var(--lime); color: #fff; font-family: var(--hand); font-size: 1.4rem; font-style: normal; border-radius: 0 var(--radius) var(--radius) 0 }
+
+/* ── Modals, toast ───────────────────────────────── */
+body:not(.minimal-mode) .modal { background: #121218; border: 1px solid var(--border-dark); border-radius: 24px }
+body:not(.minimal-mode) .modal-header { border-bottom-color: var(--border) }
+body:not(.minimal-mode) .modal-close { background: #1b1b23; color: #fff; border-radius: 10px }
+body:not(.minimal-mode) .modal-close:hover { background: var(--lime); color: #0A0A0E }
+body:not(.minimal-mode) .toast { background: var(--lime); color: #0A0A0E; border-left: none; border-radius: 100px; font-family: var(--sans); letter-spacing: 0; font-weight: 600; font-size: 0.84rem }
+body:not(.minimal-mode) .toast.error { background: var(--pink); color: #fff }
+body:not(.minimal-mode) .login-box { background: #121218; border: 1px solid var(--border-dark); border-radius: 24px }
+
+/* ── Footer ──────────────────────────────────────── */
+body:not(.minimal-mode) .footer { background: transparent; border-top: 1px solid var(--border); padding: 64px 0 40px; position: relative; overflow: hidden }
+body:not(.minimal-mode) .footer-inner { border-bottom-color: var(--border) }
+body:not(.minimal-mode) .footer-brand { font-family: var(--marker); text-transform: uppercase; letter-spacing: 0.03em; color: #fff }
+body:not(.minimal-mode) .footer-brand span { color: var(--lime) }
+body:not(.minimal-mode) .footer-tagline { font-family: var(--hand); font-size: 1.05rem; text-transform: none; letter-spacing: 0; color: var(--text-muted); font-weight: 500 }
+body:not(.minimal-mode) .footer-nav h4 { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.8rem; font-weight: 600; color: #fff }
+body:not(.minimal-mode) .footer-nav a { font-family: var(--sans); font-size: 0.86rem; color: var(--text-muted) }
+body:not(.minimal-mode) .footer-nav a:hover { color: var(--lime) }
+body:not(.minimal-mode) .footer-copy { font-family: var(--sans); letter-spacing: 0; font-size: 0.74rem; color: var(--text-muted); text-align: left }
+body:not(.minimal-mode) .footer::after { content: 'Keep Building \2665'; position: absolute; right: 40px; bottom: 34px; font-family: var(--hand); font-weight: 700; font-size: 1.5rem; color: #fff; background: var(--purple); padding: 10px 24px; border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; transform: rotate(-7deg); box-shadow: 0 12px 30px rgba(177,75,255,0.35) }
+
+/* ── Mobile nav ──────────────────────────────────── */
+@media (max-width: 768px) {
+  body:not(.minimal-mode) .nav-links { background: #0E0E13; border-bottom-color: var(--border) }
+  body:not(.minimal-mode) .nav-links a { border-bottom-color: var(--border) }
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 1100px) {
+  body:not(.minimal-mode) .doodle-note, body:not(.minimal-mode) .d-arrow-1, body:not(.minimal-mode) .d-scribble-1 { display: none }
+}
+@media (max-width: 900px) {
+  body:not(.minimal-mode) .hero-content { grid-template-columns: 1fr; text-align: center; padding-top: 36px }
+  body:not(.minimal-mode) .hero-desc { margin: 0 auto 22px }
+  body:not(.minimal-mode) .hero-btns, body:not(.minimal-mode) .artsy-tech { justify-content: center }
+  body:not(.minimal-mode) .hero-art { min-height: 0; margin-top: 20px }
+  body:not(.minimal-mode) .artsy-avatar { width: min(100%, 320px) }
+  body:not(.minimal-mode) .artsy-bubble { font-size: 0.85rem; max-width: 170px }
+  body:not(.minimal-mode) .artsy-sticker.s1 { right: 0 }
+  body:not(.minimal-mode) .d-bolt-1, body:not(.minimal-mode) .d-bolt-2, body:not(.minimal-mode) .d-star-3, body:not(.minimal-mode) .d-crown-1 { display: none }
+  body:not(.minimal-mode) .section[style*="paper-dark"] > .container,
+  body:not(.minimal-mode) .section[style*="var(--ink)"] > .container { padding: 44px 28px; border-radius: 22px }
+  body:not(.minimal-mode) .section[style*="var(--ink)"] > .container > div { display: block !important }
+  body:not(.minimal-mode) .section[style*="var(--ink)"] > .container > div > div:last-child { display: none }
+}
+@media (max-width: 768px) {
+  body:not(.minimal-mode) .hero { padding-bottom: 200px }
+  body:not(.minimal-mode) .hero h1.artsy-name { font-size: clamp(3.6rem, 18vw, 5.5rem) }
+  body:not(.minimal-mode) .stats-bar { gap: 10px; padding: 0 16px 20px }
+  body:not(.minimal-mode) .stat-item { min-width: 0; padding: 14px 10px }
+  body:not(.minimal-mode) .footer::after { position: static; display: inline-block; margin-top: 24px }
+  body:not(.minimal-mode) .footer-copy { text-align: center }
+  body:not(.minimal-mode) .section[style*="paper-dark"] > .container { padding: 36px 20px; max-width: calc(100% - 32px) }
+  body:not(.minimal-mode) .section[style*="var(--ink)"] > .container { padding: 36px 20px; max-width: calc(100% - 32px) }
+  body:not(.minimal-mode) .page-header .container::after { display: none }
+}

@@ -18,7 +18,8 @@ portfolio/
 ├── resume-download.html→ Public resume download page
 ├── admin.html          → Admin panel (password protected)
 ├── css/
-│   └── style.css       → Global styles (Minimal + Creative themes)
+│   ├── style.css       → Global styles (Minimal theme + shared layout)
+│   └── artsy.css       → Artsy theme overrides (dark, neon, hand-drawn)
 └── js/
     └── data.js         → Data management (localStorage) + theme toggle
 ```
@@ -27,7 +28,9 @@ portfolio/
 
 ### Theme Toggle
 - **Minimal** (default) — Clean black & white professional look
-- **Creative** — Gold editorial aesthetic with custom cursor, grain texture, animated reveals
+- **Artsy** — Dark, hand-drawn sticker aesthetic: marker headlines, neon lime/purple/blue accents, paint splashes, doodles, custom cursor
+- Append `?theme=artsy` or `?theme=minimal` to any page URL to switch (the choice is remembered)
+- Home hero in Artsy mode shows a placeholder monogram; drop a transparent PNG at `img/avatar.png` to show your own illustration instead
 
 ### Blog System
 - Rich text editor (bold, italic, headings, lists, quotes, links)

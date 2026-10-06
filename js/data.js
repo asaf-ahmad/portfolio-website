@@ -246,6 +246,10 @@ function toggleTheme() {
 }
 
 function restoreTheme() {
+  // ?theme=artsy or ?theme=minimal in the URL switches (and remembers) the view
+  var q = new URLSearchParams(window.location.search).get('theme');
+  if (q === 'artsy' || q === 'creative') DB.setTheme('creative');
+  else if (q === 'minimal') DB.setTheme('minimal');
   if (DB.getTheme() === 'creative') {
     document.body.classList.remove('minimal-mode');
     var tm = document.getElementById('toggle-minimal');

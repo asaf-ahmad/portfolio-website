@@ -440,3 +440,14 @@ body:not(.minimal-mode) .poem-card::after { color: rgba(184,150,46,0.07) }
   .hero { padding-bottom: 140px }
   .hero h1 { font-size: clamp(2.5rem, 8vw, 4rem) }
 }
+
+/* ═══════════════════════════════════════════════════
+   SKILLS TILES (home)
+   ═══════════════════════════════════════════════════ */
+.skills-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-bottom: 40px }
+.skills-note { font-family: 'DM Mono', monospace; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted) }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 12px }
+.skill-tile { background: var(--cream); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 10px 16px; text-align: center; transition: all var(--transition); display: flex; flex-direction: column; align-items: center; gap: 12px }
+.skill-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--border-dark) }
+.skill-icon { width: 46px; height: 46px; border-radius: 4px; background: var(--ink); color: var(--paper); display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em }
+.skill-tile span { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); line-height: 1.3 }
