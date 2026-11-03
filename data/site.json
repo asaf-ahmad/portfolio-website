@@ -30,6 +30,10 @@
       "APIs & Architecture",
       "Pre-Sales"
     ],
+    "cta_resume": {
+      "label": "Download My Resume",
+      "href": "files/Asaf_Ahmad_Shayaan_Resume.pdf"
+    },
     "cta_primary": {
       "label": "Work With Me →",
       "href": "services.html"
