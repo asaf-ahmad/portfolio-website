@@ -70,6 +70,13 @@
     </div>
   </section>
 
+  <section class="section" id="upcoming" hidden>
+    <div class="container">
+      <div class="reveal"><span class="section-label">Coming Up</span><h2 class="section-title">Upcoming Topics</h2><p class="section-desc">What I am researching and writing next.</p></div>
+      <div class="upcoming-grid reveal" id="upcoming-list"></div>
+    </div>
+  </section>
+
   <section class="section" id="documents" style="background:var(--paper-dark)">
     <div class="container">
       <div class="reveal"><span class="section-label">Decks &amp; Papers</span><h2 class="section-title">Presentations &amp; PDFs</h2><p class="section-desc">Slide decks, one-pagers and longer write-ups you can download and keep.</p></div>
@@ -130,7 +137,18 @@ Content.load(function() {
   var want = new URLSearchParams(location.search).get('topic');
   if (want && used[want]) { activeCat = want; bar.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.toggle('active', b.textContent === (CATEGORIES.find(function(c){return c.id===want;})||{}).label); }); }
   render();
+  renderUpcoming();
 });
+function renderUpcoming() {
+  var items = Content.upcoming();
+  if (!items.length) return;
+  document.getElementById('upcoming-list').innerHTML = items.map(function(u) {
+    var cat = u.category ? CATEGORIES.find(function(c) { return c.id === u.category; }) : null;
+    return '<div class="card"><span class="card-tag">' + esc(cat ? cat.label : 'Coming soon') + '</span>' +
+      '<h3>' + esc(u.title) + '</h3>' + (u.note ? '<p>' + esc(u.note) + '</p>' : '') + '</div>';
+  }).join('');
+  document.getElementById('upcoming').hidden = false;
+}
 </script>
 </body>
 </html>

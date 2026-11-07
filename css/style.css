@@ -462,6 +462,7 @@ body:not(.minimal-mode) .poem-card::after { color: rgba(184,150,46,0.07) }
 .impact strong { font-size: 0.95rem; font-family: 'Cormorant Garamond', serif; font-weight: 700; letter-spacing: 0 }
 .card-list { padding-left: 18px; list-style: disc; margin-top: 10px }
 .card-list li { font-size: 0.86rem; color: var(--text-muted); margin-bottom: 5px; line-height: 1.6 }
+.upcoming-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px }
 .doc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px }
 .doc-card { display: flex; gap: 18px; align-items: flex-start; background: var(--cream); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; transition: all var(--transition); color: inherit }
 .doc-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--border-dark) }

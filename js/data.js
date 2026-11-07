@@ -218,6 +218,10 @@ var Content = {
     for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
     return null;
   },
+  /* Topics announced as coming soon, in the order listed in the JSON */
+  upcoming: function() {
+    return (this._data && Array.isArray(this._data.upcoming) ? this._data.upcoming : []).filter(function(u) { return u && u.title; });
+  },
   documents: function() {
     return (this._data ? this._data.documents : []).slice().sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
   },
