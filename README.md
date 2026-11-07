@@ -39,7 +39,7 @@ search engines never see it. To publish for real:
 
 1. **Articles**: add an entry to `data/learnings.json` under `articles` with `id`, `title`, `date`,
    `category` (product, books, ai, los, underwriting, collections, lending, fintech, presales, career,
-   data, ux), `readlength` (rapid, medium, long), `excerpt`, and either `source` (an HTML file under
+   data, ux, aviation), `readlength` (rapid, medium, long), `excerpt`, and either `source` (an HTML file under
    `content/articles/`), inline `content`, or a `url` (e.g. a Medium post). The admin panel's
    *Publish to Learnings* page exports drafts in this shape.
 2. **Decks and PDFs**: put the file in `files/` and add an entry under `documents` with `id`, `title`,
@@ -73,7 +73,7 @@ BreadcrumbList, Article). `sitemap.xml` and `robots.txt` are at the root. After 
 - Home hero in Artsy mode shows a placeholder monogram; drop a transparent PNG at `img/avatar.png` to show your own illustration instead
 
 ### Learnings (articles + decks)
-- Articles by topic (Product Management, Learnings from Books, AI in Lending, LOS, Credit Underwriting, Collections, Digital Lending, Fintech, Pre-Sales, Career, Data, UX) and read length
+- Articles by topic (Product Management, Learnings from Books, AI in Lending, LOS, Credit Underwriting, Collections, Digital Lending, Fintech, Pre-Sales, Career, Data, UX, Aviation) and read length
 - Decks and PDFs listed with type badges and direct download
 - Rich text editor in the admin for drafting; publish via `data/learnings.json` (see above)
 

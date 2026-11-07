@@ -22,6 +22,7 @@ CATEGORY = {
     "lending": ("Digital Lending & Onboarding", "#2F6FDB"), "fintech": ("Fintech & Banking", "#1F2430"),
     "presales": ("Pre-Sales & GTM", "#C8591A"), "career": ("Career in Product", "#8E4ED6"),
     "data": ("Data & Analytics", "#2F6FDB"), "ux": ("UX & Design", "#C23A5C"),
+    "aviation": ("Aviation", "#2F6FDB"),
 }
 PALETTE = ["#2F6FDB", "#C8591A", "#1F8A5B", "#8E4ED6", "#C23A5C"]
 

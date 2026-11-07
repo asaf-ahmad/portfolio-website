@@ -1,5 +1,5 @@
 {
-  "_readme": "Public content for the Learnings page. Articles: give each an id, title, date (ISO), category (an id from CATEGORIES in js/data.js: product, books, ai, los, underwriting, collections, lending, fintech, presales, career, data, ux), readlength (rapid | medium | long), excerpt, and either a source (HTML file under content/articles/), inline content, or a url (e.g. a Medium post). Documents: id, title, type (pdf | ppt | pptx), category, description, date, file (path under files/), optional pages.",
+  "_readme": "Public content for the Learnings page. Articles: give each an id, title, date (ISO), category (an id from CATEGORIES in js/data.js: product, books, ai, los, underwriting, collections, lending, fintech, presales, career, data, ux, aviation), readlength (rapid | medium | long), excerpt, and either a source (HTML file under content/articles/), inline content, or a url (e.g. a Medium post). Documents: id, title, type (pdf | ppt | pptx), category, description, date, file (path under files/), optional pages.",
   "articles": [
     {
       "id": "designing-a-loan-origination-system-around-the-lending-book",

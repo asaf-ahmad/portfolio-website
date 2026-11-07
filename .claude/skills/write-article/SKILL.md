@@ -28,6 +28,7 @@ Map the category to one of the site's category ids (js/data.js CATEGORIES):
 | pre-sales, gtm, proposals | `presales` | |
 | career, mentoring | `career` | |
 | data, analytics | `data` | |
+| aviation, airlines, aircraft, flying, airports | `aviation` | |
 | ux, design | `ux` | |
 
 Read length: `rapid` under 700 words, `medium` 700 to 1,400, `long` above. Articles written with this

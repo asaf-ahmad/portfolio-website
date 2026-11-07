@@ -15,7 +15,8 @@ var CATEGORIES = [
   { id: "presales",     label: "Pre-Sales & GTM",              url: "https://images.unsplash.com/photo-1561414927-6d86591d0c4f?w=800&q=80",  color: "#2A1F0F" },
   { id: "career",       label: "Career in Product",            url: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",  color: "#1F2937" },
   { id: "data",         label: "Data & Analytics",             url: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80", color: "#0D1B2A" },
-  { id: "ux",           label: "UX & Design",                  url: "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=800&q=80", color: "#1A1A1A" }
+  { id: "ux",           label: "UX & Design",                  url: "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=800&q=80", color: "#1A1A1A" },
+  { id: "aviation",     label: "Aviation",                     url: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80", color: "#0B1F3A" }
 ];
 
 var READ_LENGTHS = [

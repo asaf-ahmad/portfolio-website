@@ -19,7 +19,7 @@ import argparse, datetime, io, json, os, re, shutil, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://asafahmad.com/"
-CATEGORY_IDS = ["product", "books", "ai", "los", "underwriting", "collections", "lending", "fintech", "presales", "career", "data", "ux"]
+CATEGORY_IDS = ["product", "books", "ai", "los", "underwriting", "collections", "lending", "fintech", "presales", "career", "data", "ux", "aviation"]
 READ_LENGTHS = ["rapid", "medium", "long"]
 PAGES = [("", "1.0", "weekly"), ("services.html", "0.9", "monthly"), ("about.html", "0.8", "monthly"), ("experience.html", "0.8", "monthly"),
          ("learnings.html", "0.8", "weekly"), ("contact.html", "0.7", "yearly"), ("portfolio.html", "0.5", "monthly"),
